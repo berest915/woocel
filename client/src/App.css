@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --empty-space-color--: rgb(28, 30, 31);
+  --content-space-color--: rgb(24, 26, 27);
+
+  --nav-min-height--: 60px;
+  --nav-height--: 12vh;
+  --nav-max-height--: 90px;
+}
+
+.app{
+  font-size: 16px;
+}
+.app__body{
+  height: calc(100vh - var(--nav-height--));
+  background-color: var(--empty-space-color--);
+}

@@ -1,0 +1,34 @@
+.nav {
+  padding: 0 10%;
+  min-height: var(--nav-min-height--);
+  height: var(--nav-height--);
+  max-height: var(--nav-max-height--);
+  background-color: var(--content-space-color--);
+  color: lightblue;
+
+  display: flex;
+  align-items: center;
+}
+
+.nav__leftContainer{
+  display: flex;
+  align-items: center;
+}
+.nav__leftContainer > .nav__titleText{
+  font-size: 2rem;
+  font-weight: 500;
+  padding: 0 30px;
+}
+
+.nav__rightContainer{
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+.nav__rightContainer > i{
+  font-size: 1.8rem;
+  padding: 0 30px;
+}
+.nav__rightContainer > p{
+  font-size: 1.6rem;
+}
