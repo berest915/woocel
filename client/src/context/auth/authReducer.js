@@ -1,4 +1,4 @@
-import { SET_LOGIN_STATUS, SET_USER, SET_ACCESS_TOKEN } from "../types";
+import { SET_LOGIN_STATUS, SET_USER, SET_ACCESS_TOKEN, RESET_AUTH } from "../types";
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -13,9 +13,16 @@ const authReducer = (state, action) => {
         isLogin: true,
       };
     case SET_ACCESS_TOKEN:
+      return {
+        ...state,
+        accessToken: action.payload,
+      };
+    case RESET_AUTH:
         return{
             ...state,
-            accessToken: action.payload,
+            user: null,
+            isLogin: false,
+            accessToken: null,
         }
     default:
       throw Error(`Auth Reducer - Unhandled Action: ${action.type}`);

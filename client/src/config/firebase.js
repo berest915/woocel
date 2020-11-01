@@ -2,16 +2,15 @@ import firebase from 'firebase'
 import 'firebase/auth'
 import 'firebase/firestore'
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
 const firebaseConfig = {
-  apiKey: "AIzaSyDVDp7TE7Bzg0KKrvQUy1O9u9ARu9e3wno",
-  authDomain: "wsc-socket.firebaseapp.com",
-  databaseURL: "https://wsc-socket.firebaseio.com",
-  projectId: "wsc-socket",
-  storageBucket: "wsc-socket.appspot.com",
-  messagingSenderId: "146468174485",
-  appId: "1:146468174485:web:34ffbf9212601bca9af99c",
-  measurementId: "G-8QRD7FLLV8"
+  apiKey: "AIzaSyBhQVSm-7H66z-t7-cgO93TBqE8gteWI6A",
+  authDomain: "woocel-v0.firebaseapp.com",
+  databaseURL: "https://woocel-v0.firebaseio.com",
+  projectId: "woocel-v0",
+  storageBucket: "woocel-v0.appspot.com",
+  messagingSenderId: "970868840347",
+  appId: "1:970868840347:web:ef2f900a5ac58e95e2333e",
+  measurementId: "G-TB0QVBYPCX"
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)

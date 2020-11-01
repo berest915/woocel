@@ -18,9 +18,3 @@
   object-fit: contain; /*keep aspect ratio */
 }
 
-.login__container button {
-  margin-top: 50px;
-  text-transform: inherit !important;
-  background-color: #0fb45c;
-  color: white;
-}

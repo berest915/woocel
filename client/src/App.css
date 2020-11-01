@@ -19,3 +19,10 @@
   background-color: var(--empty-space-color--);
   color: lavender;
 }
+
+.app .google-btn{
+  margin-top: 50px;
+  text-transform: inherit !important;
+  background-color: #0fb45c;
+  color: white;
+}

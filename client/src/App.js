@@ -12,8 +12,8 @@ function App() {
     <>
       <AuthState>
           <div className="app">
-            <Navbar />
             <Router>
+            <Navbar />
               <div className="app__body">
                 <Switch>
                   <Route exact path="/" component={LoginPage} />

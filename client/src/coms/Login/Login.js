@@ -18,7 +18,23 @@ const Login = () => {
         setUser(result);
         setAccessToken(result.credential.accessToken);
         localStorage.setItem("token", result.credential.accessToken);
-        
+        // write into db
+        // ################################################### //
+        db.collection("users")
+          .doc(result.user.email)
+          .set({
+            accessToken: result.credential.accessToken,
+            displayName: result.user.displayName,
+            email: result.user.email,
+            photoURL: result.user.photoURL,
+          })
+          .then(function () {
+            console.log("Document successfully written!");
+          })
+          .catch(function (error) {
+            console.error("Error writing document: ", error);
+          });
+        // ################################################### //
       })
       .catch((error) => alert(error.message));
   };
@@ -31,10 +47,10 @@ const Login = () => {
     <div className="login">
       <div className="login__container">
         <i className="fab fa-whatsapp"></i>
-
+  <p>{user && user.email}</p>
         <p>Sign in to Woocel</p>
 
-        <Button onClick={signIn}>Sign in with Google</Button>
+        <Button className='google-btn' onClick={signIn}>Sign in with Google</Button>
       </div>
     </div>
   );
