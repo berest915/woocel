@@ -1,6 +1,7 @@
-import { useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./Login.css";
+
 import Button from "@material-ui/core/Button";
 
 import { auth, provider } from "../../config/firebase";
@@ -9,12 +10,16 @@ import authContext from "../../context/auth/authContext";
 
 const Login = () => {
   const history = useHistory();
-  const { user, setUser, setAccessToken } = useContext(authContext);
+  const LST = localStorage.getItem("token");
+  const { user, setUser, setAccessToken, accessToken } = useContext(
+    authContext
+  );
+  const [DBT, setDBT] = useState(null);
 
-  const signIn = () => {
-    auth
+  const signIn = async () => {
+     await auth
       .signInWithPopup(provider)
-      .then((result) => {
+      .then(result => {
         setUser(result);
         setAccessToken(result.credential.accessToken);
         localStorage.setItem("token", result.credential.accessToken);
@@ -36,23 +41,41 @@ const Login = () => {
           });
         // ################################################### //
       })
-      .catch((error) => alert(error.message));
+      .catch(error => alert(error.message));
+    history.push('/app')
   };
 
   useEffect(() => {
-    user && history.push("/app");
-  }, [user, history]);
+    
+    LST && history.push('/continue')
+    // if (LST) {
+    //   db.collection("users").onSnapshot(snapshot => {
+    //     snapshot.docs.map(doc => {
+    //       setDBT(doc.data().accessToken);
+
+    //       // isSameToken && history.push('/app')
+    //     });
+    //   });
+    // }
+    // if (LST && DBT) {
+    //   const isSameToken = LST === DBT;
+    // }
+  }, [history, LST]);
 
   return (
-    <div className="login">
-      <div className="login__container">
-        <i className="fab fa-whatsapp"></i>
-  <p>{user && user.email}</p>
-        <p>Sign in to Woocel</p>
+    <>
+      <div className="login">
+        <div className="login__container">
+          <i className="fab fa-whatsapp"></i>
 
-        <Button className='google-btn' onClick={signIn}>Sign in with Google</Button>
+          <p>Sign in to Woocel</p>
+
+          <Button className="google-btn" onClick={signIn}>
+            Sign in with Google
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

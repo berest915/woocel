@@ -1,20 +1,13 @@
-.login{
+.continue{
   height: 100%;
   width: 100vw;
   display: grid;
   place-items: center;
 }
-.login__container {
+.continue__container {
   padding: 200px;
   text-align: center;
   background-color: var(--content-space-color--);
   border-radius: 10px;
   box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
 }
-
-.login__container > img {
-  height: 90px;
-  margin-bottom: 30px;
-  object-fit: contain; /*keep aspect ratio */
-}
-

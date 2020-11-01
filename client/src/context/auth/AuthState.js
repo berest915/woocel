@@ -10,7 +10,7 @@ import {
   RESET_AUTH,
 } from "../types";
 
-const AuthState = (props) => {
+const AuthState = props => {
   const initialState = {
     user: null,
     isLogin: false,
@@ -18,7 +18,7 @@ const AuthState = (props) => {
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
-  const setUser = (result) => {
+  const setUser = result => {
     console.log(result);
     dispatch({
       type: SET_USER,
@@ -29,7 +29,7 @@ const AuthState = (props) => {
     });
   };
 
-  const setAccessToken = (accessToken) => {
+  const setAccessToken = accessToken => {
     dispatch({
       type: SET_ACCESS_TOKEN,
       payload: accessToken,
@@ -48,7 +48,7 @@ const AuthState = (props) => {
         accessToken: state.accessToken,
         setUser,
         setAccessToken,
-        resetAuth
+        resetAuth,
       }}
     >
       {props.children}

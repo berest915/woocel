@@ -11,18 +11,24 @@
   --nav-max-height--: 90px;
 }
 
-.app{
+.app {
   font-size: 16px;
 }
-.app__body{
+.app__body {
   height: calc(100vh - var(--nav-height--));
   background-color: var(--empty-space-color--);
   color: lavender;
 }
 
-.app .google-btn{
-  margin-top: 50px;
+.app .google-btn {
+  padding: 5px 10px;
   text-transform: inherit !important;
-  background-color: #0fb45c;
+  /* background-color: #0fb45c; */
+  background-color: #0fa1b4;
   color: white;
+}
+.app .google-btn:hover {
+  transition: all 0.8s ease;
+  color: lavender;
+  background-color: rgb(84, 82, 219);
 }

@@ -6,6 +6,7 @@ import Navbar from "./layout/Navbar";
 import LoginPage from "./pages/LoginPage";
 import SuccessPage from "./pages/SuccessPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import ContinuePage from "./pages/ContinuePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
                 <Switch>
                   <Route exact path="/" component={LoginPage} />
                   <Route exact path="/app" component={SuccessPage} />
+                  <Route exact path='/continue' component={ContinuePage} />
                   <Route component={NotFoundPage} />
                 </Switch>
               </div>
