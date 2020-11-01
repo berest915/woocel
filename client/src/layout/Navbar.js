@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { useContext } from "react";
 import "./Navbar.css";
 
+import authContext from "../context/auth/authContext";
+
 const Navbar = () => {
-  const [state, setState] = useState("");
+  const { isLogin } = useContext(authContext);
 
   return (
     <div className="nav">
       <div className="nav__leftContainer">
-        {/* <i className="nav__titleIcon fab fa-whatsapp"></i> */}
         <p className="nav__titleText">Woocel</p>
       </div>
       <div className="nav__rightContainer">
-       
-          <i className="fas fa-bell-slash"></i>
-          <i className="fas fa-wifi"></i>
-      
+        <i className={`fas fa-bell-slash ${!isLogin && `active`}`}></i>
+        <i className={`fas fa-wifi ${isLogin && `active`}`}></i>
+
         <p className="token-status">no-token</p>
       </div>
     </div>

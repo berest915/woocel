@@ -17,4 +17,5 @@
 .app__body{
   height: calc(100vh - var(--nav-height--));
   background-color: var(--empty-space-color--);
+  color: lavender;
 }
