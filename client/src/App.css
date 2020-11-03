@@ -9,6 +9,11 @@
   --nav-min-height--: 60px;
   --nav-height--: 12vh;
   --nav-max-height--: 90px;
+
+  --nav-logo-size--: 2.5rem;
+  --nav-title-size--: 2rem;
+  --nav-icon-size--: 1.8rem;
+  --nav-text-size--: 1.8rem;
 }
 
 .app {
@@ -23,7 +28,6 @@
 .app .google-btn {
   padding: 5px 10px;
   text-transform: inherit !important;
-  /* background-color: #0fb45c; */
   background-color: #0fa1b4;
   color: white;
 }
@@ -31,4 +35,12 @@
   transition: all 0.8s ease;
   color: lavender;
   background-color: rgb(84, 82, 219);
+}
+
+.app .google-btn.disabled{
+  background-color: rgb(62, 55, 70);
+  color: rgb(141, 130, 148);
+}
+.app .google-btn.disabled{
+  cursor: not-allowed;
 }

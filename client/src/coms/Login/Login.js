@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./Login.css";
 
@@ -11,16 +11,15 @@ import authContext from "../../context/auth/authContext";
 const Login = () => {
   const history = useHistory();
   const LST = localStorage.getItem("token");
-  const { user, setUser, setAccessToken, accessToken } = useContext(
+  const { writeUserInfo, setAccessToken } = useContext(
     authContext
   );
-  const [DBT, setDBT] = useState(null);
 
   const signIn = async () => {
      await auth
       .signInWithPopup(provider)
       .then(result => {
-        setUser(result);
+        writeUserInfo(result);
         setAccessToken(result.credential.accessToken);
         localStorage.setItem("token", result.credential.accessToken);
         // write into db
@@ -48,18 +47,7 @@ const Login = () => {
   useEffect(() => {
     
     LST && history.push('/continue')
-    // if (LST) {
-    //   db.collection("users").onSnapshot(snapshot => {
-    //     snapshot.docs.map(doc => {
-    //       setDBT(doc.data().accessToken);
-
-    //       // isSameToken && history.push('/app')
-    //     });
-    //   });
-    // }
-    // if (LST && DBT) {
-    //   const isSameToken = LST === DBT;
-    // }
+   
   }, [history, LST]);
 
   return (

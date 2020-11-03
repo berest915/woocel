@@ -4,7 +4,7 @@ import AuthContext from "./authContext";
 import AuthReducer from "./authReducer";
 
 import {
-  SET_USER,
+  WRITE_USER_INFO,
   SET_LOGIN_STATUS,
   SET_ACCESS_TOKEN,
   RESET_AUTH,
@@ -12,20 +12,31 @@ import {
 
 const AuthState = props => {
   const initialState = {
-    user: null,
+    user: {
+      accessToken: null,
+      displayName: null,
+      email: null,
+      photoURL: null,
+    },
     isLogin: false,
     accessToken: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
-  const setUser = result => {
-    console.log(result);
+  const writeUserInfo = result => {
     dispatch({
-      type: SET_USER,
+      type: WRITE_USER_INFO,
       payload: result.user,
     });
     dispatch({
       type: SET_LOGIN_STATUS,
+    });
+  };
+
+  const rewriteUserInfo = user => {
+    dispatch({
+      type: WRITE_USER_INFO,
+      payload: user,
     });
   };
 
@@ -46,9 +57,10 @@ const AuthState = props => {
         user: state.user,
         isLogin: state.isLogin,
         accessToken: state.accessToken,
-        setUser,
+        writeUserInfo,
         setAccessToken,
         resetAuth,
+        rewriteUserInfo,
       }}
     >
       {props.children}
