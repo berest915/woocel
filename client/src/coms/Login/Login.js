@@ -11,12 +11,10 @@ import authContext from "../../context/auth/authContext";
 const Login = () => {
   const history = useHistory();
   const LST = localStorage.getItem("token");
-  const { writeUserInfo, setAccessToken } = useContext(
-    authContext
-  );
+  const { writeUserInfo, setAccessToken } = useContext(authContext);
 
   const signIn = async () => {
-     await auth
+    await auth
       .signInWithPopup(provider)
       .then(result => {
         writeUserInfo(result);
@@ -41,26 +39,24 @@ const Login = () => {
         // ################################################### //
       })
       .catch(error => alert(error.message));
-    history.push('/app')
+    history.push("/app");
   };
 
   useEffect(() => {
-    
-    LST && history.push('/continue')
-   
+    LST && history.push("/continue");
   }, [history, LST]);
 
   return (
     <>
       <div className="login">
-        <div className="login__container">
-          <i className="fab fa-whatsapp"></i>
-
-          <p>Sign in to Woocel</p>
-
-          <Button className="google-btn" onClick={signIn}>
-            Sign in with Google
-          </Button>
+        <div className="login__wrapper">
+          <div className="login__container">
+            <i className="fab fa-whatsapp"></i>
+            <p>Sign in to Woocel</p>
+            <Button className="google-btn" onClick={signIn}>
+              Sign in with Google
+            </Button>
+          </div>
         </div>
       </div>
     </>

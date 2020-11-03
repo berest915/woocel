@@ -1,13 +1,43 @@
-.continue{
+.continue {
   height: 100%;
-  width: 100vw;
   display: grid;
   place-items: center;
 }
-.continue__container {
-  padding: 200px;
+.continue__wrapper {
+  height: 60%;
+  width: 500px;
+
+  padding: 0 60px;
+  transition: all 0.4s ease;
   text-align: center;
   background-color: var(--content-space-color--);
   border-radius: 10px;
   box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+}
+
+.continue__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.continue__container > .avatar {
+  height: var(--login-logo-size--);
+  width: var(--login-logo-size--);
+  margin-bottom: 30px;
+  align-self: center !important;
+}
+
+.continue__container > .name {
+  padding-bottom: 15px;
+  color: lightblue;
+}
+.continue__container > .email {
+  padding-bottom: 30px;
+  color: gray;
+}
+.continue__container > .buttons > .google-btn {
+  margin: 0 15px;
 }

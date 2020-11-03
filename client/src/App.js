@@ -12,19 +12,27 @@ function App() {
   return (
     <>
       <AuthState>
-          <div className="app">
-            <Router>
-            <Navbar />
-              <div className="app__body">
+        <div className="app">
+          <Router>
+            {/* HEADER */}
+            <div className="app__header">
+              <div className="layout">
+                <Navbar />
+              </div>
+            </div>
+            {/* BODY */}
+            <div className="app__body">
+              <div className="page">
                 <Switch>
                   <Route exact path="/" component={LoginPage} />
                   <Route exact path="/app" component={SuccessPage} />
-                  <Route exact path='/continue' component={ContinuePage} />
+                  <Route exact path="/continue" component={ContinuePage} />
                   <Route component={NotFoundPage} />
                 </Switch>
               </div>
-            </Router>
-          </div>
+            </div>
+          </Router>
+        </div>
       </AuthState>
     </>
   );

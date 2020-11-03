@@ -1,12 +1,14 @@
-import React from 'react'
-import Success from '../coms/Success/Success'
+import React from "react";
+import Success from "../coms/Success/Success";
 
 const SuccessPage = () => {
   return (
     <>
-      <Success />
+     
+        <Success />
+    
     </>
-  )
-}
+  );
+};
 
-export default SuccessPage
+export default SuccessPage;

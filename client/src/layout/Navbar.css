@@ -1,5 +1,4 @@
 .nav {
-   padding: 0 10%;
   min-height: var(--nav-min-height--);
   height: var(--nav-height--);
   max-height: var(--nav-max-height--);
@@ -14,24 +13,24 @@
   display: flex;
   align-items: center;
 }
-.nav__leftContainer > .logo{
+.nav__leftContainer > .logo {
   font-size: var(--nav-logo-size--);
 }
 .nav__leftContainer > .title {
   color: lavender;
   font-size: var(--nav-title-size--);
   font-weight: 500;
-  padding: 0 15px;
+  padding: 0 30px;
 }
 
 .nav__rightContainer {
   flex-grow: 1;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
-.nav__rightContainer > .icons{
+.nav__rightContainer > .icons {
   width: 200px;
   display: flex;
   justify-content: space-evenly;
@@ -46,46 +45,43 @@
   color: orange;
 }
 
-.nav__rightContainer >.text{
+.nav__rightContainer > .text {
   font-size: var(--nav-text-size--);
 }
 
-.nav__rightContainer > .google-btn{
+.nav__rightContainer > .google-btn {
   margin-left: 15px;
 }
 
-@media screen and (max-width: 1000px){
-  .nav{
-    padding: 0 5%;
+@media screen and (max-width: 1000px) {
+  .nav__leftContainer > .logo {
+    font-size: calc(0.8 * var(--nav-logo-size--));
   }
-  .nav__leftContainer > .logo{
-    font-size: calc(0.8 *var(--nav-logo-size--));
+  .nav__leftContainer > .title {
+    font-size: calc(0.8 * var(--nav-title-size--));
   }
-  .nav__leftContainer > .title{
-    font-size: calc(0.8 *var(--nav-title-size--));
+  .nav__rightContainer .icon {
+    font-size: calc(0.8 * var(--nav-icon-size--));
   }
-  .nav__rightContainer .icon{
-    font-size: calc(0.8 *var(--nav-icon-size--));
-  }
-  .nav__rightContainer > .text{
-    font-size: calc(0.8 *var(--nav-text-size--));
+  .nav__rightContainer > .text {
+    font-size: calc(0.8 * var(--nav-text-size--));
   }
 }
 
-@media screen and (max-width: 700px){
-  .nav__rightContainer > .icons{
+@media screen and (max-width: 700px) {
+  .nav__rightContainer > .icons {
     width: 150px;
   }
-  .nav__leftContainer > .title{
-    font-size: calc(0.7 *var(--nav-title-size--));
+  .nav__leftContainer > .title {
+    font-size: calc(0.7 * var(--nav-title-size--));
   }
-  .nav__rightContainer > .text{
-    font-size: calc(0.7 *var(--nav-text-size--));
+  .nav__rightContainer > .text {
+    font-size: calc(0.7 * var(--nav-text-size--));
   }
 }
 
-@media screen and (max-width: 600px){
-  .nav__rightContainer > .text{
+@media screen and (max-width: 600px) {
+  .nav__leftContainer > .title {
     display: none;
   }
 }

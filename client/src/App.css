@@ -14,15 +14,35 @@
   --nav-title-size--: 2rem;
   --nav-icon-size--: 1.8rem;
   --nav-text-size--: 1.8rem;
+
+  --login-logo-size--: 5rem;
+  --login-text-size--: 2rem;
 }
 
 .app {
   font-size: 16px;
 }
+
+.app__header {
+  background-color: var(--content-space-color--);
+}
+
+.app__header > .layout {
+  padding: 0 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .app__body {
-  height: calc(100vh - var(--nav-height--));
   background-color: var(--empty-space-color--);
+  height: calc(100vh - var(--nav-height--));
   color: lavender;
+}
+.app__body > .page {
+  height: 100%;
+  padding: 0 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .app .google-btn {
@@ -37,10 +57,10 @@
   background-color: rgb(84, 82, 219);
 }
 
-.app .google-btn.disabled{
+.app .google-btn.disabled {
   background-color: rgb(62, 55, 70);
   color: rgb(141, 130, 148);
 }
-.app .google-btn.disabled{
+.app .google-btn.disabled {
   cursor: not-allowed;
 }

@@ -1,11 +1,26 @@
+import { useHistory } from "react-router-dom";
+import './NotFound.css'
 
-// display info "invalid subdir" > redirect to /continue
+import Button from "@material-ui/core/Button";
+
 const NotFound = () => {
-  return (
-    <div style={{ fontWeight: 'bold' }}> 
-      NOT FOUND
-    </div>
-  )
-}
+  const history = useHistory();
 
-export default NotFound
+  return (
+    <>
+      <div className="notFound">
+        <div className="notFound__wrapper">
+          <div className="notFound__container">
+            <p className='error'>ERROR 404</p>
+            <p className='detail'>Page Not Found</p>
+            <Button className="google-btn" onClick={() => history.push('/')}>
+              Redirect to Homepage
+            </Button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default NotFound;
