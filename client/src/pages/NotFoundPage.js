@@ -1,11 +1,16 @@
-import NotFound from '../coms/NotFound/NotFound'
+import NotFound from "../coms/NotFound/NotFound";
+import "./NotFoundPage.css";
 
 const NotFoundPage = () => {
   return (
     <>
-      <NotFound />
+      <div className="notFound">
+        <div className="notFound__wrapper">
+          <NotFound />
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;

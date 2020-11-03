@@ -1,11 +1,16 @@
-import Login from '../coms/Login/Login'
+import Login from "../coms/Login/Login";
+import "./LoginPage.css";
 
 const LoginPage = () => {
   return (
     <>
-      <Login />
+      <div className="login">
+        <div className="login__wrapper">
+          <Login />
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

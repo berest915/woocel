@@ -48,16 +48,12 @@ const Login = () => {
 
   return (
     <>
-      <div className="login">
-        <div className="login__wrapper">
-          <div className="login__container">
-            <i className="fab fa-whatsapp"></i>
-            <p>Sign in to Woocel</p>
-            <Button className="google-btn" onClick={signIn}>
-              Sign in with Google
-            </Button>
-          </div>
-        </div>
+      <div className="login__container">
+        <i className="fab fa-whatsapp"></i>
+        <p>Sign in to Woocel</p>
+        <Button className="google-btn" onClick={signIn}>
+          Sign in with Google
+        </Button>
       </div>
     </>
   );

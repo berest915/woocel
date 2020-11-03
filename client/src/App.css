@@ -17,6 +17,9 @@
 
   --login-logo-size--: 5rem;
   --login-text-size--: 2rem;
+
+  --notFound-error-size--: 1.2rem;
+  --notFound-detail-size--: 1.75rem;
 }
 
 .app {
@@ -46,10 +49,11 @@
 }
 
 .app .google-btn {
-  padding: 5px 10px;
+  padding: 5px 15px;
   text-transform: inherit !important;
   background-color: #0fa1b4;
   color: white;
+  border-radius: 5px;
 }
 .app .google-btn:hover {
   transition: all 0.8s ease;

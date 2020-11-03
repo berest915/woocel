@@ -1,0 +1,23 @@
+.login {
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.login__wrapper {
+  height: 60%;
+  width: 500px;
+
+  transition: all 0.4s ease;
+  text-align: center;
+  background-color: var(--content-space-color--);
+  border-radius: 10px;
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 600px) {
+  .login__wrapper {
+    height: 50%;
+    width: 70%;
+  }
+}

@@ -4,9 +4,11 @@
   max-height: var(--nav-max-height--);
   background-color: var(--content-space-color--);
   color: lightblue;
-  transition: all 0.4s ease;
   display: flex;
   align-items: center;
+}
+.nav * {
+  transition: all 0.4s ease;
 }
 
 .nav__leftContainer {

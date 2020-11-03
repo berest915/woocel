@@ -30,8 +30,6 @@ const Continue = () => {
 
   return (
     <>
-      <div className="continue">
-        <div className="continue__wrapper">
           <div className="continue__container">
             <Avatar className="avatar" src={user && user.photoURL} />
             <p className="name">{user && user.displayName}</p>
@@ -48,8 +46,7 @@ const Continue = () => {
               </Button>
             </div>
           </div>
-        </div>
-      </div>
+    
     </>
   );
 };

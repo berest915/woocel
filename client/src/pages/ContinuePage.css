@@ -1,0 +1,22 @@
+.continue {
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.continue__wrapper {
+  height: 60%;
+  width: 500px;
+
+  background-color: var(--content-space-color--);
+  border-radius: 10px;
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+}
+
+@media screen and (max-width: 600px) {
+  .continue__wrapper {
+    height: 55%;
+    width: 70%;
+  }
+}

@@ -1,0 +1,27 @@
+.notFound {
+  height: 100%;
+  position: relative;
+}
+
+.notFound__wrapper {
+  height: 40%;
+  width: 500px;
+
+  transition: all 0.4s ease;
+  text-align: center;
+  background-color: var(--content-space-color--);
+  border-radius: 10px;
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media screen and (max-width: 600px){
+  .notFound__wrapper{
+    height: 30%;
+    width: 70%;
+  }
+}

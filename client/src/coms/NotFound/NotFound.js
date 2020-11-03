@@ -8,8 +8,6 @@ const NotFound = () => {
 
   return (
     <>
-      <div className="notFound">
-        <div className="notFound__wrapper">
           <div className="notFound__container">
             <p className='error'>ERROR 404</p>
             <p className='detail'>Page Not Found</p>
@@ -17,8 +15,7 @@ const NotFound = () => {
               Redirect to Homepage
             </Button>
           </div>
-        </div>
-      </div>
+    
     </>
   );
 };
