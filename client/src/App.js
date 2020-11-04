@@ -3,10 +3,10 @@ import "./App.css";
 import AuthState from "./context/auth/AuthState";
 
 import Navbar from "./layout/Navbar";
-import LoginPage from "./pages/LoginPage";
-import SuccessPage from "./pages/SuccessPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import ContinuePage from "./pages/ContinuePage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import SuccessPage from "./pages/SuccessPage/SuccessPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import ContinuePage from "./pages/ContinuePage/ContinuePage";
 
 function App() {
   return (

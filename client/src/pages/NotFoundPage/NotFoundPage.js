@@ -1,4 +1,4 @@
-import NotFound from "../coms/NotFound/NotFound";
+import NotFound from "../../coms/NotFound/NotFound";
 import "./NotFoundPage.css";
 
 const NotFoundPage = () => {

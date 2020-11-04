@@ -1,4 +1,4 @@
-import Continue from "../coms/Continue/Continue";
+import Continue from "../../coms/Continue/Continue";
 import './ContinuePage.css'
 const ContinuePage = () => {
   return (

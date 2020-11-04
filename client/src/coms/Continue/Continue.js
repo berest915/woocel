@@ -18,8 +18,10 @@ const Continue = () => {
         // compare and get the info from the right user
         const LST = localStorage.getItem("token");
         LST === doc.data().accessToken && rewriteUserInfo(doc.data());
+        return doc;
       });
     });
+    // eslint-disable-next-line
   }, []);
 
   const signOut = () => {
@@ -30,23 +32,19 @@ const Continue = () => {
 
   return (
     <>
-          <div className="continue__container">
-            <Avatar className="avatar" src={user && user.photoURL} />
-            <p className="name">{user && user.displayName}</p>
-            <p className="email">{user && user.email}</p>
-            <div className="buttons">
-              <Button
-                className="google-btn"
-                onClick={() => history.push("/app")}
-              >
-                Continue
-              </Button>
-              <Button className="google-btn" onClick={signOut}>
-                Sign Out
-              </Button>
-            </div>
-          </div>
-    
+      <div className="continue__container">
+        <Avatar className="avatar" src={user && user.photoURL} />
+        <p className="name">{user && user.displayName}</p>
+        <p className="email">{user && user.email}</p>
+        <div className="buttons">
+          <Button className="google-btn" onClick={() => history.push("/app")}>
+            Continue
+          </Button>
+          <Button className="google-btn" onClick={signOut}>
+            Sign Out
+          </Button>
+        </div>
+      </div>
     </>
   );
 };

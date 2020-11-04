@@ -4,6 +4,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
+
+  -webkit-box-shadow: -1px -1px 19px -3px rgba(151,201,217,1);
+-moz-box-shadow: -1px -1px 19px -3px rgba(151,201,217,1);
+box-shadow: -1px -1px 19px -3px rgba(151,201,217,1);
+
+
 }
 .login__container *{
   transition: all 0.4s ease;

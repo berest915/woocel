@@ -1,4 +1,4 @@
-import Login from "../coms/Login/Login";
+import Login from "../../coms/Login/Login";
 import "./LoginPage.css";
 
 const LoginPage = () => {
