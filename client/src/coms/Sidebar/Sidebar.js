@@ -5,6 +5,9 @@ import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
+import EachRoom from "./EachRoom/EachRoom";
+
+
 
 const Sidebar = () => {
   return (
@@ -31,30 +34,11 @@ const Sidebar = () => {
             <input type="text" placeholder="Search or start new chat" />
           </div>
         </div>
-
-        <div className="sidebar__chats" style={{overflow: 'auto'}}>
-          <div className="isRooms" style={{ padding: "50px" }}>
-            hye
-          </div>
-          <div className="isRooms" style={{ padding: "50px" }}>
-            hye
-          </div>
-          <div className="isRooms" style={{ padding: "50px" }}>
-            hye
-          </div>
-          <div className="isRooms" style={{ padding: "50px" }}>
-            hye
-          </div>
-          <div className="isRooms" style={{ padding: "50px" }}>
-            hye
-          </div>
-          <div className="isRooms" style={{ padding: "50px" }}>
-            hye
-          </div>
-          <div className="isRooms" style={{ padding: "50px" }}>
-            hye
-          </div>
+       
+        <div className="sidebar__chats" >
+         <EachRoom />
         </div>
+    
       </div>
     </>
   );

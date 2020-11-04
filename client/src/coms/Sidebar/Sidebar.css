@@ -56,7 +56,6 @@
 }
 
 .sidebar__chats{
-  border: 1px solid red;
   flex: 1;
   background-color: var(--success-chatroom-bg--);
   overflow: auto;
