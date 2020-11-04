@@ -20,6 +20,12 @@
 
   --notFound-error-size--: 1.2rem;
   --notFound-detail-size--: 1.75rem;
+
+  --success-border--: 1px solid #cfc9c95b;
+
+  --sidebar-infobar-bg--: rgb(42, 47, 50);
+  --sidebar-chatroom-bg--: rgb(19, 28, 33);
+  --sidebar-chat-bg--: rgb(14, 21, 25);
 }
 
 .app {
@@ -34,7 +40,7 @@
   padding: 0 30px;
   max-width: 1200px;
   margin: 0 auto;
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
 }
 
 .app__body {

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import "./Navbar.css";
@@ -9,7 +9,12 @@ import authContext from "../context/auth/authContext";
 
 const Navbar = () => {
   const history = useHistory();
+  const LST = localStorage.getItem('token')
   const { isLogin, accessToken, resetAuth } = useContext(authContext);
+
+    // useEffect(() => {
+    //   if(LST)
+    // }, [LST])
 
   const signOut = () => {
     localStorage.removeItem("token");
@@ -30,10 +35,10 @@ const Navbar = () => {
         <i className={`icon fas fa-wifi ${isLogin && `active`}`}></i>
         </div>
         <p className="text">
-          {!accessToken ? "no-token" : "has-token"}
+          {!LST ? "no-token" : "has-token"}
         </p>
         <Button
-          className={`google-btn ${!accessToken && "disabled"}`}
+          className={`google-btn ${!LST && "disabled"}`}
           onClick={signOut}
         >
           Sign Out

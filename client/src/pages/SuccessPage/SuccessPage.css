@@ -1,0 +1,18 @@
+.success {
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.success__wrapper {
+  height: calc(0.9 * (100vh - var(--nav-height--)));
+  width: 95vw;
+
+  background-color: var(--content-space-color--);
+  border-radius: 8px;
+  transition: all 0.4s ease;
+
+  -webkit-box-shadow: 2px 2px 18px -5px rgba(151, 201, 217, 1);
+  -moz-box-shadow: 2px 2px 18px -5px rgba(151, 201, 217, 1);
+  box-shadow: 2px 2px 18px -5px rgba(151, 201, 217, 1);
+}

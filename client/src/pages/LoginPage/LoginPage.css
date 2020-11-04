@@ -13,6 +13,10 @@
   background-color: var(--content-space-color--);
   border-radius: 10px;
   box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
+
+  -webkit-box-shadow: -1px -1px 19px -3px rgba(151,201,217,1);
+  -moz-box-shadow: -1px -1px 19px -3px rgba(151,201,217,1);
+  box-shadow: -1px -1px 19px -3px rgba(151,201,217,1);
 }
 
 @media screen and (max-width: 600px) {
