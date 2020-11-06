@@ -54,7 +54,12 @@ const Chat = () => {
       </div>
 
       <div className="chat__body">
-        
+        <div className="chat__message">
+          <p className="chat__name">Tuna Bacon</p>
+          <p className="chat__text">Hey There</p>
+
+          <span className="chat__timestamp">12:30am</span>
+        </div>
       </div>
 
       {/* <div className="chat__footer">
@@ -70,6 +75,3 @@ const Chat = () => {
 };
 
 export default Chat;
-
-
-

@@ -40,36 +40,44 @@
   background-position: center;
   overflow: scroll;
   overflow-x: hidden;
-  padding: 30px;
+  padding: 30px 15px;
+  color: lavender;
+
+  /* display: flex;
+  flex-direction: column; */
 }
 
-/* .chat__message {
+.chat__message {
   position: relative;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px;
-  background-color: white;
-  border-radius: 10px;
+  background-color: var(--chat-message-bg--);
+  border-radius: 8px;
   width: fit-content;
   margin-bottom: 20px;
   font-weight: 500;
-} */
+
+  display: flex;
+}
 
 /* .chat__receiver {
   margin-left: auto;
   background-color: #dcf8c6;
 } */
 
-/* .chat__name {
+.chat__name {
   position: absolute;
   top: -15px;
   font-size: xx-small;
   font-weight: 700;
-} */
+}
 
-/* .chat__timestamp {
-  font-size: xx-small;
-  margin-left: 10px;
-} */
+.chat__timestamp {
+  font-size: x-small;
+  margin-left: 12px;
+  color: lightblue;
+  align-self: flex-end;
+}
 
 /* .chat__footer {
   display: flex;

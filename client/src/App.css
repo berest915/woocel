@@ -44,6 +44,7 @@
   --sidebar-chat-bg--: rgb(14, 21, 25);
 
   --chat-infobar-bg--: rgb(42, 47, 50);
+  --chat-message-bg--: rgb(66, 75, 80);
 }
 
 .app {
