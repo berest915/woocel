@@ -7,12 +7,8 @@ const SuccessPage = () => {
     <>
       <div className="success">
         <div className="success__wrapper">
-          
-          <div style={{ display: 'flex', height: '100%' }}>
-            <Sidebar />
-            <Chat />
-          </div>
-          
+          <Sidebar /> 
+          <Chat />
         </div>
       </div>
     </>

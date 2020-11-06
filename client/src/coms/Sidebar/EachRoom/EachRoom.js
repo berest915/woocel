@@ -10,7 +10,7 @@ const EachRoom = () => {
         </div>
         <div className="eachRoom__textInfo">
           <div className="upperTextInfo">
-            <p className="roomName">Redux React </p>
+            <p className="roomName">REDUX REACT GATSBY COMMUNITY</p>
             <p className="date">21/10/2019</p>
           </div>
           <div className="lowerTextInfo">

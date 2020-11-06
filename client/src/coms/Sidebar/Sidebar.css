@@ -1,5 +1,6 @@
 .sidebar {
   flex: 0.35;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   color: lavender;
@@ -19,8 +20,8 @@
   justify-content: space-between;
 }
 
-.sidebar__headerRight > .MuiIconButton-root{
-  color:#ffffffcc;
+.sidebar__headerRight > .MuiIconButton-root {
+  color: #ffffffcc;
 }
 
 .sidebar__search {
@@ -53,8 +54,9 @@
   outline: none;
 }
 
-.sidebar__chats{
+.sidebar__chats {
   flex: 1;
+  min-width: 0;
   background-color: var(--success-chatroom-bg--);
   overflow: auto;
 }

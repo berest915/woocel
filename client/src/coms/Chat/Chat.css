@@ -4,6 +4,8 @@
   flex-direction: column;
 
   color: lavender;
+  min-height: 0;
+  min-width: 0;
 }
 .chat__header {
   background-color: var(--sidebar-infobar-bg--);
@@ -11,12 +13,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-width: 0;
 }
 
 .chat__headerLeft {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   overflow: hidden;
+  min-width: 0;
 }
 
 .chat__headerLeft > .MuiAvatar-root {
@@ -25,6 +29,16 @@
 
 .chat__headerRight > .MuiIconButton-root {
   color: #ffffffcc;
+}
+
+.chat__headerLeft .roomName {
+  font-size: var(--sidebar-room-font--);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  min-width: 0;
+  overflow: hidden;
+  width: 85%;
 }
 
 .chat__headerRight {
@@ -42,9 +56,6 @@
   overflow-x: hidden;
   padding: 30px 15px;
   color: lavender;
-
-  /* display: flex;
-  flex-direction: column; */
 }
 
 .chat__message {

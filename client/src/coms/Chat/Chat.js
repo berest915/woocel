@@ -30,14 +30,16 @@ const Chat = () => {
   });
   // ############################################# //
 
-  const Testo = () => <h4>Novice Developer Room</h4>;
-
   return (
     <div className="chat">
       <div className="chat__header">
         <div className="chat__headerLeft">
           <Avatar />
-          {!value ? <Testo /> : <ToggleModal />}
+          {!value ? (
+            <p className="roomName">Novice Developer Novice DeveloperNovice Developer Room Novice Developer Room</p>
+          ) : (
+            <ToggleModal />
+          )}
         </div>
 
         <div className="chat__headerRight">
@@ -69,13 +71,13 @@ const Chat = () => {
       </div>
 
       <div className="chat__footer">
-          <InsertEmoticonIcon />
-          <form spellCheck='false' >
-            <input />
-            <button type="submit">Send a message</button>
-          </form>
-          <MicIcon />
-        </div>
+        <InsertEmoticonIcon />
+        <form spellCheck="false">
+          <input />
+          <button type="submit">Send a message</button>
+        </form>
+        <MicIcon />
+      </div>
     </div>
   );
 };
