@@ -54,7 +54,7 @@ const Chat = () => {
           </IconButton>
         </div>
       </div>
-
+      
       <div className="chat__body">
         <div className="chat__message">
           <p className="chat__name">Tuna Bacon</p>
@@ -62,6 +62,13 @@ const Chat = () => {
 
           <span className="chat__timestamp">12:30am</span>
         </div>
+        <div className="chat__message chat__receiver">
+          <p className="chat__name">You</p>
+          <p className="chat__text">Yeah?</p>
+
+          <span className="chat__timestamp">12:31am</span>
+        </div>
+      
         <div className="chat__message chat__receiver">
           <p className="chat__name">You</p>
           <p className="chat__text">Yeah?</p>
