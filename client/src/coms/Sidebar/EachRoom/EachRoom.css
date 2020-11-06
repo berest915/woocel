@@ -1,6 +1,40 @@
 .eachRoom{
-  padding: 25px 20px;
+  padding: 15px 20px;
   border-bottom: var(--success-border--);
   display: flex;
   align-items: center;
+}
+
+.eachRoom__avatar{
+  margin-right: 15px;
+}
+
+.eachRoom__textInfo{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.eachRoom__textInfo > .upperTextInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--sidebar-room-font--);
+}
+
+.eachRoom__textInfo > .upperTextInfo > .roomName {
+  width: 68%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eachRoom__textInfo > .upperTextInfo > .date {
+  font-size: x-small;
+  color: lightgray;
+}
+
+.eachRoom__textInfo > .lowerTextInfo {
+  font-size: var(--sidebar-message-font--);
+  color:gray;
 }

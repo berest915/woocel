@@ -40,10 +40,14 @@
   --success-big-font-size--: 1rem;
 
   --sidebar-infobar-bg--: rgb(42, 47, 50);
+  --sidebar-infobar-pad--: 8px 8px 8px 15px;
   --sidebar-chatroom-bg--: rgb(19, 28, 33);
   --sidebar-chat-bg--: rgb(14, 21, 25);
+  --sidebar-room-font--: 17px;
+  --sidebar-message-font--: 14px;
 
   --chat-infobar-bg--: rgb(42, 47, 50);
+  --chat-infobar-pad--: 8px 8px 8px 15px;
   --chat-sender-bg--: rgb(66, 75, 80);
   --chat-receiver-bg--: rgb(5, 71, 64);
 }

@@ -10,8 +10,8 @@ const EachRoom = () => {
         </div>
         <div className="eachRoom__textInfo">
           <div className="upperTextInfo">
-            <p className="roomName">chatroom name</p>
-            <p className="date">21/1/2019</p>
+            <p className="roomName">Redux React </p>
+            <p className="date">21/10/2019</p>
           </div>
           <div className="lowerTextInfo">
             <p className="lastMessage">chatroom last msg</p>
