@@ -60,16 +60,22 @@ const Chat = () => {
 
           <span className="chat__timestamp">12:30am</span>
         </div>
+        <div className="chat__message chat__receiver">
+          <p className="chat__name">You</p>
+          <p className="chat__text">Yeah?</p>
+
+          <span className="chat__timestamp">12:31am</span>
+        </div>
       </div>
 
-      {/* <div className="chat__footer">
+      <div className="chat__footer">
           <InsertEmoticonIcon />
-          <form>
+          <form spellCheck='false' >
             <input />
             <button type="submit">Send a message</button>
           </form>
           <MicIcon />
-        </div> */}
+        </div>
     </div>
   );
 };
