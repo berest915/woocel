@@ -1,0 +1,102 @@
+.chat {
+  flex: 0.65;
+  display: flex;
+  flex-direction: column;
+
+  color: lavender;
+}
+.chat__header {
+  background-color: var(--sidebar-infobar-bg--);
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat__headerLeft {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.chat__headerLeft > .MuiAvatar-root {
+  margin-right: 15px;
+}
+
+.chat__headerRight > .MuiIconButton-root {
+  color: #ffffffcc;
+}
+
+.chat__headerRight {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat__body {
+  background-image: url("https://i.ibb.co/gdkDjBb/pexels-elijah-o-donnell-3473569.jpg");
+  flex: 1;
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding: 30px;
+}
+
+/* .chat__message {
+  position: relative;
+  font-size: 16px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  width: fit-content;
+  margin-bottom: 20px;
+  font-weight: 500;
+} */
+
+/* .chat__receiver {
+  margin-left: auto;
+  background-color: #dcf8c6;
+} */
+
+/* .chat__name {
+  position: absolute;
+  top: -15px;
+  font-size: xx-small;
+  font-weight: 700;
+} */
+
+/* .chat__timestamp {
+  font-size: xx-small;
+  margin-left: 10px;
+} */
+
+/* .chat__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+  border-top: 1px solid lightgray;
+} */
+
+/* .chat__footer > .MuiSvgIcon-root {
+  margin: 10px;
+  color: gray;
+} */
+
+/* .chat__footer > form {
+  display: flex;
+  flex: 1;
+} */
+
+/* .chat__footer > form > input {
+  flex: 1;
+  border-radius: 30px;
+  padding: 10px;
+  border: none;
+  outline: none;
+} */
+
+/* .chat__footer > form > button {
+  display: none;
+} */

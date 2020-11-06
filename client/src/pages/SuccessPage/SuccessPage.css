@@ -6,7 +6,7 @@
 
 .success__wrapper {
   height: calc(0.9 * (100vh - var(--nav-height--)));
-  width: 95vw;
+  width: 100%;
 
   background-color: var(--content-space-color--);
   border-radius: 8px;

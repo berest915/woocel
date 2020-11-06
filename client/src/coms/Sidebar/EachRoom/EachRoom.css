@@ -1,4 +1,6 @@
 .eachRoom{
   padding: 25px 20px;
-  border-bottom: var(--success-border--)
+  border-bottom: var(--success-border--);
+  display: flex;
+  align-items: center;
 }

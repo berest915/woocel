@@ -1,3 +1,4 @@
+import Chat from "../../coms/Chat/Chat";
 import Sidebar from "../../coms/Sidebar/Sidebar";
 import "./SuccessPage.css";
 
@@ -6,11 +7,12 @@ const SuccessPage = () => {
     <>
       <div className="success">
         <div className="success__wrapper">
-          {/* sidebar */}
+          
           <div style={{ display: 'flex', height: '100%' }}>
             <Sidebar />
+            <Chat />
           </div>
-          {/* chat-messages */}
+          
         </div>
       </div>
     </>

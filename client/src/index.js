@@ -1,14 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BreakpointProvider } from "./IndexContextProvider/breakpoint";
+
+
+const queries = {
+  sm: "(max-width: 700px)"
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BreakpointProvider queries={queries}>
+      <App />
+    </BreakpointProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -8,19 +8,20 @@ import SuccessPage from "./pages/SuccessPage/SuccessPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import ContinuePage from "./pages/ContinuePage/ContinuePage";
 
+
 function App() {
   return (
     <>
       <AuthState>
         <div className="app">
           <Router>
-            {/* HEADER */}
+            
             <div className="app__header">
               <div className="layout">
                 <Navbar />
               </div>
             </div>
-            {/* BODY */}
+           
             <div className="app__body">
               <div className="page">
                 <Switch>
