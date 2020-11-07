@@ -18,6 +18,7 @@ const AuthState = props => {
       email: null,
       photoURL: null,
     },
+    rooms: null,
     isLogin: false,
     accessToken: null,
   };
@@ -46,6 +47,10 @@ const AuthState = props => {
       payload: accessToken,
     });
   };
+  
+  const setRooms = () => {
+    
+  }
 
   const resetAuth = () => {
     dispatch({ type: RESET_AUTH });
@@ -55,6 +60,7 @@ const AuthState = props => {
     <AuthContext.Provider
       value={{
         user: state.user,
+        rooms: state.rooms,
         isLogin: state.isLogin,
         accessToken: state.accessToken,
         writeUserInfo,

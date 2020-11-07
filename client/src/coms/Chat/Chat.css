@@ -68,7 +68,7 @@
   background-color: var(--chat-sender-bg--);
   border-radius: 8px;
   width: fit-content;
-  margin-top: 12px;
+  margin-top: 20px;
   font-weight: 500;
 
   display: flex;
