@@ -24,7 +24,7 @@ function App() {
               <div className="page">
                 <Switch>
                   <Route exact path="/" component={LoginPage} />
-                  <Route exact path="/continue" component={ContinuePage} />
+                  <Route path="/continue" component={ContinuePage} />
                   <Route path="/app" component={SuccessPage} />
                   <Route component={NotFoundPage} />
                 </Switch>

@@ -5,7 +5,7 @@ import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import { IconButton } from "@material-ui/core";
 
 const ToggleModal = () => {
-  const [open, setIsOpen] = useState(true);
+  const [open, setIsOpen] = useState(false);
 
   return (
     <>

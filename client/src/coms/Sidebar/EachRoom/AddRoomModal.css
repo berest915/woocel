@@ -1,0 +1,10 @@
+.addRoomModal {
+  background-color: white;
+  color: black;
+  height: 50px;
+  width: fit-content;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
