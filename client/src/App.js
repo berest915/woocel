@@ -7,9 +7,6 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SuccessPage from "./pages/SuccessPage/SuccessPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import ContinuePage from "./pages/ContinuePage/ContinuePage";
-import EachRoom from "./coms/Sidebar/EachRoom/EachRoom";
-import Chat from "./coms/Chat/Chat";
-import Sidebar from "./coms/Sidebar/Sidebar";
 
 function App() {
   return (
@@ -25,14 +22,10 @@ function App() {
 
             <div className="app__body">
               <div className="page">
-                {/* container size vary => combine all classes, each take what it's named */}
                 <Switch>
                   <Route exact path="/" component={LoginPage} />
                   <Route exact path="/continue" component={ContinuePage} />
-                  <Route exact path="/app" component={Sidebar} />
-                  {/* app */}
-                  {/* app/:roomId */}
-                  {/* app/other */}
+                  <Route path="/app" component={SuccessPage} />
                   <Route component={NotFoundPage} />
                 </Switch>
               </div>

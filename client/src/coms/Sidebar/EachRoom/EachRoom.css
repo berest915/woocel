@@ -5,6 +5,9 @@
   min-width: 0;
   align-items: center;
 }
+.eachRoom:hover{
+  cursor: pointer;
+}
 .eachRoom > .MuiSvgIcon-root {
   height: 40px;
   width: 40px;
