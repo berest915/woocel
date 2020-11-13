@@ -1,20 +1,34 @@
 import ReactDOM from "react-dom";
+import { useState } from 'react'
 import "./AddRoomModal.css";
+import db from '../../../config/firebase'
 
 const AddRoomModal = ({ isOpen, onCloseModal }) => {
+  const [input, setInput] = useState('')
+ 
   if (!isOpen) return null;
+  
+
 
   return ReactDOM.createPortal(
     <>
       <div style={OVERLAY_STYLES}>
         <div
           className="addRoomModal"
-          style={{
-            transform: isOpen ? "translateY(0vh)" : "translateY(-100vh)",
-            opacity: isOpen ? "1" : "0",
-          }}
+      //  which model to refer at ?
         >
-          <p>chat modal</p>
+          <form>
+						<input
+							value={input}
+							onChange={e => setInput(e.target.value)}
+							type='text'
+							placeholder='enter new room name'
+						/>
+            //! after addroom by prompt, rewatch again
+						{/* <button onClick={sendMessage} type='submit'>
+							Add
+						</button> */}
+					</form>
           <button onClick={onCloseModal} >Close</button>
         </div>
       </div>
