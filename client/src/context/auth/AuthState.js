@@ -7,6 +7,7 @@ import {
   WRITE_USER_INFO,
   SET_LOGIN_STATUS,
   SET_ACCESS_TOKEN,
+  SET_NEW_ROOM,
   RESET_AUTH,
 } from "../types";
 
@@ -18,7 +19,7 @@ const AuthState = props => {
       email: null,
       photoURL: null,
     },
-    rooms: null,
+    rooms: [],
     isLogin: false,
     accessToken: null,
   };
@@ -48,8 +49,11 @@ const AuthState = props => {
     });
   };
   
-  const setRooms = () => {
-    
+  const setNewRoom = (roomName) => {
+    dispatch({
+      type: SET_NEW_ROOM,
+      payload: roomName,
+    })
   }
 
   const resetAuth = () => {
@@ -67,6 +71,7 @@ const AuthState = props => {
         setAccessToken,
         resetAuth,
         rewriteUserInfo,
+        setNewRoom,
       }}
     >
       {props.children}

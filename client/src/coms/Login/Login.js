@@ -1,19 +1,27 @@
+// react hooks + css
 import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./Login.css";
-
+// @material ui
 import Button from "@material-ui/core/Button";
-
+// firebase
 import { auth, provider } from "../../config/firebase";
 import db from "../../config/firebase";
+// react context
 import authContext from "../../context/auth/authContext";
 
 const Login = () => {
   const history = useHistory();
   const LST = localStorage.getItem("token");
+
   const { writeUserInfo, setAccessToken } = useContext(authContext);
 
+  useEffect(() => {
+    LST && history.push("/continue");
+  }, [history, LST]);
+
   const signIn = async () => {
+    // write auth relevant data into LST & db
     await auth
       .signInWithPopup(provider)
       .then(result => {
@@ -41,10 +49,6 @@ const Login = () => {
       .catch(error => alert(error.message));
     history.push("/app");
   };
-
-  useEffect(() => {
-    LST && history.push("/continue");
-  }, [history, LST]);
 
   return (
     <>

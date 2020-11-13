@@ -1,27 +1,25 @@
+// react hooks + css
+import "./EachRoom.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./EachRoom.css";
+// @material-ui
 import AddIcon from "@material-ui/icons/Add";
 import { Avatar } from "@material-ui/core";
-import AddRoomModal from "./AddRoomModal";
+// components
+import AddRoomModal from "../AddRoomModal/AddRoomModal";
 
-const EachRoom = ({ path, id, name, addNewChat }) => {
-  const [isOpen, setIsOpen] = useState(true);
+const EachRoom = ({ path, addNewChat, id, name }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       {addNewChat ? (
         <>
-       
-            <div className="eachRoom" onClick={() => setIsOpen(true)}>
-              <AddIcon />
-              <p>Add new chat</p>
-            </div>
-            <AddRoomModal
-              isOpen={isOpen}
-              onCloseModal={() => setIsOpen(false)}
-            />
-      
+          <div className="eachRoom" onClick={() => setIsOpen(true)}>
+            <AddIcon />
+            <p>Add new chat</p>
+          </div>
+          <AddRoomModal isOpen={isOpen} onCloseModal={() => setIsOpen(false)} />
         </>
       ) : (
         <>

@@ -1,14 +1,17 @@
+// react hooks + css
 import "./Sidebar.css";
 import { useContext, useEffect, useState } from "react";
-
+// @material-ui
 import { Avatar, IconButton } from "@material-ui/core";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
-import EachRoom from "./EachRoom/EachRoom";
-
+// components
+import EachRoom from "../EachRoom/EachRoom";
+// firebase
 import db from "../../config/firebase";
+// react context
 import authContext from "../../context/auth/authContext";
 
 const Sidebar = ({ path }) => {
@@ -16,6 +19,7 @@ const Sidebar = ({ path }) => {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
+    // get a snap on the collection and upd new snapshot if any change occur
     db.collection("rooms").onSnapshot(snapshot => {
       setRooms(
         snapshot.docs.map(doc => ({
