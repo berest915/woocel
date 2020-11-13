@@ -10,9 +10,7 @@ import db from "../../config/firebase";
 import authContext from "../../context/auth/authContext";
 
 const AddRoomModal = ({ isOpen, onCloseModal }) => {
-  const { setNewRoom } = useContext(authContext);
   const { roomname, bind, reset } = useInput("");
-  const [isRoomNameExist, setIsRoomNameExist] = useState(false);
 
   if (!isOpen) return null;
 
@@ -42,17 +40,6 @@ const AddRoomModal = ({ isOpen, onCloseModal }) => {
             </label>
             <input type="submit" value="Submit" />
           </form>
-          {/* <form>
-            <input
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              type="text"
-              placeholder="enter new room name"
-            />
-            <button type='submit'>
-							Add
-						</button>
-          </form> */}
           <button onClick={onCloseModal}>Cancel</button>
         </div>
       </div>

@@ -18,6 +18,7 @@ const Continue = () => {
         // compare and get the info from the right user
         const LST = localStorage.getItem("token");
         LST === doc.data().accessToken && rewriteUserInfo(doc.data());
+        // return with/without reason ?
         return doc;
       });
     });

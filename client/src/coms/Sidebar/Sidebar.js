@@ -29,14 +29,14 @@ const Sidebar = ({ path }) => {
       );
     });
 
-    db.collection("users").onSnapshot(snapshot => {
-      snapshot.docs.map(doc => {
-        // compare and get the info from the right user
-        const LST = localStorage.getItem("token");
-        LST === doc.data().accessToken && rewriteUserInfo(doc.data());
-        return doc;
-      });
-    });
+    // db.collection("users").onSnapshot(snapshot => {
+    //   snapshot.docs.map(doc => {
+    //     // compare and get the info from the right user
+    //     const LST = localStorage.getItem("token");
+    //     LST === doc.data().accessToken && rewriteUserInfo(doc.data());
+    //     return doc;
+    //   });
+    // });
     // eslint-disable-next-line
   }, []);
 
@@ -73,7 +73,7 @@ const Sidebar = ({ path }) => {
                 path={path}
                 key={room.id}
                 id={room.id}
-                name={room.data.name}
+                roomName={room.data.name}
               />
             ))}
         </div>

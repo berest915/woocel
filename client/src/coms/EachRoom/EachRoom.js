@@ -8,7 +8,7 @@ import { Avatar } from "@material-ui/core";
 // components
 import AddRoomModal from "../AddRoomModal/AddRoomModal";
 
-const EachRoom = ({ path, addNewChat, id, name }) => {
+const EachRoom = ({ path, addNewChat, id, roomName }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -23,14 +23,14 @@ const EachRoom = ({ path, addNewChat, id, name }) => {
         </>
       ) : (
         <>
-          <Link to={`${path}/:roomId`}>
+          <Link to={`${path}/:roomId`} style={{ textDecoration: "none" }}>
             <div className="eachRoom">
               <div className="eachRoom__avatar">
                 <Avatar />
               </div>
               <div className="eachRoom__textInfo">
                 <div className="upperTextInfo">
-                  <p className="roomName">REDUX REACT GATSBY COMMUNITY</p>
+                  <p className="roomName">{roomName}</p>
                   <p className="date">21/10/2019</p>
                 </div>
                 <div className="lowerTextInfo">
