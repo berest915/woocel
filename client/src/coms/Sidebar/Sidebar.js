@@ -15,7 +15,7 @@ import db from "../../config/firebase";
 import authContext from "../../context/auth/authContext";
 
 const Sidebar = ({ path }) => {
-  const { user, rewriteUserInfo } = useContext(authContext);
+  const { user } = useContext(authContext);
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {

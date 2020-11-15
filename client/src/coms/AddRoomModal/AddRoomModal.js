@@ -31,18 +31,16 @@ const AddRoomModal = ({ isOpen, onCloseModal }) => {
   return ReactDOM.createPortal(
     <>
       <div style={OVERLAY_STYLES}>
-        <div
-          className="addRoomModal"
-          // which model to refer at ?
-        >
+        <div className="addRoomModal">
           <form onSubmit={handleSubmit}>
             <label>
-              Room Name:
-              <input type="text" {...bind} />
+              <div className="modalTitle">Room Name</div>
+              <input className="modalInput" type="text" {...bind} />
             </label>
-            <input type="submit" value="Submit" />
           </form>
-          <button onClick={onCloseModal}>Cancel</button>
+          <button className="modalCloseButton" onClick={onCloseModal}>
+            Cancel
+          </button>
         </div>
       </div>
     </>,

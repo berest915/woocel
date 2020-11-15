@@ -9,8 +9,6 @@ import MoreVert from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 
-import Button from "@material-ui/core/Button";
-import Alert from "@material-ui/lab/Alert";
 import { useBreakpoint } from "../../IndexContextProvider/breakpoint";
 import ToggleModal from "../ChatModal/ToggleModal";
 import db from "../../config/firebase";
