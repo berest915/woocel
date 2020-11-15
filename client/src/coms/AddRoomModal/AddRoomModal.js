@@ -1,16 +1,13 @@
 // react hooks + css
-import { useState, useContext, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./AddRoomModal.css";
 // custom hooks
 import { useInput } from "./useInput";
 // firebase
 import db from "../../config/firebase";
-// react context
-import authContext from "../../context/auth/authContext";
 
 const AddRoomModal = ({ isOpen, onCloseModal }) => {
-  const { roomname, bind, reset } = useInput("");
+  const { roomname, bind } = useInput("");
 
   if (!isOpen) return null;
 

@@ -12,7 +12,7 @@ const BreakpointProvider = ({ children, queries }) => {
   useEffect(() => {
     const mediaQueryLists = {};
     const keys = Object.keys(queries);
-    let isAttached = false;
+    // let isAttached = false;
 
     const handleQueryListener = () => {
       const updateMatches = keys.reduce((acc, media) => {
@@ -35,7 +35,7 @@ const BreakpointProvider = ({ children, queries }) => {
         }
       });
       setQueryMatch(matches);
-      isAttached = true;
+      // isAttached = true;
       keys.forEach(media => {
         if (typeof queries[media] === "string") {
           mediaQueryLists[media].addListener(handleQueryListener);

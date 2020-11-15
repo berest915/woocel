@@ -10,13 +10,12 @@ import db from "../config/firebase";
 const Navbar = () => {
   const history = useHistory();
   const LST = localStorage.getItem("token");
-  const { isLogin, writeUserInfo, resetAuth } = useContext(
-    authContext
-  );
+  const { isLogin, writeUserInfo, resetAuth } = useContext(authContext);
 
   useEffect(() => {
     // read auth-userInfo from db => consistent login access
     // replace LST with cookie-ish for better security
+    // assume LST is not altered, either intentionally or accidentally
     if (LST) {
       db.collection("users").onSnapshot(snapshot => {
         snapshot.docs.map(doc => {
@@ -30,11 +29,13 @@ const Navbar = () => {
               photoURL: docData.photoURL,
             });
           }
+          return doc;
         });
       });
-    }else{
-      signOut()
+    } else {
+      signOut();
     }
+    // eslint-disable-next-line
   }, [LST]);
 
   const signOut = () => {

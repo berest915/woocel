@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import "./Chat.css";
 
 import { Avatar, IconButton } from "@material-ui/core";
@@ -9,13 +9,14 @@ import MoreVert from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 
-import { useBreakpoint } from "../../IndexContextProvider/breakpoint";
+// import { useBreakpoint } from "../../IndexContextProvider/breakpoint";
 import ToggleModal from "../ChatModal/ToggleModal";
 import db from "../../config/firebase";
 import authContext from "../../context/auth/authContext";
 import firebase from "firebase";
 
 const Chat = () => {
+  let history = useHistory()
   const [input, setInput] = useState("");
   const { roomId } = useParams();
   const [roomName, setRoomName] = useState("");
@@ -23,18 +24,18 @@ const Chat = () => {
   const { user } = useContext(authContext);
 
   // ############################################# //
-  const breakpoints = useBreakpoint();
-  const matchingList = Object.keys(breakpoints).map(media => {
-    <li key={media}>
-      {media} - - - {breakpoints[media] ? "True" : "False"}
-    </li>;
-  });
+  // const breakpoints = useBreakpoint();
+  // const matchingList = Object.keys(breakpoints).map(media => {
+  //   <li key={media}>
+  //     {media} - - - {breakpoints[media] ? "True" : "False"}
+  //   </li>;
+  // });
   let value = false;
-  const testo = Object.keys(breakpoints).map(media => {
-    if (media === "sm" && breakpoints[media] === true) {
-      value = true;
-    }
-  });
+  // const testo = Object.keys(breakpoints).map(media => {
+  //   if (media === "sm" && breakpoints[media] === true) {
+  //     value = true;
+  //   }
+  // });
   // ############################################# //
   useEffect(() => {
     // set chat header photoURL
@@ -43,7 +44,12 @@ const Chat = () => {
         .collection("rooms")
         .doc(roomId)
         .onSnapshot(snapshot => {
-          setRoomName(snapshot.data().name);
+          try {
+            setRoomName(snapshot.data().name);
+            
+          } catch (error) {
+            history.push('/notFound')
+          }
         });
       // display msg
       const unsubscribeTwo = db

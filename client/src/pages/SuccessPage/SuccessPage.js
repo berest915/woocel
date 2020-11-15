@@ -11,7 +11,7 @@ const SuccessPage = () => {
 
   useEffect(() => {
     !LST && history.push('/')
-  }, [LST])
+  }, [LST, history])
 
   return (
     <>
@@ -21,7 +21,6 @@ const SuccessPage = () => {
           <Route exact path={`${path}/:roomId`}>
             <Chat />
           </Route>
-          {/* how to add another specific-404-page with prefix /app/... */}
         </div>
       </div>
     </>
