@@ -17,9 +17,11 @@ const AddRoomModal = ({ isOpen, onCloseModal }) => {
   const handleSubmit = e => {
     e.preventDefault();
     // write new room name into db
-    db.collection("rooms").add({
-      name: roomname,
-    })
+    if (roomname) {
+      db.collection("rooms").add({
+        name: roomname,
+      });
+    }
 
     //? reset() failed to clear inputs
     // reset();

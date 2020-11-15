@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import "./Chat.css";
 
@@ -13,9 +13,16 @@ import Button from "@material-ui/core/Button";
 import Alert from "@material-ui/lab/Alert";
 import { useBreakpoint } from "../../IndexContextProvider/breakpoint";
 import ToggleModal from "../ChatModal/ToggleModal";
+import db from "../../config/firebase";
+import authContext from "../../context/auth/authContext";
+import firebase from "firebase";
 
 const Chat = () => {
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState("");
+  const { roomId } = useParams();
+  const [roomName, setRoomName] = useState("");
+  const [messages, setMessages] = useState([]);
+  const { user } = useContext(authContext);
 
   // ############################################# //
   const breakpoints = useBreakpoint();
@@ -31,26 +38,63 @@ const Chat = () => {
     }
   });
   // ############################################# //
+  useEffect(() => {
+    // set chat header photoURL
+    if (roomId) {
+      const unsubsribeOne = db
+        .collection("rooms")
+        .doc(roomId)
+        .onSnapshot(snapshot => {
+          setRoomName(snapshot.data().name);
+        });
+      // display msg
+      const unsubscribeTwo = db
+        .collection("rooms")
+        .doc(roomId)
+        .collection("messages")
+        .orderBy("timestamp", "asc")
+        .onSnapshot(snapshot => {
+          setMessages(snapshot.docs.map(doc => doc.data()));
+        });
+      return () => {
+        unsubsribeOne();
+        unsubscribeTwo();
+      };
+    }
+  }, [roomId]);
 
   const sendMessage = e => {
-    e.preventDefault()
-  
-    setInput('')
-  }
+    e.preventDefault();
+
+    db.collection("rooms").doc(roomId).collection("messages").add({
+      message: input,
+      name: user.displayName,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+
+    setInput("");
+  };
 
   return (
     <div className="chat">
       <div className="chat__header">
         <div className="chat__headerLeft">
           <Avatar />
-          {!value ? (
-            <p className="roomName">
-              Novice Developer Novice DeveloperNovice Developer Room Novice
-              Developer Room
-            </p>
-          ) : (
-            <ToggleModal />
-          )}
+          <div className="info">
+            {!value ? (
+              <>
+                <p>{roomName} </p>
+                <p className="lastSeen">
+                  Last Seen :{" "}
+                  {new Date(
+                    messages[messages.length - 1]?.timestamp?.toDate()
+                  ).toString()}
+                </p>
+              </>
+            ) : (
+              <ToggleModal />
+            )}
+          </div>
         </div>
 
         <div className="chat__headerRight">
@@ -68,38 +112,38 @@ const Chat = () => {
 
       {/*//! CHAT BODY  */}
       <div className="chat__body">
-        <div className="chat__message">
-          <p className="chat__name">Tuna Bacon</p>
-          <p className="chat__text">Hey There !</p>
+        {messages.map((message, i) => (
+          <div key={i}>
+            {/* shud use sort of user id instead of name, in case exactly same username */}
+            <div
+              className={`chat__message ${
+                message.name === user.displayName && `chat__receiver`
+              }`}
+            >
+              <p className="chat__name">{message.name}</p>
+              <p className="chat__text">{message.message}</p>
 
-          <span className="chat__timestamp">12:30am</span>
-        </div>
-        <div className="chat__message chat__receiver">
-          <p className="chat__name">You</p>
-          <p className="chat__text">Yeah?</p>
-
-          <span className="chat__timestamp">12:31am</span>
-        </div>
-
-        <div className="chat__message chat__receiver">
-          <p className="chat__name">You</p>
-          <p className="chat__text">Who's this?</p>
-
-          <span className="chat__timestamp">12:31am</span>
-        </div>
+              <span className="chat__timestamp">
+                {new Date(message.timestamp?.toDate()).toUTCString()}
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
 
       {/*//! CHAT FOOTER  */}
       <div className="chat__footer">
         <InsertEmoticonIcon />
         <form spellCheck="false">
-          <input 
+          <input
             value={input}
             onChange={e => setInput(e.target.value)}
-            type='text'
-            placeholder='Enter a message'
+            type="text"
+            placeholder="Enter a message"
           />
-          <button onClick={sendMessage} type="submit">Send a message</button>
+          <button onClick={sendMessage} type="submit">
+            Send a message
+          </button>
         </form>
         <MicIcon />
       </div>

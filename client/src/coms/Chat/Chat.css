@@ -23,6 +23,11 @@
   min-width: 0;
 }
 
+.chat__headerLeft > .info{
+  display: flex;
+  flex-direction: column;
+}
+
 .chat__headerLeft > .MuiAvatar-root {
   margin-right: 15px;
 }
@@ -31,7 +36,11 @@
   color: #ffffffcc;
 }
 
-.chat__headerLeft .roomName {
+.chat__headerLeft > .info > .lastSeen{
+  font-size: small;
+}
+
+.chat__headerLeft .info {
   font-size: var(--sidebar-room-font--);
   white-space: nowrap;
   text-overflow: ellipsis;

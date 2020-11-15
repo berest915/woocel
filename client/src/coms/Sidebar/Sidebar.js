@@ -20,7 +20,7 @@ const Sidebar = ({ path }) => {
 
   useEffect(() => {
     // get a snap on the collection and upd new snapshot if any change occur
-    db.collection("rooms").onSnapshot(snapshot => {
+    const unsubscribe = db.collection("rooms").onSnapshot(snapshot => {
       setRooms(
         snapshot.docs.map(doc => ({
           id: doc.id,
@@ -37,6 +37,7 @@ const Sidebar = ({ path }) => {
     //     return doc;
     //   });
     // });
+    return () => unsubscribe()
     // eslint-disable-next-line
   }, []);
 
