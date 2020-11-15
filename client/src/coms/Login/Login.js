@@ -25,7 +25,7 @@ const Login = () => {
     await auth
       .signInWithPopup(provider)
       .then(result => {
-        writeUserInfo(result);
+        writeUserInfo(result.user);
         setAccessToken(result.credential.accessToken);
         localStorage.setItem("token", result.credential.accessToken);
         // write auth-user info into db

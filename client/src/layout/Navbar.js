@@ -10,7 +10,7 @@ import db from "../config/firebase";
 const Navbar = () => {
   const history = useHistory();
   const LST = localStorage.getItem("token");
-  const { isLogin, accessToken, rewriteUserInfo, resetAuth } = useContext(
+  const { isLogin, writeUserInfo, resetAuth } = useContext(
     authContext
   );
 
@@ -24,7 +24,7 @@ const Navbar = () => {
           // matched accessToken >> write into react-contexts
           let docData = doc.data();
           if (LST === docData.accessToken) {
-            rewriteUserInfo({
+            writeUserInfo({
               accessToken: docData.accessToken,
               displayName: docData.displayName,
               email: docData.email,

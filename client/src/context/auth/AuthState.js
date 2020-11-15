@@ -22,24 +22,14 @@ const AuthState = props => {
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
-  const writeUserInfo = result => {
-    dispatch({
-      type: WRITE_USER_INFO,
-      payload: result.user,
-    });
-    dispatch({
-      type: SET_LOGIN_STATUS,
-    });
-  };
-
-  const rewriteUserInfo = user => {
+  const writeUserInfo = user => {
     dispatch({
       type: WRITE_USER_INFO,
       payload: user,
     });
     dispatch({
       type: SET_LOGIN_STATUS,
-    })
+    });
   };
 
   const setAccessToken = accessToken => {
@@ -48,7 +38,6 @@ const AuthState = props => {
       payload: accessToken,
     });
   };
-  
 
   const resetAuth = () => {
     dispatch({ type: RESET_AUTH });
@@ -64,7 +53,6 @@ const AuthState = props => {
         writeUserInfo,
         setAccessToken,
         resetAuth,
-        rewriteUserInfo,
       }}
     >
       {props.children}

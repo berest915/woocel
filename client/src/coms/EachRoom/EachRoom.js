@@ -10,7 +10,7 @@ import AddRoomModal from "../AddRoomModal/AddRoomModal";
 import db from "../../config/firebase";
 
 const EachRoom = ({ path, addNewChat, id, roomName }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
