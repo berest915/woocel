@@ -17,7 +17,6 @@ const Navbar = () => {
   useEffect(() => {
     // read auth-userInfo from db => consistent login access
     // replace LST with cookie-ish for better security
-    // assume LST not altered, either intentionally or accidentally
     if (LST) {
       db.collection("users").onSnapshot(snapshot => {
         snapshot.docs.map(doc => {
@@ -30,6 +29,8 @@ const Navbar = () => {
               email: docData.email,
               photoURL: docData.photoURL,
             });
+          }else{
+            signOut()
           }
         });
       });
