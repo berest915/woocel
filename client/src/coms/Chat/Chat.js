@@ -22,7 +22,6 @@ const Chat = () => {
   const [roomName, setRoomName] = useState("");
   const [messages, setMessages] = useState([]);
   const { user } = useContext(authContext);
-
   // ############################################# //
   // const breakpoints = useBreakpoint();
   // const matchingList = Object.keys(breakpoints).map(media => {
@@ -80,7 +79,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="chat">
+    <>
       <div className="chat__header">
         <div className="chat__headerLeft">
           <Avatar />
@@ -151,7 +150,7 @@ const Chat = () => {
         </form>
         <MicIcon />
       </div>
-    </div>
+    </>
   );
 };
 
