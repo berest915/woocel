@@ -1,12 +1,14 @@
+// react, react-router-dom + css
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import AuthState from "./context/auth/AuthState";
-
+// components
 import Navbar from "./layout/Navbar";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SuccessPage from "./pages/SuccessPage/SuccessPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import ContinuePage from "./pages/ContinuePage/ContinuePage";
+// react contexts
+import AuthState from "./context/auth/AuthState";
 
 function App() {
   return (

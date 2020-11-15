@@ -1,20 +1,42 @@
 import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-
 import "./Navbar.css";
 
 import Button from "@material-ui/core/Button";
 
 import authContext from "../context/auth/authContext";
+import db from "../config/firebase";
 
 const Navbar = () => {
   const history = useHistory();
-  const LST = localStorage.getItem('token')
-  const { isLogin, accessToken, resetAuth } = useContext(authContext);
+  const LST = localStorage.getItem("token");
+  const { isLogin, accessToken, rewriteUserInfo, resetAuth } = useContext(
+    authContext
+  );
 
-    // useEffect(() => {
-    //   if(LST)
-    // }, [LST])
+  useEffect(() => {
+    // read auth-userInfo from db => consistent login access
+    // replace LST with cookie-ish for better security
+    // assume LST not altered, either intentionally or accidentally
+    if (LST) {
+      db.collection("users").onSnapshot(snapshot => {
+        snapshot.docs.map(doc => {
+          // matched accessToken >> write into react-contexts
+          let docData = doc.data();
+          if (LST === docData.accessToken) {
+            rewriteUserInfo({
+              accessToken: docData.accessToken,
+              displayName: docData.displayName,
+              email: docData.email,
+              photoURL: docData.photoURL,
+            });
+          }
+        });
+      });
+    }else{
+      signOut()
+    }
+  }, [LST]);
 
   const signOut = () => {
     localStorage.removeItem("token");
@@ -25,21 +47,20 @@ const Navbar = () => {
   return (
     <div className="nav">
       <div className="nav__leftContainer">
-      <i className="fab fa-whatsapp logo"></i>
+        <i className="fab fa-whatsapp logo"></i>
         <p className="title">Woocel</p>
       </div>
       <div className="nav__rightContainer">
-        <div className='icons'>
-
-        <i className={`icon fas fa-bell-slash ${!isLogin && `active`}`}></i>
-        <i className={`icon fas fa-wifi ${isLogin && `active`}`}></i>
+        <div className="icons">
+          <i className={`icon fas fa-bell-slash ${!isLogin && `active`}`}></i>
+          <i className={`icon fas fa-wifi ${isLogin && `active`}`}></i>
         </div>
-        <p className="text">
-          {!LST ? "no-token" : "has-token"}
-        </p>
+        <p className="text">{!isLogin ? "no-token" : "has-token"}</p>
         <Button
-          className={`google-btn ${!LST && "disabled"}`}
+          // className={`google-btn ${!isLogin && "disabled"}`}
+          className="google-btn"
           onClick={signOut}
+          disabled={!isLogin && true}
         >
           Sign Out
         </Button>

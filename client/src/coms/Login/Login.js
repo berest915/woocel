@@ -28,7 +28,7 @@ const Login = () => {
         writeUserInfo(result);
         setAccessToken(result.credential.accessToken);
         localStorage.setItem("token", result.credential.accessToken);
-        // write into db
+        // write auth-user info into db
         // ################################################### //
         db.collection("users")
           .doc(result.user.email)
@@ -38,11 +38,11 @@ const Login = () => {
             email: result.user.email,
             photoURL: result.user.photoURL,
           })
-          .then(function () {
-            console.log("Document successfully written!");
+          .then( () => {
+            console.log("Auth User info successfully written!");
           })
-          .catch(function (error) {
-            console.error("Error writing document: ", error);
+          .catch( error =>  {
+            console.error("Error writing auth-user-info: ", error);
           });
         // ################################################### //
       })

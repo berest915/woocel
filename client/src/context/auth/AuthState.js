@@ -1,8 +1,6 @@
 import { useReducer } from "react";
-//! Context
 import AuthContext from "./authContext";
 import AuthReducer from "./authReducer";
-
 import {
   WRITE_USER_INFO,
   SET_LOGIN_STATUS,
@@ -39,6 +37,9 @@ const AuthState = props => {
       type: WRITE_USER_INFO,
       payload: user,
     });
+    dispatch({
+      type: SET_LOGIN_STATUS,
+    })
   };
 
   const setAccessToken = accessToken => {

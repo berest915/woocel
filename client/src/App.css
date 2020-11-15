@@ -71,7 +71,7 @@
 .app__body {
   background-color: var(--empty-space-color--);
   height: calc(100vh - var(--nav-height--));
-  
+
   color: lavender;
 }
 .app__body > .page {

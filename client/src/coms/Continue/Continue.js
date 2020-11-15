@@ -1,11 +1,11 @@
 import { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "./Continue.css";
-import db from "../../config/firebase";
 
 import { Avatar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
+import db from "../../config/firebase";
 import authContext from "../../context/auth/authContext";
 
 const Continue = () => {

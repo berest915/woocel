@@ -28,15 +28,6 @@ const Sidebar = ({ path }) => {
         }))
       );
     });
-
-    // db.collection("users").onSnapshot(snapshot => {
-    //   snapshot.docs.map(doc => {
-    //     // compare and get the info from the right user
-    //     const LST = localStorage.getItem("token");
-    //     LST === doc.data().accessToken && rewriteUserInfo(doc.data());
-    //     return doc;
-    //   });
-    // });
     return () => unsubscribe()
     // eslint-disable-next-line
   }, []);

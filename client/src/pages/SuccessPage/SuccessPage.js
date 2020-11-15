@@ -1,10 +1,17 @@
-import { Route, useRouteMatch } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, useRouteMatch, useHistory } from "react-router-dom";
 import Chat from "../../coms/Chat/Chat";
 import Sidebar from "../../coms/Sidebar/Sidebar";
 import "./SuccessPage.css";
 
 const SuccessPage = () => {
+  const LST = localStorage.getItem('token')
+  const history = useHistory()
   const { path } = useRouteMatch();
+
+  useEffect(() => {
+    !LST && history.push('/')
+  }, [LST])
 
   return (
     <>
