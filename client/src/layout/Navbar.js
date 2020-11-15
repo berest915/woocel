@@ -29,8 +29,6 @@ const Navbar = () => {
               email: docData.email,
               photoURL: docData.photoURL,
             });
-          }else{
-            signOut()
           }
         });
       });
