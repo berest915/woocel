@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Route, useRouteMatch, useHistory } from "react-router-dom";
 import Chat from "../../coms/Chat/Chat";
 import Sidebar from "../../coms/Sidebar/Sidebar";
+import ChatInfo from "../../coms/ChatInfo/ChatInfo";
 import "./SuccessPage.css";
 
 const SuccessPage = () => {
@@ -20,7 +21,7 @@ const SuccessPage = () => {
           <Sidebar path={path} />
           <div className="chat">
             <Route exact path='/app'>
-              <div>bg-img as no room are selected</div>
+              <ChatInfo />
             </Route>
             <Route exact path={`${path}/:roomId`}>
               <Chat />

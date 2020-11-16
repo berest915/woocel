@@ -1,0 +1,40 @@
+.chatInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  text-align: center;
+  font-size: var(--chatInfo-text-font-size--);
+  color: gray;
+}
+
+.chatInfo > .avatar {
+  height: 220px;
+  width: 220px;
+  margin-bottom: 20px;
+}
+
+.chatInfo > .title {
+  font-size: var(--chatInfo-title-font-size--);
+  color: lightgray;
+  margin-bottom: 20px;
+}
+
+.chatInfo > .text {
+  padding: 0 20px 20px 20px;
+  border-bottom: var(--success-border--);
+}
+
+.chatInfo > .downloads {
+  margin-top: 20px;
+}
+
+.chatInfo .downloads-span {
+  margin-left: 8px;
+}
+
+.chatInfo .downloads-link {
+  margin-left: 5px;
+  text-decoration: none;
+  color: rgb(11,139,126)
+}

@@ -46,6 +46,9 @@
   --sidebar-room-font--: 17px;
   --sidebar-message-font--: 14px;
 
+  --chatInfo-title-font-size--: 32px;
+  --chatInfo-text-font-size--: 14px;
+
   --chat-infobar-bg--: rgb(42, 47, 50);
   --chat-infobar-pad--: 8px 8px 8px 15px;
   --chat-sender-bg--: rgb(66, 75, 80);

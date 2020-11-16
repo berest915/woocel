@@ -64,6 +64,7 @@ const Chat = () => {
         unsubscribeTwo();
       };
     }
+    // eslint-disable-next-line
   }, [roomId]);
 
   const sendMessage = e => {
