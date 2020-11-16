@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import "./Chat.css";
 
@@ -16,7 +16,8 @@ import authContext from "../../context/auth/authContext";
 import firebase from "firebase";
 
 const Chat = () => {
-  let history = useHistory()
+  let history = useHistory();
+  const messageRef = useRef();
   const [input, setInput] = useState("");
   const { roomId } = useParams();
   const [roomName, setRoomName] = useState("");
@@ -45,9 +46,8 @@ const Chat = () => {
         .onSnapshot(snapshot => {
           try {
             setRoomName(snapshot.data().name);
-            
           } catch (error) {
-            history.push('/notFound')
+            history.push("/notFound");
           }
         });
       // display msg
@@ -67,6 +67,17 @@ const Chat = () => {
     // eslint-disable-next-line
   }, [roomId]);
 
+  useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.scrollIntoView(
+        {
+          behavior: 'auto',
+          block: 'end',
+          inline: 'nearest'
+        })
+    }
+  })
+  
   const sendMessage = e => {
     e.preventDefault();
 
@@ -78,6 +89,8 @@ const Chat = () => {
 
     setInput("");
   };
+  
+
 
   return (
     <>
@@ -115,9 +128,9 @@ const Chat = () => {
       </div>
 
       {/*//! CHAT BODY  */}
-      <div className="chat__body">
+      <div className="chat__body"  >
         {messages.map((message, i) => (
-          <div key={i}>
+          <div key={i} ref={messageRef}>
             {/* shud use sort of user id instead of name, in case exactly same username */}
             <div
               className={`chat__message ${

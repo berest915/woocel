@@ -4,7 +4,7 @@
   flex-direction: column;
 
   color: lavender;
-  min-height: 0;
+  /* min-height: 0; */
   min-width: 0;
 }
 .chat__header {
@@ -23,7 +23,7 @@
   min-width: 0;
 }
 
-.chat__headerLeft > .info{
+.chat__headerLeft > .info {
   display: flex;
   flex-direction: column;
 }
@@ -36,7 +36,7 @@
   color: #ffffffcc;
 }
 
-.chat__headerLeft > .info > .lastSeen{
+.chat__headerLeft > .info > .lastSeen {
   font-size: small;
 }
 
@@ -57,17 +57,19 @@
 
 .chat__body {
   background-image: url("https://i.ibb.co/gdkDjBb/pexels-elijah-o-donnell-3473569.jpg");
-  flex: 1;
   background-repeat: repeat;
   background-size: cover;
   background-position: center;
-  overflow: scroll;
-  overflow-x: hidden;
+
   padding: 30px 15px;
   color: lavender;
   display: flex;
+
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* scrollbar-initial-position */
   flex-direction: column;
-  justify-content: flex-end;
 }
 
 .chat__message {
