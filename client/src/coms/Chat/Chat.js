@@ -18,11 +18,15 @@ import firebase from "firebase";
 const Chat = () => {
   let history = useHistory();
   const messageRef = useRef();
-  const [input, setInput] = useState("");
+
   const { roomId } = useParams();
   const [roomName, setRoomName] = useState("");
   const [messages, setMessages] = useState([]);
   const { user } = useContext(authContext);
+
+  const [input, setInput] = useState("");
+  const inputRef = useRef();
+
   // ############################################# //
   // const breakpoints = useBreakpoint();
   // const matchingList = Object.keys(breakpoints).map(media => {
@@ -67,30 +71,33 @@ const Chat = () => {
     // eslint-disable-next-line
   }, [roomId]);
 
+  // scrollbar-position
   useEffect(() => {
     if (messageRef.current) {
-      messageRef.current.scrollIntoView(
-        {
-          behavior: 'auto',
-          block: 'end',
-          inline: 'nearest'
-        })
+      messageRef.current.scrollIntoView({
+        behavior: "auto",
+        block: "end",
+        inline: "nearest",
+      });
     }
-  })
-  
+  });
+
+  // https://codesandbox.io/s/chat-application-3t380
   const sendMessage = e => {
     e.preventDefault();
-
-    db.collection("rooms").doc(roomId).collection("messages").add({
-      message: input,
-      name: user.displayName,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-
-    setInput("");
+    setInput(inputRef.current.value);
   };
-  
 
+  useEffect(() => {
+    input &&
+      db.collection("rooms").doc(roomId).collection("messages").add({
+        message: input,
+        name: user.displayName,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+    inputRef.current.value = "";
+    setInput(""); // reset input value
+  }, [input]);
 
   return (
     <>
@@ -128,7 +135,7 @@ const Chat = () => {
       </div>
 
       {/*//! CHAT BODY  */}
-      <div className="chat__body"  >
+      <div className="chat__body">
         {messages.map((message, i) => (
           <div key={i} ref={messageRef}>
             {/* shud use sort of user id instead of name, in case exactly same username */}
@@ -151,16 +158,15 @@ const Chat = () => {
       {/*//! CHAT FOOTER  */}
       <div className="chat__footer">
         <InsertEmoticonIcon />
-        <form spellCheck="false">
+        <form>
           <input
-            value={input}
-            onChange={e => setInput(e.target.value)}
+            ref={inputRef}
+            // onChange={e => setInput(e.target.value)}
             type="text"
             placeholder="Enter a message"
           />
-          <button onClick={sendMessage} type="submit">
-            Send a message
-          </button>
+          <button onClick={sendMessage}>Send a message</button>
+          {input}
         </form>
         <MicIcon />
       </div>

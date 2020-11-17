@@ -34,6 +34,7 @@ const authReducer = (state, action) => {
         isLogin: false,
         accessToken: null,
       };
+
     default:
       throw Error(`Auth Reducer - Unhandled Action: ${action.type}`);
   }

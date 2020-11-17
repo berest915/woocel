@@ -50,8 +50,10 @@ const AuthState = props => {
         rooms: state.rooms,
         isLogin: state.isLogin,
         accessToken: state.accessToken,
+
         writeUserInfo,
         setAccessToken,
+
         resetAuth,
       }}
     >
