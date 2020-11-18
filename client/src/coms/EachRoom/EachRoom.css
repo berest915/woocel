@@ -5,15 +5,20 @@
   min-width: 0;
   align-items: center;
 }
-.eachRoom:hover{
+.eachRoom:hover {
   cursor: pointer;
 }
+
+.eachRoom.selectedRoom {
+  background-color: lightblue;
+}
+
 .eachRoom > .MuiSvgIcon-root {
   height: 40px;
   width: 40px;
   margin-right: 15px;
 }
-.eachRoom > p{
+.eachRoom > p {
   font-size: var(--sidebar-room-font--);
 }
 

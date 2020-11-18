@@ -17,6 +17,7 @@ const AddRoomModal = ({ isOpen, onCloseModal }) => {
     if (roomname) {
       db.collection("rooms").add({
         name: roomname,
+        isSelected: false,
       });
     }
 

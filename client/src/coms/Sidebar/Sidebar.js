@@ -28,9 +28,22 @@ const Sidebar = ({ path }) => {
         }))
       );
     });
-    return () => unsubscribe()
+    return () => unsubscribe();
     // eslint-disable-next-line
   }, []);
+
+  const toggleSelected = onClickRoomId => {
+    setRooms(
+      rooms.map(room => {
+        if (onClickRoomId === room.id) {
+          room.isSelected = !room.isSelected;
+        } else {
+          room.isSelected = false;
+        }
+        return room;
+      })
+    );
+  };
 
   return (
     <>
@@ -66,6 +79,8 @@ const Sidebar = ({ path }) => {
                 key={room.id}
                 id={room.id}
                 roomName={room.data.name}
+                isSelected={room.isSelected}
+                toggleSelected={toggleSelected}
               />
             ))}
         </div>

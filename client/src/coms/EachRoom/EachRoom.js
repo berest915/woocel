@@ -9,9 +9,10 @@ import { Avatar } from "@material-ui/core";
 import AddRoomModal from "../AddRoomModal/AddRoomModal";
 import db from "../../config/firebase";
 
-const EachRoom = ({ path, addNewChat, id, roomName }) => {
+const EachRoom = ({ path, addNewChat, id, roomName, toggleSelected, isSelected}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
+
 
   useEffect(() => {
     if (id) {
@@ -26,6 +27,8 @@ const EachRoom = ({ path, addNewChat, id, roomName }) => {
     }
   }, [id]);
 
+
+
   return (
     <>
       {addNewChat ? (
@@ -38,8 +41,8 @@ const EachRoom = ({ path, addNewChat, id, roomName }) => {
         </>
       ) : (
         <>
-          <Link to={`${path}/${id}`} style={{ textDecoration: "none" }}>
-            <div className="eachRoom">
+          <Link to={`${path}/${id}`} style={{ textDecoration: "none" }} >
+            <div className={`eachRoom ${isSelected && `selectedRoom`}`} onClick={() => toggleSelected(id)} >
               <div className="eachRoom__avatar">
                 <Avatar />
               </div>
