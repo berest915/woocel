@@ -19,6 +19,7 @@ const AuthState = props => {
     rooms: [],
     isLogin: false,
     accessToken: null,
+    hasNewlyAdded: false,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -53,7 +54,6 @@ const AuthState = props => {
 
         writeUserInfo,
         setAccessToken,
-
         resetAuth,
       }}
     >

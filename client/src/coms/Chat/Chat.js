@@ -14,6 +14,7 @@ import ToggleModal from "../ChatModal/ToggleModal";
 import db from "../../config/firebase";
 import authContext from "../../context/auth/authContext";
 import firebase from "firebase";
+import { firebaseApp } from "../../config/firebase"
 
 const Chat = () => {
   let history = useHistory();
@@ -26,21 +27,10 @@ const Chat = () => {
 
   const [input, setInput] = useState("");
   const inputRef = useRef();
+  
 
-  // ############################################# //
-  // const breakpoints = useBreakpoint();
-  // const matchingList = Object.keys(breakpoints).map(media => {
-  //   <li key={media}>
-  //     {media} - - - {breakpoints[media] ? "True" : "False"}
-  //   </li>;
-  // });
   let value = false;
-  // const testo = Object.keys(breakpoints).map(media => {
-  //   if (media === "sm" && breakpoints[media] === true) {
-  //     value = true;
-  //   }
-  // });
-  // ############################################# //
+
   useEffect(() => {
     // set chat header photoURL
     if (roomId) {
@@ -76,7 +66,7 @@ const Chat = () => {
     if (messageRef.current) {
       messageRef.current.scrollIntoView({
         behavior: "auto",
-        block: "end",
+        block: "start",
         inline: "nearest",
       });
     }
@@ -87,6 +77,17 @@ const Chat = () => {
     e.preventDefault();
     setInput(inputRef.current.value);
   };
+  const uploadProfile = e => {
+    console.log(e.target)
+    // const file = e.target.files[0]
+    // const storageRef = firebaseApp.firestore().ref()
+    // try {
+    //   const fileRef = storageRef.child(file.name)
+    //   fileRef.put(file).then(() => console.log('file was put'))
+    // } catch (err) {
+    //   console.log(err)
+    // }
+  }
 
   useEffect(() => {
     input &&
@@ -103,7 +104,7 @@ const Chat = () => {
     <>
       <div className="chat__header">
         <div className="chat__headerLeft">
-          <Avatar />
+          <Avatar onClick={uploadProfile}/>
           <div className="info">
             {!value ? (
               <>

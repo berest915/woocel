@@ -18,9 +18,12 @@ const Sidebar = ({ path }) => {
   const { user } = useContext(authContext);
   const [rooms, setRooms] = useState([]);
 
-  useEffect(() => {
+
+  useEffect( () => {
     // get a snap on the collection and upd new snapshot if any change occur
-    const unsubscribe = db.collection("rooms").onSnapshot(snapshot => {
+    const unsubscribeOne = db.collection("rooms")
+    .orderBy("timestamp", "desc")
+    .onSnapshot(snapshot => {
       setRooms(
         snapshot.docs.map(doc => ({
           id: doc.id,
@@ -28,7 +31,7 @@ const Sidebar = ({ path }) => {
         }))
       );
     });
-    return () => unsubscribe();
+    return () => unsubscribeOne();
     // eslint-disable-next-line
   }, []);
 
@@ -36,15 +39,14 @@ const Sidebar = ({ path }) => {
     setRooms(
       rooms.map(room => {
         if (onClickRoomId === room.id) {
-          room.isSelected = !room.isSelected;
+          room.data.isSelected = true;
         } else {
-          room.isSelected = false;
+          room.data.isSelected = false;
         }
         return room;
       })
     );
   };
-
   return (
     <>
       <div className="sidebar">
@@ -79,7 +81,7 @@ const Sidebar = ({ path }) => {
                 key={room.id}
                 id={room.id}
                 roomName={room.data.name}
-                isSelected={room.isSelected}
+                isSelected={room.data.isSelected}
                 toggleSelected={toggleSelected}
               />
             ))}

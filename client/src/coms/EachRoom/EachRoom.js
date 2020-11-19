@@ -9,25 +9,30 @@ import { Avatar } from "@material-ui/core";
 import AddRoomModal from "../AddRoomModal/AddRoomModal";
 import db from "../../config/firebase";
 
-const EachRoom = ({ path, addNewChat, id, roomName, toggleSelected, isSelected}) => {
+const EachRoom = ({
+  path,
+  addNewChat,
+  id,
+  roomName,
+  toggleSelected,
+  isSelected,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
 
-
   useEffect(() => {
     if (id) {
-      const unsubscribe = db.collection("rooms")
+      const unsubscribe = db
+        .collection("rooms")
         .doc(id)
         .collection("messages")
         .orderBy("timestamp", "desc")
         .onSnapshot(snapshot => {
           setMessages(snapshot.docs.map(doc => doc.data()));
         });
-      return () => unsubscribe()
+      return () => unsubscribe();
     }
   }, [id]);
-
-
 
   return (
     <>
@@ -41,8 +46,11 @@ const EachRoom = ({ path, addNewChat, id, roomName, toggleSelected, isSelected})
         </>
       ) : (
         <>
-          <Link to={`${path}/${id}`} style={{ textDecoration: "none" }} >
-            <div className={`eachRoom ${isSelected && `selectedRoom`}`} onClick={() => toggleSelected(id)} >
+          <Link to={`${path}/${id}`} style={{ textDecoration: "none" }}>
+            <div
+              className={`eachRoom ${isSelected && `selectedRoom`}`}
+              onClick={() => toggleSelected(id)}
+            >
               <div className="eachRoom__avatar">
                 <Avatar />
               </div>
@@ -54,7 +62,7 @@ const EachRoom = ({ path, addNewChat, id, roomName, toggleSelected, isSelected})
                 </div>
                 <div className="lowerTextInfo">
                   <p className="lastMessage">
-                    {!messages.length ? "": messages[0].message}
+                    {!messages.length ? "" : messages[0].message}
                   </p>
                 </div>
               </div>
