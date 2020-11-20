@@ -1,5 +1,4 @@
 // react hooks + css
-import {useContext} from 'react'
 import "./EachRoom.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -9,7 +8,6 @@ import { Avatar } from "@material-ui/core";
 // components
 import AddRoomModal from "../AddRoomModal/AddRoomModal";
 import db from "../../config/firebase";
-// import authContext from '../../context/auth/authContext'
 
 const EachRoom = ({
   path,
@@ -22,7 +20,6 @@ const EachRoom = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
-
 
   useEffect(() => {
     if (id) {
@@ -56,7 +53,7 @@ const EachRoom = ({
               onClick={() => toggleSelected(id)}
             >
               <div className="eachRoom__avatar">
-                <Avatar src={roomAvatarUrl}/>
+                <Avatar src={roomAvatarUrl} />
               </div>
               <div className="eachRoom__textInfo">
                 <div className="upperTextInfo">

@@ -18,7 +18,6 @@ const Sidebar = ({ path }) => {
   const { user } = useContext(authContext);
   const [rooms, setRooms] = useState([]);
 
-
   useEffect(() => {
     // get a snap on the collection and upd new snapshot if any change occur
     const unsubscribeOne = db
@@ -28,7 +27,7 @@ const Sidebar = ({ path }) => {
         setRooms(
           snapshot.docs.map(doc => ({
             id: doc.id,
-            data: doc.data()
+            data: doc.data(),
           }))
         );
       });
@@ -48,7 +47,7 @@ const Sidebar = ({ path }) => {
       })
     );
   };
- 
+
   return (
     <>
       <div className="sidebar">
@@ -77,7 +76,7 @@ const Sidebar = ({ path }) => {
         <div className="sidebar__chats">
           <EachRoom addNewChat />
           {rooms &&
-            rooms.map(room => (            
+            rooms.map(room => (
               <EachRoom
                 path={path}
                 key={room.id}

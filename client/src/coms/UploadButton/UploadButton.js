@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import "./UploadButton.css";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
@@ -9,7 +8,6 @@ const UploadButton = ({ roomId }) => {
   const classes = useStyles();
 
   const upload = async e => {
-    let roomUrl;
     try {
       // Create a root reference
       const storageRef = firebaseApp.storage().ref();
@@ -19,14 +17,12 @@ const UploadButton = ({ roomId }) => {
       let fileStoragePath = `${roomId}/${file.name}`;
       const fileRef = storageRef.child(fileStoragePath);
 
-      // upload progress
-      let metadata = {
-        contentType: file.type,
-      };
-      let uploadTask = fileRef.put(file, metadata);
-     
-
       // ############################################################################### //
+      //! upload progress
+      // let metadata = {
+      //   contentType: file.type,
+      // };
+      // let uploadTask = fileRef.put(file, metadata);
       //! Listen for state changes, errors, and completion of the upload.
       // uploadTask.on(
       //   firebaseApp.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
@@ -82,18 +78,17 @@ const UploadButton = ({ roomId }) => {
       await fileRef
         .getDownloadURL()
         .then(url => {
-          roomUrl = url;
           console.log("url >> ", url);
-          console.log('fileStoragePath >> ', fileStoragePath)
+          console.log("fileStoragePath >> ", fileStoragePath);
 
           // let fileStoragePath = `${roomId}/${file.name}`;
-          db.collection("rooms")
-            .doc(roomId)
-            .set({
+          db.collection("rooms").doc(roomId).set(
+            {
               roomAvatarUrl: url,
-              path: fileStoragePath
-            }, { merge: true})
-
+              path: fileStoragePath,
+            },
+            { merge: true }
+          );
         })
         .catch(err =>
           console.log(

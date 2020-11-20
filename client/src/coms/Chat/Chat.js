@@ -86,13 +86,13 @@ const Chat = () => {
       });
     inputRef.current.value = "";
     setInput(""); // reset input value
-  }, [input]);
+  }, [input, roomId, user.displayName]);
 
   return (
     <>
       <div className="chat__header">
         <div className="chat__headerLeft">
-          <UploadButton roomId={roomId}/>
+          <UploadButton roomId={roomId} />
           <div className="info">
             {!value ? (
               <>

@@ -21,7 +21,6 @@ const AddRoomModal = ({ isOpen, onCloseModal }) => {
         isSelected: false,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         roomAvatarUrl: null,
-
       });
     }
 
