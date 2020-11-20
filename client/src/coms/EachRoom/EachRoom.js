@@ -18,6 +18,7 @@ const EachRoom = ({
   roomName,
   toggleSelected,
   isSelected,
+  roomAvatarUrl,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -55,7 +56,7 @@ const EachRoom = ({
               onClick={() => toggleSelected(id)}
             >
               <div className="eachRoom__avatar">
-                <Avatar/>
+                <Avatar src={roomAvatarUrl}/>
               </div>
               <div className="eachRoom__textInfo">
                 <div className="upperTextInfo">

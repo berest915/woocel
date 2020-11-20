@@ -85,6 +85,7 @@ const Sidebar = ({ path }) => {
                 roomName={room.data.name}
                 isSelected={room.data.isSelected}
                 toggleSelected={toggleSelected}
+                roomAvatarUrl={room.data.roomAvatarUrl}
               />
             ))}
         </div>
