@@ -8,13 +8,13 @@ import AttachFile from "@material-ui/icons/AttachFile";
 import MoreVert from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
+import UploadButton from "../UploadButton/UploadButton";
 
 // import { useBreakpoint } from "../../IndexContextProvider/breakpoint";
 import ToggleModal from "../ChatModal/ToggleModal";
 import db from "../../config/firebase";
 import authContext from "../../context/auth/authContext";
 import firebase from "firebase";
-import { firebaseApp } from "../../config/firebase"
 
 const Chat = () => {
   let history = useHistory();
@@ -27,13 +27,12 @@ const Chat = () => {
 
   const [input, setInput] = useState("");
   const inputRef = useRef();
-  
 
   let value = false;
 
   useEffect(() => {
-    // set chat header photoURL
     if (roomId) {
+      // set chat header roomName
       const unsubsribeOne = db
         .collection("rooms")
         .doc(roomId)
@@ -77,17 +76,6 @@ const Chat = () => {
     e.preventDefault();
     setInput(inputRef.current.value);
   };
-  const uploadProfile = e => {
-    console.log(e.target)
-    // const file = e.target.files[0]
-    // const storageRef = firebaseApp.firestore().ref()
-    // try {
-    //   const fileRef = storageRef.child(file.name)
-    //   fileRef.put(file).then(() => console.log('file was put'))
-    // } catch (err) {
-    //   console.log(err)
-    // }
-  }
 
   useEffect(() => {
     input &&
@@ -104,7 +92,7 @@ const Chat = () => {
     <>
       <div className="chat__header">
         <div className="chat__headerLeft">
-          <Avatar onClick={uploadProfile}/>
+          <UploadButton roomId={roomId}/>
           <div className="info">
             {!value ? (
               <>

@@ -2,6 +2,7 @@ import {
   WRITE_USER_INFO,
   SET_LOGIN_STATUS,
   SET_ACCESS_TOKEN,
+  SET_ROOM_AVATAR_URL,
   RESET_AUTH,
 } from "../types";
 
@@ -27,6 +28,7 @@ const authReducer = (state, action) => {
         ...state,
         accessToken: action.payload,
       };
+
     case RESET_AUTH:
       return {
         ...state,

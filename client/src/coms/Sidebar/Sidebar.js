@@ -19,18 +19,19 @@ const Sidebar = ({ path }) => {
   const [rooms, setRooms] = useState([]);
 
 
-  useEffect( () => {
+  useEffect(() => {
     // get a snap on the collection and upd new snapshot if any change occur
-    const unsubscribeOne = db.collection("rooms")
-    .orderBy("timestamp", "desc")
-    .onSnapshot(snapshot => {
-      setRooms(
-        snapshot.docs.map(doc => ({
-          id: doc.id,
-          data: doc.data(),
-        }))
-      );
-    });
+    const unsubscribeOne = db
+      .collection("rooms")
+      .orderBy("timestamp", "desc")
+      .onSnapshot(snapshot => {
+        setRooms(
+          snapshot.docs.map(doc => ({
+            id: doc.id,
+            data: doc.data()
+          }))
+        );
+      });
     return () => unsubscribeOne();
     // eslint-disable-next-line
   }, []);
@@ -47,6 +48,7 @@ const Sidebar = ({ path }) => {
       })
     );
   };
+ 
   return (
     <>
       <div className="sidebar">
@@ -75,7 +77,7 @@ const Sidebar = ({ path }) => {
         <div className="sidebar__chats">
           <EachRoom addNewChat />
           {rooms &&
-            rooms.map(room => (
+            rooms.map(room => (            
               <EachRoom
                 path={path}
                 key={room.id}

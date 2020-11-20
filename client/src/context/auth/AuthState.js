@@ -5,6 +5,7 @@ import {
   WRITE_USER_INFO,
   SET_LOGIN_STATUS,
   SET_ACCESS_TOKEN,
+  SET_ROOM_AVATAR_URL,
   RESET_AUTH,
 } from "../types";
 
@@ -16,10 +17,9 @@ const AuthState = props => {
       email: null,
       photoURL: null,
     },
-    rooms: [],
+    rooms: [], // identify appended-format from db
     isLogin: false,
     accessToken: null,
-    hasNewlyAdded: false,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -40,6 +40,21 @@ const AuthState = props => {
     });
   };
 
+  const setRoomAvatarUrl = (url, roomId) => {
+
+    let payloadRef = {
+      url,
+      roomId
+    }
+    // shud upd / shud append
+    dispatch({
+      type: SET_ROOM_AVATAR_URL,
+      payload: payloadRef
+    })
+    
+  }
+
+
   const resetAuth = () => {
     dispatch({ type: RESET_AUTH });
   };
@@ -48,12 +63,14 @@ const AuthState = props => {
     <AuthContext.Provider
       value={{
         user: state.user,
-        rooms: state.rooms,
+        updrooms: state.rooms,
         isLogin: state.isLogin,
         accessToken: state.accessToken,
-
+        testRooms: state.testRooms,
+        updState: state.updState,
         writeUserInfo,
         setAccessToken,
+        setRoomAvatarUrl,
         resetAuth,
       }}
     >

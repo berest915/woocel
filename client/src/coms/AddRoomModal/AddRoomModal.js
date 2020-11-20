@@ -5,7 +5,7 @@ import "./AddRoomModal.css";
 import { useInput } from "./useInput";
 // firebase
 import db from "../../config/firebase";
-import firebase from 'firebase'
+import firebase from "firebase";
 
 const AddRoomModal = ({ isOpen, onCloseModal }) => {
   const { roomname, bind } = useInput("");
@@ -19,7 +19,9 @@ const AddRoomModal = ({ isOpen, onCloseModal }) => {
       db.collection("rooms").add({
         name: roomname,
         isSelected: false,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        // add roomAvatarUrl
+
       });
     }
 
