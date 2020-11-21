@@ -8,7 +8,6 @@ import { Avatar } from "@material-ui/core";
 // components
 import AddRoomModal from "../AddRoomModal/AddRoomModal";
 import db from "../../config/firebase";
-
 const EachRoom = ({
   path,
   addNewChat,
@@ -53,7 +52,11 @@ const EachRoom = ({
               onClick={() => toggleSelected(id)}
             >
               <div className="eachRoom__avatar">
-                <Avatar src={roomAvatarUrl} />
+              
+                <Avatar
+                src={roomAvatarUrl}
+                  sizes={'100'}
+                />
               </div>
               <div className="eachRoom__textInfo">
                 <div className="upperTextInfo">
