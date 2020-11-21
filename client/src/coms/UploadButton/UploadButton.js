@@ -37,21 +37,31 @@ function generateDownload(previewCanvas, crop) {
   }
 
   const canvas = getResizedCanvas(previewCanvas, crop.width, crop.height);
-
+// ############################################################################## //
+// ############################################################################## //
+// ############################################################################## //
+// ############################################################################## //
+// ############################################################################## //
   canvas.toBlob(
     blob => {
-      const previewUrl = window.URL.createObjectURL(blob);
+      console.log(blobToFile(blob, "hey.png"))
+      // const previewUrl = window.URL.createObjectURL(blob);
+      // console.log("previewURL >> ", blob)
+      // const anchor = document.createElement("a");
+      // anchor.download = "cropPreview.png";
+      // anchor.href = URL.createObjectURL(blob);
+      // console.log('anchor href >> ', anchor.href)
+      // anchor.click();
 
-      const anchor = document.createElement("a");
-      anchor.download = "cropPreview.png";
-      anchor.href = URL.createObjectURL(blob);
-      anchor.click();
-
-      window.URL.revokeObjectURL(previewUrl);
+      // window.URL.revokeObjectURL(previewUrl);
     },
     "image/png",
     1
   );
+  
+}
+function blobToFile(theBlob, fileName){       
+  return new File([theBlob], fileName, { lastModified: new Date().getTime(), type: theBlob.type })
 }
 
 const UploadButton = ({ roomId }) => {
@@ -72,16 +82,7 @@ const UploadButton = ({ roomId }) => {
     y: 25,
   });
 
-  const onSelectFile = e => {
-    if (e.target.files && e.target.files.length > 0) {
-      const reader = new FileReader();
-      reader.addEventListener("load", () => {
-        setUpImg(reader.result);
-      });
-      //!
-      reader.readAsDataURL(e.target.files[0]);
-    }
-  };
+ 
 
   const onLoad = useCallback(img => {
     imgRef.current = img;
@@ -119,8 +120,10 @@ const UploadButton = ({ roomId }) => {
     );
   }, [completedCrop]);
 
-  // ************************************************************************
-
+  // ############################################################################## //
+  // ############################################################################## //
+  // ############################################################################## //
+  // ############################################################################## //
   const upload = async e => {
     try {
       // Create a root reference
@@ -128,7 +131,7 @@ const UploadButton = ({ roomId }) => {
 
       // ******************************************* //
       const file = e.target.files[0];
-
+      console.log(file)
       if (e.target.files && e.target.files.length > 0) {
         const reader = new FileReader();
         reader.addEventListener("load", () => {
@@ -136,7 +139,7 @@ const UploadButton = ({ roomId }) => {
         });
         reader.readAsDataURL(e.target.files[0]);
       }
-
+     
       // ******************************************* //
 
       // create dir reference for the uploaded file
@@ -204,8 +207,8 @@ const UploadButton = ({ roomId }) => {
       await fileRef
         .getDownloadURL()
         .then(url => {
-          console.log("url >> ", url);
-          console.log("fileStoragePath >> ", fileStoragePath);
+          // console.log("url >> ", url);
+          // console.log("fileStoragePath >> ", fileStoragePath);
 
           // let fileStoragePath = `${roomId}/${file.name}`;
           db.collection("rooms").doc(roomId).set(
