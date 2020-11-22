@@ -2,13 +2,12 @@ import { useState, useEffect, useContext, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import "./Chat.css";
 
-import { Avatar, IconButton } from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import AttachFile from "@material-ui/icons/AttachFile";
 import MoreVert from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
-import UploadButton from "../UploadButton/UploadButton";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 
 // import { useBreakpoint } from "../../IndexContextProvider/breakpoint";
@@ -30,8 +29,8 @@ const Chat = () => {
   const [input, setInput] = useState("");
   const inputRef = useRef();
 
-  const [isOpen, setIsOpen] = useState(false);
-  const onOpenModal = () => setIsOpen(true)
+  const [isOpen, setIsOpen] = useState(true);
+  const onOpenModal = () => setIsOpen(true);
   const onCloseModal = () => setIsOpen(false);
 
   let value = false;
@@ -94,17 +93,19 @@ const Chat = () => {
     setInput(""); // reset input value
   }, [input, roomId, user.displayName]);
 
+
   return (
     <>
       <div className="chat__header">
         <div className="chat__headerLeft">
-          <AddPhotoAlternateIcon onClick={onOpenModal}/>
+          <IconButton autoFocus onClick={onOpenModal}>
+            <AddPhotoAlternateIcon />
+          </IconButton>
           <AddRoomAvatarModal
             roomId={roomId}
             isOpen={isOpen}
             onCloseModal={onCloseModal}
           />
-          {/* <UploadButton roomId={roomId} /> */}
           <div className="info">
             {!value ? (
               <>

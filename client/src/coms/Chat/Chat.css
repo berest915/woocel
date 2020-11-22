@@ -23,6 +23,12 @@
   min-width: 0;
 }
 
+.chat__headerLeft > .MuiIconButton-root {
+  color: lightblue;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-right: 8px;
+}
+
 .chat__headerLeft > .info {
   display: flex;
   flex-direction: column;

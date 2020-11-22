@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-
+import "./Corsona.css";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import Button from "@material-ui/core/Button";
 import db, { firebaseApp } from "../../config/firebase";
+import styled from "styled-components";
 
 // Increase pixel density for crop preview quality on retina screens.
 const pixelRatio = window.devicePixelRatio || 1;
@@ -39,7 +41,7 @@ function blobToFile(theBlob, fileName) {
 
 const Corsona = ({ roomId, onCloseModal }) => {
   const [readyFile, setReadyFile] = useState(null);
-  const [triggered, setTriggered] = useState(false)
+  const [triggered, setTriggered] = useState(false);
   const [upImg, setUpImg] = useState();
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
@@ -69,72 +71,52 @@ const Corsona = ({ roomId, onCloseModal }) => {
       "image/png",
       1
     );
-    // **************************************************************** //
-  
-    
-
-     
-
-
-    // **************************************************************** //
   };
 
-
-
-  useEffect(async() => {
-    if(!readyFile || !triggered ){
-      return
+  useEffect(() => {
+    if (!readyFile || !triggered) {
+      return;
     }
-    // Create a root reference
-    const storageRef = firebaseApp.storage().ref();
-    // create dir reference for the uploaded file
-    console.log(readyFile);
-    let fileStoragePath = `${roomId}/${readyFile.name}`;
-    const fileRef = storageRef.child(fileStoragePath);
+    async function fetchFile() {
+      // Create a root reference
+      const storageRef = firebaseApp.storage().ref();
+      // create dir reference for the uploaded file
+      console.log(readyFile);
+      let fileStoragePath = `${roomId}/${readyFile.name}`;
+      const fileRef = storageRef.child(fileStoragePath);
 
-    
-     //! upload file
-     await fileRef
-     .put(readyFile)
-     .then(() => {
-       console.log("File was uploaded >> ", readyFile.name);
-     })
-     .catch(err => {
-       console.log("failed to upload file, error >> ", err);
-     });
+      //! upload file
+      await fileRef
+        .put(readyFile)
+        .then(() => {
+          console.log("File was uploaded >> ", readyFile.name);
+        })
+        .catch(err => {
+          console.log("failed to upload file, error >> ", err);
+        });
 
-   //! download url for the uploaded file
-   await fileRef
-     .getDownloadURL()
-     .then(url => {
-       // console.log("url >> ", url);
-       // console.log("fileStoragePath >> ", fileStoragePath);
-
-       // let fileStoragePath = `${roomId}/${file.name}`;
-       db.collection("rooms").doc(roomId).set(
-         {
-           roomAvatarUrl: url,
-           path: fileStoragePath,
-         },
-         { merge: true }
-       );
-     })
-     .catch(err =>
-       console.log(
-         "failed to get downloadURL for uploaded file, error >> ",
-         err
-       )
-     );
-  }, [readyFile])
-
-
-
-
-
-
-
-
-
+      //! download url for the uploaded file
+      await fileRef
+        .getDownloadURL()
+        .then(url => {
+          db.collection("rooms").doc(roomId).set(
+            {
+              roomAvatarUrl: url,
+              path: fileStoragePath,
+            },
+            { merge: true }
+          );
+        })
+        .catch(err =>
+          console.log(
+            "failed to get downloadURL for uploaded file, error >> ",
+            err
+          )
+        );
+      onCloseModal();
+    }
+    fetchFile();
+  }, [readyFile]);
 
   //* initial crop properties
   const [crop, setCrop] = useState({
@@ -196,7 +178,7 @@ const Corsona = ({ roomId, onCloseModal }) => {
   return (
     <>
       <div className="corsona">
-        <div className="upload-btn">
+        <div className="upload__btn">
           <input
             accept="image/*"
             style={{ display: "none" }}
@@ -206,9 +188,8 @@ const Corsona = ({ roomId, onCloseModal }) => {
           />
           <label htmlFor="icon-button-file">
             <IconButton
-              color="primary"
               aria-label="upload picture"
-              component="span"
+              component="div" // if remove, it wont fire event, REASON unknown
               onClick={uploadFile}
             >
               <PhotoCamera />
@@ -216,20 +197,23 @@ const Corsona = ({ roomId, onCloseModal }) => {
           </label>
         </div>
 
-        <div className="upload-crop">
-          <ReactCrop
-            className={`reactCrop ${!upImg && `hidden`}`}
-            src={upImg}
-            onImageLoaded={onLoad}
-            crop={crop}
-            onChange={c => setCrop(c)}
-            onComplete={c => setCompletedCrop(c)}
-          />
+        <div className="upload__crop">
+          <NoTransitionDiv>
+            <ReactCrop
+              className={`reactCrop ${!upImg && `hidden`}`}
+              src={upImg}
+              onImageLoaded={onLoad}
+              crop={crop}
+              onChange={c => setCrop(c)}
+              onComplete={c => setCompletedCrop(c)}
+            />
+          </NoTransitionDiv>
         </div>
 
-        <div className="upload-preview">
+        <div className="upload__preview">
           <div>
             <canvas
+              className={`${!upImg && `hidden`}`}
               ref={previewCanvasRef}
               // Rounding is important so the canvas width and height matches/is a multiple for sharpness.
               style={{
@@ -240,26 +224,46 @@ const Corsona = ({ roomId, onCloseModal }) => {
           </div>
         </div>
 
-        <div className="upload-download">
-          <button
-            type="button"
-            disabled={!completedCrop?.width || !completedCrop?.height}
-            onClick={() =>{
-              generateDownload(previewCanvasRef.current, completedCrop)
-              setTriggered(true)
-            }
-            }
-          >
-            Download cropped image
-          </button>
+        <div className="upload__download">
+          <TestDiv completedCrop={completedCrop}>
+            <ReButton
+              disabled={!completedCrop?.width || !completedCrop?.height}
+              onClick={() => {
+                generateDownload(previewCanvasRef.current, completedCrop);
+                setTriggered(true);
+              }}
+            >
+              Select this cropped image
+            </ReButton>
+          </TestDiv>
         </div>
-        
-        <button className="modalCloseButton" onClick={onCloseModal}>
+
+        <ReButton className="modalCloseButton" onClick={onCloseModal}>
           Cancel
-        </button>
+        </ReButton>
       </div>
     </>
   );
 };
 
 export default Corsona;
+
+const TestDiv = styled.div`
+  ${props => !props.completedCrop && `display: none`};
+`;
+const ReButton = styled(Button)`
+  color: lightblue;
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+  transition: all 0.4s ease;
+  :hover {
+    color: black;
+    background-color: lavender;
+    transition: all 0.4s ease;
+  }
+`;
+
+const NoTransitionDiv = styled.div`
+  transition: none !important;
+`;

@@ -1,0 +1,27 @@
+.corsona *{
+  transition: color 0.3s ease;
+}
+
+.corsona > .upload__crop > .reactCrop {
+  transition: none !important;  
+}
+.corsona .hidden {
+  display: none;
+}
+
+.corsona .btnFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.corsona > .upload__btn .MuiIconButton-root {
+  color: lightblue;
+  border: 1px solid lightblue;
+  margin-bottom: 10px;
+}
+.corsona > .upload__btn .MuiIconButton-root:hover {
+  background-color: lightblue;
+  color: black;
+  border: 1px solid lightblue;
+}
