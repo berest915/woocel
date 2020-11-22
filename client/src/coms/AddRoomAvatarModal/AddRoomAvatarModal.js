@@ -10,11 +10,8 @@ const AddRoomAvatarModal = ({ roomId, isOpen, onCloseModal }) => {
     <>
       <div style={OVERLAY_STYLES}>
         <div className="addRoomModal">
-         <Corsona roomId={roomId}/>
+         <Corsona roomId={roomId} onCloseModal={onCloseModal}/>
         </div>
-        <button className="modalCloseButton" onClick={onCloseModal}>
-          Cancel
-        </button>
       </div>
     </>,
     document.getElementById("AddRoomAvatarPortal")

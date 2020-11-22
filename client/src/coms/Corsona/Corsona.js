@@ -37,14 +37,15 @@ function blobToFile(theBlob, fileName) {
   });
 }
 
-const Corsona = ({ roomId }) => {
+const Corsona = ({ roomId, onCloseModal }) => {
   const [readyFile, setReadyFile] = useState(null);
+  const [triggered, setTriggered] = useState(false)
   const [upImg, setUpImg] = useState();
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
 
   const [completedCrop, setCompletedCrop] = useState(null);
- 
+
   const generateDownload = async (previewCanvas, crop) => {
     if (!crop || !previewCanvas) {
       return;
@@ -69,6 +70,21 @@ const Corsona = ({ roomId }) => {
       1
     );
     // **************************************************************** //
+  
+    
+
+     
+
+
+    // **************************************************************** //
+  };
+
+
+
+  useEffect(async() => {
+    if(!readyFile || !triggered ){
+      return
+    }
     // Create a root reference
     const storageRef = firebaseApp.storage().ref();
     // create dir reference for the uploaded file
@@ -76,37 +92,49 @@ const Corsona = ({ roomId }) => {
     let fileStoragePath = `${roomId}/${readyFile.name}`;
     const fileRef = storageRef.child(fileStoragePath);
 
-    // **************************************************************** //
-    //! upload file
-    await fileRef
-      .put(readyFile)
-      .then(() => {
-        console.log("readyFile was uploaded >> ", readyFile.name);
-      })
-      .catch(err => {
-        console.log("failed to upload readyFile, error >> ", err);
-      });
+    
+     //! upload file
+     await fileRef
+     .put(readyFile)
+     .then(() => {
+       console.log("File was uploaded >> ", readyFile.name);
+     })
+     .catch(err => {
+       console.log("failed to upload file, error >> ", err);
+     });
 
-    //! download url for the uploaded file
-    await fileRef
-      .getDownloadURL()
-      .then(url => {
-        db.collection("rooms").doc(roomId).set(
-          {
-            roomAvatarUrl: url,
-            path: fileStoragePath,
-          },
-          { merge: true }
-        );
-      })
-      .catch(err =>
-        console.log(
-          "failed to get downloadURL for uploaded file, error >> ",
-          err
-        )
-      );
-    // **************************************************************** //
-  };
+   //! download url for the uploaded file
+   await fileRef
+     .getDownloadURL()
+     .then(url => {
+       // console.log("url >> ", url);
+       // console.log("fileStoragePath >> ", fileStoragePath);
+
+       // let fileStoragePath = `${roomId}/${file.name}`;
+       db.collection("rooms").doc(roomId).set(
+         {
+           roomAvatarUrl: url,
+           path: fileStoragePath,
+         },
+         { merge: true }
+       );
+     })
+     .catch(err =>
+       console.log(
+         "failed to get downloadURL for uploaded file, error >> ",
+         err
+       )
+     );
+  }, [readyFile])
+
+
+
+
+
+
+
+
+
 
   //* initial crop properties
   const [crop, setCrop] = useState({
@@ -153,7 +181,7 @@ const Corsona = ({ roomId }) => {
     );
   }, [completedCrop]);
 
-  const uploadFile = async e => {
+  const uploadFile = e => {
     // const file = e.target.files[0];
     // console.log(file);
     if (e.target.files && e.target.files.length > 0) {
@@ -216,13 +244,19 @@ const Corsona = ({ roomId }) => {
           <button
             type="button"
             disabled={!completedCrop?.width || !completedCrop?.height}
-            onClick={() =>
+            onClick={() =>{
               generateDownload(previewCanvasRef.current, completedCrop)
+              setTriggered(true)
+            }
             }
           >
             Download cropped image
           </button>
         </div>
+        
+        <button className="modalCloseButton" onClick={onCloseModal}>
+          Cancel
+        </button>
       </div>
     </>
   );
