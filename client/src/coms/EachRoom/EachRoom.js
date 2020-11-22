@@ -55,7 +55,7 @@ const EachRoom = ({
               
                 <Avatar
                 src={roomAvatarUrl}
-                  sizes={'100'}
+                 
                 />
               </div>
               <div className="eachRoom__textInfo">

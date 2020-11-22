@@ -37,14 +37,14 @@ function generateDownload(previewCanvas, crop) {
   }
 
   const canvas = getResizedCanvas(previewCanvas, crop.width, crop.height);
-// ############################################################################## //
-// ############################################################################## //
-// ############################################################################## //
-// ############################################################################## //
-// ############################################################################## //
+  // ############################################################################## //
+  // ############################################################################## //
+  // ############################################################################## //
+  // ############################################################################## //
+  // ############################################################################## //
   canvas.toBlob(
     blob => {
-      console.log(blobToFile(blob, "hey.png"))
+      console.log(blobToFile(blob, "hey.png"));
       // const previewUrl = window.URL.createObjectURL(blob);
       // console.log("previewURL >> ", blob)
       // const anchor = document.createElement("a");
@@ -58,20 +58,27 @@ function generateDownload(previewCanvas, crop) {
     "image/png",
     1
   );
-  
 }
-function blobToFile(theBlob, fileName){       
-  return new File([theBlob], fileName, { lastModified: new Date().getTime(), type: theBlob.type })
+function blobToFile(theBlob, fileName) {
+  return new File([theBlob], fileName, {
+    lastModified: new Date().getTime(),
+    type: theBlob.type,
+  });
 }
 
+
+//! 
 const UploadButton = ({ roomId }) => {
-  // ************************************************************************
-  const classes = useStyles()
+  // modal
+  const [isOpen, setIsOpen] = useState(false);
+
+  const classes = useStyles();
   const [upImg, setUpImg] = useState();
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
 
   const [completedCrop, setCompletedCrop] = useState(null);
+  const [finalFile, setFinalFile] = useState(null);
 
   //* initial crop properties
   const [crop, setCrop] = useState({
@@ -81,8 +88,6 @@ const UploadButton = ({ roomId }) => {
     x: 25,
     y: 25,
   });
-
- 
 
   const onLoad = useCallback(img => {
     imgRef.current = img;
@@ -131,7 +136,7 @@ const UploadButton = ({ roomId }) => {
 
       // ******************************************* //
       const file = e.target.files[0];
-      console.log(file)
+      console.log(file);
       if (e.target.files && e.target.files.length > 0) {
         const reader = new FileReader();
         reader.addEventListener("load", () => {
@@ -139,7 +144,7 @@ const UploadButton = ({ roomId }) => {
         });
         reader.readAsDataURL(e.target.files[0]);
       }
-     
+
       // ******************************************* //
 
       // create dir reference for the uploaded file
@@ -239,8 +244,17 @@ const UploadButton = ({ roomId }) => {
         type="file"
         onChange={upload}
       />
-      // ***************************************
-      <ReactCrop
+      <label htmlFor="icon-button-file">
+        <IconButton
+          color="primary"
+          aria-label="upload picture"
+          component="span"
+          onClick={upload}
+        >
+          <PhotoCamera />
+        </IconButton>
+      </label>
+      {/* <ReactCrop
         className={`reactCrop ${!upImg && `hidden`}`}
         src={upImg}
         onImageLoaded={onLoad}
@@ -266,18 +280,7 @@ const UploadButton = ({ roomId }) => {
           }
         >
           Download cropped image
-        </button>
-      // ***************************************
-      <label htmlFor="icon-button-file">
-        <IconButton
-          color="primary"
-          aria-label="upload picture"
-          component="span"
-          onClick={upload}
-        >
-          <PhotoCamera />
-        </IconButton>
-      </label>
+        </button> */}
     </div>
   );
 };

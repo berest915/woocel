@@ -9,12 +9,14 @@ import MoreVert from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import UploadButton from "../UploadButton/UploadButton";
+import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 
 // import { useBreakpoint } from "../../IndexContextProvider/breakpoint";
 import ToggleModal from "../ChatModal/ToggleModal";
 import db from "../../config/firebase";
 import authContext from "../../context/auth/authContext";
 import firebase from "firebase";
+import AddRoomAvatarModal from "../AddRoomAvatarModal/AddRoomAvatarModal";
 
 const Chat = () => {
   let history = useHistory();
@@ -27,6 +29,10 @@ const Chat = () => {
 
   const [input, setInput] = useState("");
   const inputRef = useRef();
+
+  const [isOpen, setIsOpen] = useState(false);
+  const onOpenModal = () => setIsOpen(true)
+  const onCloseModal = () => setIsOpen(false);
 
   let value = false;
 
@@ -92,7 +98,13 @@ const Chat = () => {
     <>
       <div className="chat__header">
         <div className="chat__headerLeft">
-          <UploadButton roomId={roomId} />
+          <AddPhotoAlternateIcon onClick={onOpenModal}/>
+          <AddRoomAvatarModal
+            roomId={roomId}
+            isOpen={isOpen}
+            onCloseModal={onCloseModal}
+          />
+          {/* <UploadButton roomId={roomId} /> */}
           <div className="info">
             {!value ? (
               <>
