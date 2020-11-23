@@ -32,7 +32,7 @@ const Chat = () => {
   const onOpenModal = () => setIsOpen(true);
   const onCloseModal = () => setIsOpen(false);
 
-  
+  const [lastHourMinute, setLastHourMinute] = useState("");
 
   let value = false;
 
@@ -77,6 +77,32 @@ const Chat = () => {
     }
   });
 
+  useEffect(() => {
+    if (messages.length > 0) {
+      getLastHourMinute();
+    }
+    function getLastHourMinute() {
+      const timestamp = new Date(
+        messages[messages.length - 1].timestamp?.toDate()
+      );
+      const year = timestamp.getFullYear();
+      const month = timestamp.getMonth() + 1;
+      const day = timestamp.getDate();
+      const hour =
+        timestamp.getHours() >= 10
+          ? timestamp.getHours()
+          : `0${timestamp.getHours()}`;
+      const minute =
+        timestamp.getMinutes() >= 10
+          ? timestamp.getMinutes()
+          : `0${timestamp.getMinutes()}`;
+
+      setLastHourMinute(
+        hour + ":" + minute + " " + day + "/" + month + "/" + year
+      );
+    }
+  }, [messages]);
+
   // https://codesandbox.io/s/chat-application-3t380
   const sendMessage = e => {
     e.preventDefault();
@@ -90,16 +116,6 @@ const Chat = () => {
         name: user.displayName,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
-    // input &&
-    //   db
-    //     .collection("rooms")
-    //     .doc(roomId)
-    //     .collection("messages")
-    //     .onSnapshot(snapshot => {
-    //       snapshot.docs.map(doc => {
-    //         console.log(doc.data().timestamp);
-    //       });
-    //     });
 
     inputRef.current.value = "";
     setInput(""); // reset input value
@@ -123,11 +139,9 @@ const Chat = () => {
                 <p>{roomName} </p>
                 <p className="lastSeen">
                   Last Seen :{" "}
-                  {
-                  new Date(
+                  {new Date(
                     messages[messages.length - 1]?.timestamp?.toDate()
-                  ).toString()
-                  }
+                  ).toString()}
                 </p>
               </>
             ) : (
@@ -163,7 +177,8 @@ const Chat = () => {
               <p className="chat__text">{message.message}</p>
 
               <span className="chat__timestamp">
-                {new Date(message.timestamp?.toDate()).toString()}
+                {/* {new Date(message.timestamp?.toDate()).toString()} */}
+                {lastHourMinute}
               </span>
             </div>
           </div>

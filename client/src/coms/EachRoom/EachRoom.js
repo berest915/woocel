@@ -41,9 +41,10 @@ const EachRoom = ({
       getLastDate()
     }
     function getLastDate () {
-      const year = new Date( messages[0].timestamp?.toDate() ).getFullYear()
-      const month = new Date( messages[0].timestamp?.toDate() ).getMonth() + 1
-      const day = new Date( messages[0].timestamp?.toDate() ).getDate()
+      const timestamp = new Date( messages[0].timestamp?.toDate() )
+      const year = timestamp.getFullYear()
+      const month = timestamp.getMonth() + 1
+      const day = timestamp.getDate()
       setLastDate(day + '/' + month + '/' + year)
     }
 
