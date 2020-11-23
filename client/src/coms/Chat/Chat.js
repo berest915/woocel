@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import "./Chat.css";
-
 import IconButton from "@material-ui/core/IconButton";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import AttachFile from "@material-ui/icons/AttachFile";
@@ -29,9 +28,11 @@ const Chat = () => {
   const [input, setInput] = useState("");
   const inputRef = useRef();
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const onOpenModal = () => setIsOpen(true);
   const onCloseModal = () => setIsOpen(false);
+
+  
 
   let value = false;
 
@@ -89,10 +90,20 @@ const Chat = () => {
         name: user.displayName,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
+    // input &&
+    //   db
+    //     .collection("rooms")
+    //     .doc(roomId)
+    //     .collection("messages")
+    //     .onSnapshot(snapshot => {
+    //       snapshot.docs.map(doc => {
+    //         console.log(doc.data().timestamp);
+    //       });
+    //     });
+
     inputRef.current.value = "";
     setInput(""); // reset input value
   }, [input, roomId, user.displayName]);
-
 
   return (
     <>
@@ -112,9 +123,11 @@ const Chat = () => {
                 <p>{roomName} </p>
                 <p className="lastSeen">
                   Last Seen :{" "}
-                  {new Date(
+                  {
+                  new Date(
                     messages[messages.length - 1]?.timestamp?.toDate()
-                  ).toString()}
+                  ).toString()
+                  }
                 </p>
               </>
             ) : (
@@ -150,7 +163,7 @@ const Chat = () => {
               <p className="chat__text">{message.message}</p>
 
               <span className="chat__timestamp">
-                {new Date(message.timestamp?.toDate()).toUTCString()}
+                {new Date(message.timestamp?.toDate()).toString()}
               </span>
             </div>
           </div>

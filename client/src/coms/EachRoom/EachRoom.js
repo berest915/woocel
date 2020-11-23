@@ -20,6 +20,8 @@ const EachRoom = ({
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
 
+  const [lastDate, setLastDate] = useState("-/-/-")
+
   useEffect(() => {
     if (id) {
       const unsubscribe = db
@@ -33,6 +35,18 @@ const EachRoom = ({
       return () => unsubscribe();
     }
   }, [id]);
+
+  useEffect(() => {
+    if(messages.length > 0){
+      getLastDate()
+    }
+    function getLastDate () {
+      const timestamp = new Date( messages[0].timestamp?.toDate() ).getFullYear().toString()
+      setLastDate(timestamp)
+    }
+
+
+  }, [messages])
 
   return (
     <>
@@ -61,7 +75,9 @@ const EachRoom = ({
               <div className="eachRoom__textInfo">
                 <div className="upperTextInfo">
                   <p className="roomName">{roomName}</p>
-                  <p className="date">21/10/2019</p>
+                  <p className="date">{
+                lastDate
+                 }</p>
                 </div>
                 <div className="lowerTextInfo">
                   <p className="lastMessage">
