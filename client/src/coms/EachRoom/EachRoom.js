@@ -41,23 +41,23 @@ const EachRoom = ({
       getLastDate();
     }
     function getLastDate() {
-      const javaScriptRelease = Date.parse("04 Jan 1995 00:12:00 GMT");
-      var dateNum = javaScriptRelease * 1;
-      const dateObj = new Date(dateNum)
-     
+      // const javaScriptRelease = Date.parse("04 Jan 1995 00:12:00 GMT");
+      // var dateNum = javaScriptRelease * 1;
+      // const dateObj = new Date(dateNum)
 
-      // const timestamp = new Date(messages[0].timestamp?.toDate());
-      const year = dateObj.getFullYear();
-  
+      const timestamp = new Date(messages[0].timestamp?.toDate());
+      const year = timestamp.getFullYear();
+
       const month =
-        dateObj.getMonth() >= 10
-          ? dateObj.getMonth()
-          : `0${dateObj.getMonth() + 1}`;
-    
+        timestamp.getMonth() >= 10
+          ? timestamp.getMonth()
+          : `0${timestamp.getMonth() + 1}`;
+
       const day =
-        dateObj.getDate() >= 10
-          ? dateObj.getDate()
-          : `0${dateObj.getDate()}`;
+        timestamp.getDate() >= 10
+          ? timestamp.getDate()
+          : `0${timestamp.getDate()}`;
+          
       setLastDate(day + "/" + month + "/" + year);
     }
   }, [messages]);
