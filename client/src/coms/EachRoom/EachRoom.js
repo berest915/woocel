@@ -20,7 +20,7 @@ const EachRoom = ({
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
 
-  const [lastDate, setLastDate] = useState("-/-/-")
+  const [lastDate, setLastDate] = useState("-/-/-");
 
   useEffect(() => {
     if (id) {
@@ -37,19 +37,22 @@ const EachRoom = ({
   }, [id]);
 
   useEffect(() => {
-    if(messages.length > 0){
-      getLastDate()
+    if (messages.length > 0) {
+      getLastDate();
     }
-    function getLastDate () {
-      const timestamp = new Date( messages[0].timestamp?.toDate() )
-      const year = timestamp.getFullYear()
-      const month = timestamp.getMonth() + 1
-      const day = timestamp.getDate()
-      setLastDate(day + '/' + month + '/' + year)
+    function getLastDate() {
+      const javaScriptRelease = Date.parse("04 Jan 1995 00:12:00 GMT");
+      var dateNum = javaScriptRelease * 1;
+      const dateObj = new Date(dateNum)
+     
+
+      const timestamp = new Date(messages[0].timestamp?.toDate());
+      const year = dateObj.getFullYear();
+      const month = dateObj.getMonth() + 1;
+      const day = dateObj.getDate();
+      setLastDate(day + "/" + month + "/" + year);
     }
-
-
-  }, [messages])
+  }, [messages]);
 
   return (
     <>
@@ -69,18 +72,12 @@ const EachRoom = ({
               onClick={() => toggleSelected(id)}
             >
               <div className="eachRoom__avatar">
-              
-                <Avatar
-                src={roomAvatarUrl}
-                 
-                />
+                <Avatar src={roomAvatarUrl} />
               </div>
               <div className="eachRoom__textInfo">
                 <div className="upperTextInfo">
                   <p className="roomName">{roomName}</p>
-                  <p className="date">{
-                lastDate
-                 }</p>
+                  <p className="date">{lastDate}</p>
                 </div>
                 <div className="lowerTextInfo">
                   <p className="lastMessage">
