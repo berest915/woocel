@@ -31,6 +31,7 @@ const Sidebar = ({ path }) => {
           }))
         );
       });
+   
     return () => unsubscribeOne();
     // eslint-disable-next-line
   }, []);
@@ -40,8 +41,20 @@ const Sidebar = ({ path }) => {
       rooms.map(room => {
         if (onClickRoomId === room.id) {
           room.data.isSelected = true;
+          // db set isSelected true
+          db.collection('rooms')
+            .doc(room.id)
+            .set({
+              isSelected: true
+          }, { merge: true });
+
         } else {
           room.data.isSelected = false;
+          db.collection('rooms')
+          .doc(room.id)
+          .set({
+            isSelected: false
+        }, { merge: true });
         }
         return room;
       })

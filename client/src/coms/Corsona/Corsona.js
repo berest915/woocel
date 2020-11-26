@@ -57,7 +57,8 @@ const Corsona = ({ roomId, onCloseModal }) => {
 
     const canvasFile = canvas.toBlob(
       blob => {
-        setReadyFile(blobToFile(blob, "hey.png"));
+        console.log(blob)
+        setReadyFile(blobToFile(blob, "uploaded-avatar-img.png"));
         // const previewUrl = window.URL.createObjectURL(blob);
         // console.log("previewURL >> ", blob)
         // const anchor = document.createElement("a");
@@ -164,8 +165,7 @@ const Corsona = ({ roomId, onCloseModal }) => {
   }, [completedCrop]);
 
   const uploadFile = e => {
-    // const file = e.target.files[0];
-    // console.log(file);
+    
     if (e.target.files && e.target.files.length > 0) {
       const reader = new FileReader();
       reader.addEventListener("load", () => {

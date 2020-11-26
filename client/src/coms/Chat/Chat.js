@@ -116,7 +116,7 @@ const Chat = () => {
     const second = timestamp.getSeconds();
 
     const formattedTimestamp = `${hour}:${minute}:${second} ${day}/${month}/${year}`;
-    
+
     return formattedTimestamp;
   };
 
@@ -138,9 +138,11 @@ const Chat = () => {
                 <p>{roomName} </p>
                 <p className="lastSeen">
                   Last Seen :{" "}
-                  {new Date(
-                    messages[messages.length - 1]?.timestamp?.toDate()
-                  ).toString()}
+                  {!messages[messages.length - 1]?.timestamp
+                    ? " - / - / -"
+                    : new Date(
+                        messages[messages.length - 1]?.timestamp?.toDate()
+                      ).toString()}
                 </p>
               </>
             ) : (
@@ -167,7 +169,7 @@ const Chat = () => {
         {messages.map((message, i) => {
           let timestamp = new Date(message.timestamp?.toDate());
           const formattedTimestamp = fnFormatTimestamp(timestamp);
-          
+
           return (
             <div key={i} ref={messageRef}>
               {/* shud use sort of user id instead of name, in case exactly same username */}
