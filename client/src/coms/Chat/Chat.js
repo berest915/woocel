@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import "./Chat.css";
+// @material-ui
 import IconButton from "@material-ui/core/IconButton";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import AttachFile from "@material-ui/icons/AttachFile";
@@ -8,8 +9,7 @@ import MoreVert from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
-
-// import { useBreakpoint } from "../../IndexContextProvider/breakpoint";
+// comsw
 import ToggleModal from "../ChatModal/ToggleModal";
 import db from "../../config/firebase";
 import authContext from "../../context/auth/authContext";
@@ -102,6 +102,7 @@ const Chat = () => {
   }, [input, roomId, user.displayName]);
 
   const fnFormatTimestamp = timestamp => {
+
     const year = timestamp.getFullYear();
     const month = timestamp.getMonth() + 1;
     const day = timestamp.getDate();
@@ -115,8 +116,13 @@ const Chat = () => {
         : `0${timestamp.getMinutes()}`;
     const second = timestamp.getSeconds();
 
-    const formattedTimestamp = `${hour}:${minute}:${second} ${day}/${month}/${year}`;
-
+    let formattedTimestamp;
+    // checkIf NaN
+    if (year !== year) {
+      formattedTimestamp = "-/-/-";
+    } else {
+      formattedTimestamp = `${hour}:${minute}:${second} ${day}/${month}/${year}`;
+    }
     return formattedTimestamp;
   };
 
