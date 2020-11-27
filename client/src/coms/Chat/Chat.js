@@ -97,7 +97,7 @@ const Chat = () => {
       });
 
       inputRef.current.value = "";
-      setInput(""); // reset input value
+      setInput("");  // reset input value
     }
   }, [input, roomId, user.displayName]);
 
