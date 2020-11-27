@@ -95,6 +95,7 @@ const Chat = () => {
         formattedTimestamp: null,
         isNewerDate: false,
       });
+      
 
       inputRef.current.value = "";
       setInput("");  // reset input value
