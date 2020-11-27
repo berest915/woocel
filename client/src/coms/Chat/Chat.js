@@ -81,11 +81,12 @@ const Chat = () => {
     setInput(inputRef.current.value);
   };
 
+
   useEffect(() => {
     if (input) {
       if (messages.length > 0) {
         let prevTimestamp = messages[messages.length - 1].timestamp?.toDate();
-        console.log(prevTimestamp);
+        console.log("prev timestamp >> ", prevTimestamp);
       }
 
       db.collection("rooms").doc(roomId).collection("messages").add({
@@ -95,6 +96,7 @@ const Chat = () => {
         formattedTimestamp: null,
         isNewerDate: false,
       });
+      //
 
       inputRef.current.value = "";
       setInput(""); // reset input value

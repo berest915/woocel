@@ -39,7 +39,7 @@ const Login = () => {
             photoURL: result.user.photoURL,
           })
           .then( () => {
-            console.log("Auth User info successfully written!");
+            console.log("%cAuth User info successfully written!", "color:orange");
           })
           .catch( error =>  {
             console.error("Error writing auth-user-info: ", error);
