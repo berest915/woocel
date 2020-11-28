@@ -7,7 +7,7 @@ import { BreakpointProvider } from "./IndexContextProvider/breakpoint";
 
 
 const queries = {
-  sm: "(max-width: 700px)"
+  sm: "(max-width: 625px)"
 }
 
 ReactDOM.render(

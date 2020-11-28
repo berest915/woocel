@@ -181,9 +181,6 @@ const Chat = () => {
             <div key={i} ref={messageRef}>
               {/* shud use sort of user id instead of name, in case exactly same username */}
               <div
-                className={`chat__newerDate ${true && `centeredNewerDate`}`}
-              ></div>
-              <div
                 className={`chat__message ${
                   message.name === user.displayName && `chat__receiver`
                 }`}
