@@ -251,7 +251,7 @@ export default Corsona;
 const TestDiv = styled.div`
   ${props => !props.completedCrop && `display: none`};
 `;
-const ReButton = styled(Button)`
+export const ReButton = styled(Button)`
   color: lightblue;
   margin-top: 10px;
   display: block;
