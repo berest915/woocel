@@ -5,6 +5,7 @@ import "./Chat.css";
 // @material-ui
 import IconButton from "@material-ui/core/IconButton";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
+import Avatar from "@material-ui/core/Avatar";
 import AttachFile from "@material-ui/icons/AttachFile";
 import MoreVert from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
@@ -27,6 +28,7 @@ const Chat = () => {
   const { user } = useContext(authContext);
 
   const [roomName, setRoomName] = useState("");
+  const [roomAvatar, setRoomAvatar] = useState("")
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -36,8 +38,16 @@ const Chat = () => {
 
   useEffect(() => {
     if (roomId) {
-      // set chat header roomName
-      const unsubsribeOne = db
+      // set chatroom avatar
+      const unsubscribeOne = db
+        .collection("rooms")
+        .doc(roomId)
+        .onSnapshot(snapshot => {
+          let room = snapshot.data();
+          setRoomAvatar(room.roomAvatarUrl)
+        });
+      // set roomName
+      const unsubsribeTwo = db
         .collection("rooms")
         .doc(roomId)
         .onSnapshot(snapshot => {
@@ -48,7 +58,7 @@ const Chat = () => {
           }
         });
       // display messages from specified chatroom
-      const unsubscribeTwo = db
+      const unsubscribeThree = db
         .collection("rooms")
         .doc(roomId)
         .collection("messages")
@@ -57,8 +67,9 @@ const Chat = () => {
           setMessages(snapshot.docs.map(doc => doc.data()));
         });
       return () => {
-        unsubsribeOne();
-        unsubscribeTwo();
+        unsubscribeOne();
+        unsubsribeTwo();
+        unsubscribeThree();
       };
     }
     // eslint-disable-next-line
@@ -80,7 +91,6 @@ const Chat = () => {
     e.preventDefault();
     setInput(inputRef.current.value);
   };
-
 
   useEffect(() => {
     if (input) {
@@ -130,9 +140,7 @@ const Chat = () => {
     <>
       <div className="chat__header">
         <div className="chat__headerLeft">
-          <IconButton autoFocus onClick={onOpenModal}>
-            <AddPhotoAlternateIcon />
-          </IconButton>
+          <Avatar src={roomAvatar && roomAvatar} />
           <AddRoomAvatarModal
             roomId={roomId}
             isOpen={isOpen}
@@ -157,8 +165,8 @@ const Chat = () => {
           <IconButton>
             <SearchOutlined />
           </IconButton>
-          <IconButton>
-            <AttachFile />
+          <IconButton autoFocus onClick={onOpenModal}>
+            <AddPhotoAlternateIcon />
           </IconButton>
           <IconButton>
             <MoreVert />

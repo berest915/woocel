@@ -23,11 +23,6 @@
   min-width: 0;
 }
 
-.chat__headerLeft > .MuiIconButton-root {
-  color: lightblue;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  margin-right: 8px;
-}
 
 .chat__headerLeft > .info {
   display: flex;
@@ -35,13 +30,14 @@
 }
 
 .chat__headerLeft > .MuiAvatar-root {
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
 .chat__headerRight > .MuiIconButton-root {
-  color: #ffffffcc;
+  color: lightblue;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-right: 8px;
 }
-
 .chat__headerLeft > .info > .lastSeen {
   font-size: small;
 }

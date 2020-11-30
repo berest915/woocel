@@ -82,7 +82,7 @@ const EachRoom = ({
               onClick={() => toggleSelected(id)}
             >
               <div className="eachRoom__avatar">
-                <Avatar src={roomAvatarUrl} />
+                <Avatar src={roomAvatarUrl && roomAvatarUrl} />
               </div>
               <div className="eachRoom__textInfo">
                 <div className="upperTextInfo">

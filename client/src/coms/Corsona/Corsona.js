@@ -83,7 +83,6 @@ const Corsona = ({ roomId, onCloseModal }) => {
       // Create a root reference
       const storageRef = firebaseApp.storage().ref();
       // create dir reference for the uploaded file
-      console.log(readyFile);
       let fileStoragePath = `${roomId}/${readyFile.name}`;
       const fileRef = storageRef.child(fileStoragePath);
 
@@ -91,7 +90,7 @@ const Corsona = ({ roomId, onCloseModal }) => {
       await fileRef
         .put(readyFile)
         .then(() => {
-          console.log("File was uploaded >> ", readyFile.name);
+          console.log(readyFile);
         })
         .catch(err => {
           console.log("failed to upload file, error >> ", err);
