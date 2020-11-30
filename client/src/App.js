@@ -17,7 +17,7 @@ import { useBreakpoint } from "./IndexContextProvider/breakpoint";
 const App = () => {
   const breakpoints = useBreakpoint();
   const [isOpen, setIsOpen] = useState(true);
-  const onOpenModal = () => setIsOpen(true);
+  // const onOpenModal = () => setIsOpen(true);
   const onCloseModal = () => setIsOpen(false);
 
   // media-controlled rendered-coms
@@ -49,12 +49,7 @@ const App = () => {
                   <Route component={NotFoundPage} />
                 </Switch>
 
-                {isSm && (
-                  <ToggleMobilePortal
-                    isOpen={isOpen}
-                    onCloseModal={onCloseModal}
-                  />
-                )}
+              
               </div>
             </div>
           </Router>
