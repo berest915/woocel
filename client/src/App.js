@@ -1,5 +1,4 @@
-// react, react-router-dom + css
-import { useState } from "react";
+// react-router-dom + css
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 // components

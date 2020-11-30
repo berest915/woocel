@@ -7,6 +7,7 @@ import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import Button from "@material-ui/core/Button";
 import db, { firebaseApp } from "../../config/firebase";
 import styled from "styled-components";
+import { NoTransitionDiv, NoneCropDiv, ReButton } from '../../StyledComponents/StyledComponents'
 
 // Increase pixel density for crop preview quality on retina screens.
 const pixelRatio = window.devicePixelRatio || 1;
@@ -225,7 +226,7 @@ const Corsona = ({ roomId, onCloseModal }) => {
         </div>
 
         <div className="upload__download">
-          <TestDiv completedCrop={completedCrop}>
+          <NoneCropDiv completedCrop={completedCrop}>
             <ReButton
               disabled={!completedCrop?.width || !completedCrop?.height}
               onClick={() => {
@@ -235,7 +236,7 @@ const Corsona = ({ roomId, onCloseModal }) => {
             >
               Select this cropped image
             </ReButton>
-          </TestDiv>
+          </NoneCropDiv>
         </div>
 
         <ReButton className="modalCloseButton" onClick={onCloseModal}>
@@ -248,22 +249,3 @@ const Corsona = ({ roomId, onCloseModal }) => {
 
 export default Corsona;
 
-const TestDiv = styled.div`
-  ${props => !props.completedCrop && `display: none`};
-`;
-export const ReButton = styled(Button)`
-  color: lightblue;
-  margin-top: 10px;
-  display: block;
-  width: 100%;
-  transition: all 0.4s ease;
-  :hover {
-    color: black;
-    background-color: lavender;
-    transition: all 0.4s ease;
-  }
-`;
-
-const NoTransitionDiv = styled.div`
-  transition: none !important;
-`;

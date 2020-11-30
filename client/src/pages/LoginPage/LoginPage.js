@@ -1,5 +1,7 @@
-import Login from "../../coms/Login/Login";
+// css
 import "./LoginPage.css";
+// components
+import Login from "../../coms/Login/Login";
 
 const LoginPage = () => {
   return (

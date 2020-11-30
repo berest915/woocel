@@ -1,3 +1,4 @@
+// react hooks + react-router-dom + css
 import { useState, useEffect, useContext, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import "./Chat.css";
@@ -9,30 +10,29 @@ import MoreVert from "@material-ui/icons/MoreVert";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
-// comsw
-import ToggleModal from "../ChatModal/ToggleModal";
-import db from "../../config/firebase";
-import authContext from "../../context/auth/authContext";
-import firebase from "firebase";
+// components
 import AddRoomAvatarModal from "../AddRoomAvatarModal/AddRoomAvatarModal";
+// firebase
+import db from "../../config/firebase";
+import firebase from "firebase";
+// react contexts
+import authContext from "../../context/auth/authContext";
 
 const Chat = () => {
   let history = useHistory();
-  const messageRef = useRef();
-
   const { roomId } = useParams();
-  const [roomName, setRoomName] = useState("");
-  const [messages, setMessages] = useState([]);
-  const { user } = useContext(authContext);
-
-  const [input, setInput] = useState("");
+  const messageRef = useRef();
   const inputRef = useRef();
 
+  const { user } = useContext(authContext);
+
+  const [roomName, setRoomName] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+
   const onOpenModal = () => setIsOpen(true);
   const onCloseModal = () => setIsOpen(false);
-
-  let value = false;
 
   useEffect(() => {
     if (roomId) {
@@ -47,7 +47,7 @@ const Chat = () => {
             history.push("/notFound");
           }
         });
-      // display msg
+      // display messages from specified chatroom
       const unsubscribeTwo = db
         .collection("rooms")
         .doc(roomId)
@@ -81,13 +81,14 @@ const Chat = () => {
     setInput(inputRef.current.value);
   };
 
+
   useEffect(() => {
     if (input) {
+      //* @latter-imp-feature
       if (messages.length > 0) {
         let prevTimestamp = messages[messages.length - 1].timestamp?.toDate();
-        console.log(prevTimestamp);
       }
-
+      // add msg
       db.collection("rooms").doc(roomId).collection("messages").add({
         message: input,
         name: user.displayName,
@@ -95,15 +96,13 @@ const Chat = () => {
         formattedTimestamp: null,
         isNewerDate: false,
       });
-      
 
       inputRef.current.value = "";
-      setInput("");  // reset input value
+      setInput(""); // reset input value
     }
   }, [input, roomId, user.displayName]);
 
   const fnFormatTimestamp = timestamp => {
-
     const year = timestamp.getFullYear();
     const month = timestamp.getMonth() + 1;
     const day = timestamp.getDate();
@@ -118,7 +117,7 @@ const Chat = () => {
     const second = timestamp.getSeconds();
 
     let formattedTimestamp;
-    // checkIf NaN
+    // checkIf NaN, raise a warning though
     if (year !== year) {
       formattedTimestamp = "-/-/-";
     } else {
@@ -140,21 +139,17 @@ const Chat = () => {
             onCloseModal={onCloseModal}
           />
           <div className="info">
-            {!value ? (
-              <>
-                <p>{roomName} </p>
-                <p className="lastSeen">
-                  Last Seen :{" "}
-                  {!messages[messages.length - 1]?.timestamp
-                    ? " - / - / -"
-                    : new Date(
-                        messages[messages.length - 1]?.timestamp?.toDate()
-                      ).toString()}
-                </p>
-              </>
-            ) : (
-              <ToggleModal />
-            )}
+            <>
+              <p>{roomName} </p>
+              <p className="lastSeen">
+                Last Seen :{" "}
+                {!messages[messages.length - 1]?.timestamp
+                  ? " - / - / -"
+                  : new Date(
+                      messages[messages.length - 1]?.timestamp?.toDate()
+                    ).toString()}
+              </p>
+            </>
           </div>
         </div>
 

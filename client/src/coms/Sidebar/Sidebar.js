@@ -1,6 +1,6 @@
 // react hooks + css
+import { useContext, useEffect, useRef } from "react";
 import "./Sidebar.css";
-import { useContext, useEffect, useState } from "react";
 // @material-ui
 import { Avatar, IconButton } from "@material-ui/core";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
@@ -15,12 +15,20 @@ import db from "../../config/firebase";
 import authContext from "../../context/auth/authContext";
 
 const Sidebar = ({ path }) => {
-  const { user } = useContext(authContext);
-  const [rooms, setRooms] = useState([]);
+  const {
+    user,
+    rooms,
+    setRooms,
+    filteredChatroom,
+    filterChatroom,
+    clearChatroomFilter,
+  } = useContext(authContext);
+
+  const searchRef = useRef("");
 
   useEffect(() => {
-    // get a snap on the collection and upd new snapshot if any change occur
-    const unsubscribeOne = db
+    // get a snap on rooms-collection and upd new snapshot if any change occur
+    const unsubscribe = db
       .collection("rooms")
       .orderBy("timestamp", "desc")
       .onSnapshot(snapshot => {
@@ -31,34 +39,49 @@ const Sidebar = ({ path }) => {
           }))
         );
       });
-   
-    return () => unsubscribeOne();
+
+    return () => unsubscribe();
     // eslint-disable-next-line
   }, []);
 
+  // identify which is currently selected chatroom
   const toggleSelected = onClickRoomId => {
     setRooms(
       rooms.map(room => {
         if (onClickRoomId === room.id) {
           room.data.isSelected = true;
-          // db set isSelected true
-          db.collection('rooms')
-            .doc(room.id)
-            .set({
-              isSelected: true
-          }, { merge: true });
-
+          db.collection("rooms").doc(room.id).set(
+            {
+              isSelected: true,
+            },
+            { merge: true }
+          );
         } else {
           room.data.isSelected = false;
-          db.collection('rooms')
-          .doc(room.id)
-          .set({
-            isSelected: false
-        }, { merge: true });
+          db.collection("rooms").doc(room.id).set(
+            {
+              isSelected: false,
+            },
+            { merge: true }
+          );
         }
         return room;
       })
     );
+  };
+
+  useEffect(() => {
+    if (filteredChatroom === null) {
+      searchRef.current.value = "";
+    }
+  }, [filteredChatroom, searchRef]);
+
+  const onChange = e => {
+    if (searchRef.current.value !== "") {
+      filterChatroom(e.target.value);
+    } else {
+      clearChatroomFilter();
+    }
   };
 
   return (
@@ -82,14 +105,34 @@ const Sidebar = ({ path }) => {
         <div className="sidebar__search">
           <div className="sidebar__searchContainer">
             <SearchOutlined />
-            <input type="text" placeholder="Search or start new chat" />
+            <input
+              type="text"
+              placeholder="Search or start new chat"
+              ref={searchRef}
+              onChange={onChange}
+            />
           </div>
         </div>
 
         <div className="sidebar__chats">
           <EachRoom addNewChat />
+
           {rooms &&
+            !filteredChatroom &&
             rooms.map(room => (
+              <EachRoom
+                path={path}
+                key={room.id}
+                id={room.id}
+                roomName={room.data.name}
+                isSelected={room.data.isSelected}
+                toggleSelected={toggleSelected}
+                roomAvatarUrl={room.data.roomAvatarUrl}
+              />
+            ))}
+          {rooms &&
+            filteredChatroom &&
+            filteredChatroom.map(room => (
               <EachRoom
                 path={path}
                 key={room.id}

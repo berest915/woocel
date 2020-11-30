@@ -1,7 +1,8 @@
+// react-dom + css
 import ReactDOM from "react-dom";
-
 import "./ToggleMobileModal.css";
-import { ReButton } from "../Corsona/Corsona";
+// styled-components
+import { ReButton } from "../../StyledComponents/StyledComponents";
 
 const ToggleModalPortal = ({ isOpen, onCloseModal }) => {
   if (!isOpen) return null;

@@ -1,13 +1,15 @@
-// react hooks + css
-import "./EachRoom.css";
+// react hooks + react-router-dom + css
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./EachRoom.css";
 // @material-ui
 import AddIcon from "@material-ui/icons/Add";
 import { Avatar } from "@material-ui/core";
 // components
 import AddRoomModal from "../AddRoomModal/AddRoomModal";
+// firebase
 import db from "../../config/firebase";
+
 const EachRoom = ({
   path,
   addNewChat,
@@ -19,11 +21,11 @@ const EachRoom = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
-
   const [lastDate, setLastDate] = useState("-/-/-");
 
   useEffect(() => {
     if (id) {
+      // get messages from db specified room 
       const unsubscribe = db
         .collection("rooms")
         .doc(id)
@@ -57,7 +59,7 @@ const EachRoom = ({
         timestamp.getDate() >= 10
           ? timestamp.getDate()
           : `0${timestamp.getDate()}`;
-          
+
       setLastDate(day + "/" + month + "/" + year);
     }
   }, [messages]);

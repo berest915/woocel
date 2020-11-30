@@ -1,5 +1,7 @@
-import Continue from "../../coms/Continue/Continue";
+// css
 import './ContinuePage.css'
+// components
+import Continue from "../../coms/Continue/Continue";
 
 const ContinuePage = () => {
   return (

@@ -10,7 +10,7 @@ import db from "../config/firebase";
 const Navbar = () => {
   const history = useHistory();
   const LST = localStorage.getItem("token");
-  const { isLogin, writeUserInfo, resetAuth } = useContext(authContext);
+  const { isLogin, writeUserInfo, resetAuth, clearChatroomFilter } = useContext(authContext);
 
   useEffect(() => {
     // read auth-userInfo from db => consistent login access
@@ -38,6 +38,7 @@ const Navbar = () => {
   }, [LST]);
 
   const signOut = () => {
+    clearChatroomFilter()
     localStorage.removeItem("token");
     resetAuth();
     history.push("/");

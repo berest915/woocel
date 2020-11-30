@@ -1,8 +1,8 @@
-import React from "react";
+// css + img
 import "./ChatInfo.css";
-
-import { Avatar } from "@material-ui/core";
 import chatIntroAvatar from "../../img/chat-intro.jpg";
+// @material-ui
+import { Avatar } from "@material-ui/core";
 
 const ChatInfo = () => {
   return (

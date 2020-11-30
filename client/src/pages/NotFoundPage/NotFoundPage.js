@@ -1,9 +1,9 @@
-import NotFound from "../../coms/NotFound/NotFound";
+// css
 import "./NotFoundPage.css";
+// components
+import NotFound from "../../coms/NotFound/NotFound";
 
 const NotFoundPage = () => {
-
-  
   return (
     <>
       <div className="notFound">

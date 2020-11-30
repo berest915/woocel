@@ -1,6 +1,7 @@
+// react hooks + css
 import { useHistory } from "react-router-dom";
-import './NotFound.css'
-
+import "./NotFound.css";
+// @material-ui
 import Button from "@material-ui/core/Button";
 
 const NotFound = () => {
@@ -8,14 +9,13 @@ const NotFound = () => {
 
   return (
     <>
-          <div className="notFound__container">
-            <p className='error'>ERROR 404</p>
-            <p className='detail'>Page Not Found</p>
-            <Button className="google-btn" onClick={() => history.push('/')}>
-              Redirect to Homepage
-            </Button>
-          </div>
-    
+      <div className="notFound__container">
+        <p className="error">ERROR 404</p>
+        <p className="detail">Page Not Found</p>
+        <Button className="google-btn" onClick={() => history.push("/")}>
+          Redirect to Homepage
+        </Button>
+      </div>
     </>
   );
 };

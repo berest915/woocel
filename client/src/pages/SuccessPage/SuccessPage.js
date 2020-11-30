@@ -1,15 +1,19 @@
+// react hooks + react-router-dom + css
 import { useState, useEffect } from "react";
 import { Route, useRouteMatch, useHistory } from "react-router-dom";
+import "./SuccessPage.css";
+// components
 import Chat from "../../coms/Chat/Chat";
 import Sidebar from "../../coms/Sidebar/Sidebar";
 import ChatInfo from "../../coms/ChatInfo/ChatInfo";
-import "./SuccessPage.css";
-import { useBreakpoint } from "../../IndexContextProvider/breakpoint";
 import ToggleMobilePortal from "../../coms/ToggleMobilePortal/ToggleMobilePortal";
+// mql hooks
+import { useBreakpoint } from "../../IndexContextProvider/breakpoint";
 
 const SuccessPage = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const onCloseModal = () => setIsOpen(false);
+  const history = useHistory();
+  const { path } = useRouteMatch();
+
   const breakpoints = useBreakpoint();
   // media-controlled rendered-coms
   let isSm;
@@ -17,13 +21,12 @@ const SuccessPage = () => {
     if (media === "sm" && breakpoints[media] === true) {
       isSm = true;
     }
-
     return null;
   });
+  const [isOpen, setIsOpen] = useState(true);
+  const onCloseModal = () => setIsOpen(false);
 
   const LST = localStorage.getItem("token");
-  const history = useHistory();
-  const { path } = useRouteMatch();
 
   useEffect(() => {
     !LST && history.push("/");
