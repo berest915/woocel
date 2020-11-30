@@ -4,19 +4,20 @@ import Chat from "../../coms/Chat/Chat";
 import Sidebar from "../../coms/Sidebar/Sidebar";
 import ChatInfo from "../../coms/ChatInfo/ChatInfo";
 import "./SuccessPage.css";
-import { useBreakpoint } from '../../IndexContextProvider/breakpoint'
-import ToggleMobilePortal from '../../coms/ToggleMobilePortal/ToggleMobilePortal'
+import { useBreakpoint } from "../../IndexContextProvider/breakpoint";
+import ToggleMobilePortal from "../../coms/ToggleMobilePortal/ToggleMobilePortal";
 
 const SuccessPage = () => {
-  const [isOpen, setIsOpen] = useState(true)
-  const onCloseModal = () => setIsOpen(false)
-  const breakpoints = useBreakpoint()
+  const [isOpen, setIsOpen] = useState(true);
+  const onCloseModal = () => setIsOpen(false);
+  const breakpoints = useBreakpoint();
   // media-controlled rendered-coms
   let isSm;
   Object.keys(breakpoints).map(media => {
     if (media === "sm" && breakpoints[media] === true) {
       isSm = true;
     }
+
     return null;
   });
 
@@ -41,11 +42,8 @@ const SuccessPage = () => {
               <Chat />
             </Route>
             {isSm && (
-                  <ToggleMobilePortal
-                    isOpen={isOpen}
-                    onCloseModal={onCloseModal}
-                  />
-                )}
+              <ToggleMobilePortal isOpen={isOpen} onCloseModal={onCloseModal} />
+            )}
           </div>
         </div>
       </div>

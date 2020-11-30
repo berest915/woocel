@@ -6,6 +6,7 @@
   text-align: center;
   font-size: var(--chatInfo-text-font-size--);
   color: gray;
+  overflow-y: auto;
 }
 
 .chatInfo > .avatar {

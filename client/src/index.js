@@ -7,7 +7,8 @@ import { BreakpointProvider } from "./IndexContextProvider/breakpoint";
 
 
 const queries = {
-  sm: "(max-width: 625px)"
+  sm: "(max-width: 625px)",
+  or: '(orientation: portrait)',
 }
 
 ReactDOM.render(
