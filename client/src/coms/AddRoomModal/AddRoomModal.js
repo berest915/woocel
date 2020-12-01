@@ -27,10 +27,6 @@ const AddRoomModal = ({ isOpen, onCloseModal }) => {
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           roomAvatarUrl: null,
         })
-        .then(() => {
-          // upd filtered
-          searchRef && filterChatroom(searchRef.current.value);
-        });
     }
 
     //? reset() failed to clear inputs

@@ -147,7 +147,6 @@ const Chat = () => {
         .delete()
         .then(function () {
           console.log("Document successfully deleted!");
-          filterChatroom(searchRef.current.value);
         })
         .catch(function (error) {
           console.error("Error removing document: ", error);
