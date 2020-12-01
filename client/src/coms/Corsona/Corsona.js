@@ -92,7 +92,7 @@ const Corsona = ({ roomId, onCloseModal }) => {
       // create dir reference for the uploaded file
       let fileStoragePath = `${roomId}/${readyFile.name}`;
       const fileRef = storageRef.child(fileStoragePath);
-
+     
       //! upload file
       await fileRef
         .put(readyFile)
@@ -110,7 +110,7 @@ const Corsona = ({ roomId, onCloseModal }) => {
           db.collection("rooms").doc(roomId).set(
             {
               roomAvatarUrl: url,
-              path: fileStoragePath,
+              fileStoragePath,
             },
             { merge: true }
           );

@@ -16,6 +16,7 @@ import AddRoomAvatarModal from "../AddRoomAvatarModal/AddRoomAvatarModal";
 // firebase
 import db from "../../config/firebase";
 import firebase from "firebase";
+import { firebaseApp } from "../../config/firebase";
 // react contexts
 import authContext from "../../context/auth/authContext";
 
@@ -25,11 +26,7 @@ const Chat = () => {
   const messageRef = useRef();
   const inputRef = useRef();
 
-  const {
-    user,
-    searchRef,
-    filterChatroom,
-  } = useContext(authContext);
+  const { user, searchRef, filterChatroom } = useContext(authContext);
 
   const [roomName, setRoomName] = useState("");
   const [roomAvatar, setRoomAvatar] = useState("");
@@ -142,6 +139,23 @@ const Chat = () => {
 
   const onDeleteRoom = () => {
     if (roomId) {
+      // extract fileStoragePath from db
+      // then delete avatar-file from storage
+      // before deleting the one chatroom
+      db.collection("rooms")
+        .doc(roomId)
+        .onSnapshot(snapshot => {
+          try {
+            let deleteFolderPath = snapshot.data().fileStoragePath;
+            // Create a root reference
+            const storageRef = firebaseApp.storage().ref();
+            const fileRef = storageRef.child(deleteFolderPath);
+            fileRef.delete();
+          } catch (error) {
+            // might log error into db-collection("errors")?
+          }
+        });
+      // delete the one chatroom
       db.collection("rooms")
         .doc(roomId)
         .delete()
