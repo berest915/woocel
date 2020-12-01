@@ -22,6 +22,7 @@ const Sidebar = ({ path }) => {
     filteredChatroom,
     filterChatroom,
     clearChatroomFilter,
+    updSearchTextRef,
   } = useContext(authContext);
 
   const searchRef = useRef("");
@@ -38,6 +39,8 @@ const Sidebar = ({ path }) => {
             data: doc.data(),
           }))
         );
+        // update roomAvatar under filtered chatroom
+        searchRef && filterChatroom(searchRef.current.value);
       });
 
     return () => unsubscribe();
@@ -70,6 +73,8 @@ const Sidebar = ({ path }) => {
     );
   };
 
+  //? in case a page-refresh, trigger searchRef change to ""
+  // to avoid displaying filtered eachroom
   useEffect(() => {
     if (filteredChatroom === null) {
       searchRef.current.value = "";
@@ -78,6 +83,7 @@ const Sidebar = ({ path }) => {
 
   const onChange = e => {
     if (searchRef.current.value !== "") {
+      updSearchTextRef(searchRef);
       filterChatroom(e.target.value);
     } else {
       clearChatroomFilter();

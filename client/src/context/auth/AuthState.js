@@ -9,6 +9,7 @@ import {
   SET_ROOMS,
   FILTER_CHATROOM,
   CLEAR_CHATROOM_FILTER,
+  UPD_SEARCH_TEXT_REF,
 } from "../types";
 
 const AuthState = props => {
@@ -23,6 +24,7 @@ const AuthState = props => {
     isLogin: false,
     accessToken: null,
     filteredChatroom: null,
+    searchTextRef: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -66,7 +68,15 @@ const AuthState = props => {
       type: CLEAR_CHATROOM_FILTER,
     })
   }
-  
+
+  const updSearchTextRef = (ref) => {
+    dispatch({
+      type: UPD_SEARCH_TEXT_REF,
+      payload: ref
+    })
+  }  
+
+ 
 
   return (
     <AuthContext.Provider
@@ -76,6 +86,8 @@ const AuthState = props => {
         user: state.user,
         rooms: state.rooms,
         filteredChatroom: state.filteredChatroom,
+        searchTextRef: state.searchTextRef,
+        updSearchTextRef,
         writeUserInfo,
         setAccessToken,
         resetAuth,

@@ -6,8 +6,8 @@ import "./Chat.css";
 import IconButton from "@material-ui/core/IconButton";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import Avatar from "@material-ui/core/Avatar";
-import AttachFile from "@material-ui/icons/AttachFile";
-import MoreVert from "@material-ui/icons/MoreVert";
+import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
@@ -25,10 +25,14 @@ const Chat = () => {
   const messageRef = useRef();
   const inputRef = useRef();
 
-  const { user } = useContext(authContext);
+  const {
+    user,
+    searchTextRef,
+    filterChatroom,
+  } = useContext(authContext);
 
   const [roomName, setRoomName] = useState("");
-  const [roomAvatar, setRoomAvatar] = useState("")
+  const [roomAvatar, setRoomAvatar] = useState("");
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +48,7 @@ const Chat = () => {
         .doc(roomId)
         .onSnapshot(snapshot => {
           let room = snapshot.data();
-          setRoomAvatar(room.roomAvatarUrl)
+          room && setRoomAvatar(room.roomAvatarUrl);
         });
       // set roomName
       const unsubsribeTwo = db
@@ -54,7 +58,7 @@ const Chat = () => {
           try {
             setRoomName(snapshot.data().name);
           } catch (error) {
-            history.push("/notFound");
+            history.push("/app");
           }
         });
       // display messages from specified chatroom
@@ -136,6 +140,21 @@ const Chat = () => {
     return formattedTimestamp;
   };
 
+  const onDeleteRoom = () => {
+    if (roomId) {
+      db.collection("rooms")
+        .doc(roomId)
+        .delete()
+        .then(function () {
+          console.log("Document successfully deleted!");
+          filterChatroom(searchTextRef.current.value);
+        })
+        .catch(function (error) {
+          console.error("Error removing document: ", error);
+        });
+    }
+  };
+
   return (
     <>
       <div className="chat__header">
@@ -168,8 +187,8 @@ const Chat = () => {
           <IconButton autoFocus onClick={onOpenModal}>
             <AddPhotoAlternateIcon />
           </IconButton>
-          <IconButton>
-            <MoreVert />
+          <IconButton onClick={onDeleteRoom}>
+            <DeleteOutlineIcon />
           </IconButton>
         </div>
       </div>

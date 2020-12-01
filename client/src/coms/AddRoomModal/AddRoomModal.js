@@ -1,4 +1,5 @@
 // react hooks + css
+import { useContext } from 'react'
 import ReactDOM from "react-dom";
 import "./AddRoomModal.css";
 // custom hooks
@@ -6,9 +7,12 @@ import { useInput } from "./useInput";
 // firebase
 import db from "../../config/firebase";
 import firebase from "firebase";
+// react contexts
+import authContext from '../../context/auth/authContext'
 
 const AddRoomModal = ({ isOpen, onCloseModal }) => {
   const { roomname, bind } = useInput("");
+  const { filterChatroom, searchTextRef } = useContext(authContext)
 
   if (!isOpen) return null;
 
@@ -21,7 +25,12 @@ const AddRoomModal = ({ isOpen, onCloseModal }) => {
         isSelected: false,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         roomAvatarUrl: null,
-      });
+      }).then(() => {
+        // upd filtered
+        // db.collection("rooms")
+        searchTextRef && filterChatroom(searchTextRef.current.value)
+
+      })
     }
 
     //? reset() failed to clear inputs

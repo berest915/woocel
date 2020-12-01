@@ -1,13 +1,20 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
+// react hooks + css
+import { useState, useCallback, useRef, useEffect, useContext } from "react";
+import "./Corsona.css";
+// ReactCrop
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-import "./Corsona.css";
+// @material-ui
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
-import Button from "@material-ui/core/Button";
+// styled-components
+import {
+  NoTransitionDiv,
+  NoneCropDiv,
+  ReButton,
+} from "../../StyledComponents/StyledComponents";
+// firebase
 import db, { firebaseApp } from "../../config/firebase";
-import styled from "styled-components";
-import { NoTransitionDiv, NoneCropDiv, ReButton } from '../../StyledComponents/StyledComponents'
 
 // Increase pixel density for crop preview quality on retina screens.
 const pixelRatio = window.devicePixelRatio || 1;
@@ -58,7 +65,7 @@ const Corsona = ({ roomId, onCloseModal }) => {
 
     const canvasFile = canvas.toBlob(
       blob => {
-        console.log(blob)
+        console.log(blob);
         setReadyFile(blobToFile(blob, "uploaded-avatar-img.png"));
         // const previewUrl = window.URL.createObjectURL(blob);
         // console.log("previewURL >> ", blob)
@@ -165,7 +172,6 @@ const Corsona = ({ roomId, onCloseModal }) => {
   }, [completedCrop]);
 
   const uploadFile = e => {
-    
     if (e.target.files && e.target.files.length > 0) {
       const reader = new FileReader();
       reader.addEventListener("load", () => {
@@ -247,4 +253,3 @@ const Corsona = ({ roomId, onCloseModal }) => {
 };
 
 export default Corsona;
-
