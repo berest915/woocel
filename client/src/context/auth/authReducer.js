@@ -6,7 +6,7 @@ import {
   SET_ROOMS,
   FILTER_CHATROOM,
   CLEAR_CHATROOM_FILTER,
-  UPD_SEARCH_TEXT_REF,
+  WRITE_CONTEXT_SEARCH_REF,
 } from "../types";
 
 const authReducer = (state, action) => {
@@ -59,10 +59,10 @@ const authReducer = (state, action) => {
         ...state,
         filteredChatroom: null,
       };
-    case UPD_SEARCH_TEXT_REF:
+    case WRITE_CONTEXT_SEARCH_REF:
       return{
         ...state,
-        searchTextRef: action.payload,
+        searchRef: action.payload,
       }
     default:
       throw Error(`Auth Reducer - Unhandled Action: ${action.type}`);

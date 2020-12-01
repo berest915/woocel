@@ -22,7 +22,7 @@ const Sidebar = ({ path }) => {
     filteredChatroom,
     filterChatroom,
     clearChatroomFilter,
-    updSearchTextRef,
+    writeContext_searchRef,
   } = useContext(authContext);
 
   const searchRef = useRef("");
@@ -83,7 +83,7 @@ const Sidebar = ({ path }) => {
 
   const onChange = e => {
     if (searchRef.current.value !== "") {
-      updSearchTextRef(searchRef);
+      writeContext_searchRef(searchRef);
       filterChatroom(e.target.value);
     } else {
       clearChatroomFilter();

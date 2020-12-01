@@ -27,7 +27,7 @@ const Chat = () => {
 
   const {
     user,
-    searchTextRef,
+    searchRef,
     filterChatroom,
   } = useContext(authContext);
 
@@ -147,7 +147,7 @@ const Chat = () => {
         .delete()
         .then(function () {
           console.log("Document successfully deleted!");
-          filterChatroom(searchTextRef.current.value);
+          filterChatroom(searchRef.current.value);
         })
         .catch(function (error) {
           console.error("Error removing document: ", error);

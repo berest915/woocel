@@ -9,7 +9,7 @@ import {
   SET_ROOMS,
   FILTER_CHATROOM,
   CLEAR_CHATROOM_FILTER,
-  UPD_SEARCH_TEXT_REF,
+  WRITE_CONTEXT_SEARCH_REF,
 } from "../types";
 
 const AuthState = props => {
@@ -24,7 +24,7 @@ const AuthState = props => {
     isLogin: false,
     accessToken: null,
     filteredChatroom: null,
-    searchTextRef: null,
+    searchRef: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -69,10 +69,10 @@ const AuthState = props => {
     })
   }
 
-  const updSearchTextRef = (ref) => {
+  const writeContext_searchRef = (searchRef) => {
     dispatch({
-      type: UPD_SEARCH_TEXT_REF,
-      payload: ref
+      type: WRITE_CONTEXT_SEARCH_REF,
+      payload: searchRef
     })
   }  
 
@@ -86,8 +86,8 @@ const AuthState = props => {
         user: state.user,
         rooms: state.rooms,
         filteredChatroom: state.filteredChatroom,
-        searchTextRef: state.searchTextRef,
-        updSearchTextRef,
+        searchRef: state.searchRef,
+        writeContext_searchRef,
         writeUserInfo,
         setAccessToken,
         resetAuth,
