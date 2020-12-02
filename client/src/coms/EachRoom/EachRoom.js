@@ -63,6 +63,7 @@ const EachRoom = ({
       setLastDate(day + "/" + month + "/" + year);
     }
   }, [messages]);
+  //todo raise NaN issue
 
   return (
     <>
@@ -93,6 +94,7 @@ const EachRoom = ({
                   <p className="lastMessage">
                     {!messages.length ? "" : messages[0].message}
                   </p>
+                  
                 </div>
               </div>
             </div>

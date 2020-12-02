@@ -23,7 +23,6 @@
   min-width: 0;
 }
 
-
 .chat__headerLeft > .info {
   display: flex;
   flex-direction: column;
@@ -68,7 +67,7 @@
   display: flex;
 
   flex: 1;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   overflow-y: auto;
   /* scrollbar-initial-position */
   flex-direction: column;
@@ -86,6 +85,8 @@
   font-weight: 500;
 
   display: flex;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .chat__receiver {
