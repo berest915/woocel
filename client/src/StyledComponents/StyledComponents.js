@@ -8,10 +8,10 @@ export const NoTransitionDiv = styled.div`
 // a btn style
 export const ReButton = styled(Button)`
   color: lightblue;
-  margin-top: 10px;
   display: block;
   width: 100%;
   transition: all 0.4s ease;
+  outline: none;
   :hover {
     color: black;
     background-color: lavender;

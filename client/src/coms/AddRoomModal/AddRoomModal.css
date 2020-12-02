@@ -8,7 +8,7 @@
 
   background-color: var(--empty-space-color--);
   color: lavender;
-  padding: 20px 40px;
+  padding: 20px 40px 10px 40px;
   border-radius: 5px;
   text-transform: uppercase;
   font-weight: bold;
@@ -20,7 +20,7 @@
 }
 
 .addRoomModal .modalTitle {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .addRoomModal .modalInput {
@@ -28,15 +28,18 @@
   padding: 5px;
   outline: none;
   border: none;
-  margin-bottom: 20px;
   font-weight: bold;
 }
 
-.addRoomModal .modalCloseButton {
+.addRoomModal .modalCloseButton,
+.addRoomModal .modalEnterButton {
   border-radius: 5px;
   padding: 3px 12px;
   width: 100%;
+  margin: 10px 0;
 }
+
+
 
 .addRoomModal .modalCloseButton:hover {
   cursor: pointer;

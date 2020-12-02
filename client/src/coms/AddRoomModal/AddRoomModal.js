@@ -1,18 +1,17 @@
 // react hooks + css
-import { useContext } from "react";
 import ReactDOM from "react-dom";
 import "./AddRoomModal.css";
 // custom hooks
 import { useInput } from "./useInput";
+// styled-components
+import { ReButton } from '../../StyledComponents/StyledComponents'
 // firebase
 import db from "../../config/firebase";
 import firebase from "firebase";
-// react contexts
-import authContext from "../../context/auth/authContext";
+
 
 const AddRoomModal = ({ isOpen, onCloseModal }) => {
-  const { roomname, bind } = useInput("");
-  const { filterChatroom, searchRef } = useContext(authContext);
+  const { roomname, bind, reset } = useInput("");
 
   if (!isOpen) return null;
 
@@ -30,8 +29,7 @@ const AddRoomModal = ({ isOpen, onCloseModal }) => {
         })
     }
 
-    //? reset() failed to clear inputs
-    // reset();
+    reset();
     onCloseModal();
   };
 
@@ -42,12 +40,15 @@ const AddRoomModal = ({ isOpen, onCloseModal }) => {
           <form onSubmit={handleSubmit}>
             <label>
               <div className="modalTitle">Room Name</div>
-              <input className="modalInput" type="text" {...bind} />
+              <input  autoFocus className="modalInput" type="text" {...bind} />
             </label>
           </form>
-          <button className="modalCloseButton" onClick={onCloseModal}>
+          <ReButton className='modalEnterButton' onClick={handleSubmit} >
+            Add This Room
+          </ReButton>
+          <ReButton className="modalCloseButton" onClick={onCloseModal}>
             Cancel
-          </button>
+          </ReButton>
         </div>
       </div>
     </>,

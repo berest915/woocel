@@ -25,8 +25,7 @@ const Continue = () => {
         return doc;
       });
     });
-    // eslint-disable-next-line
-  }, []);
+  }, [writeUserInfo]);
 
   const signOut = () => {
     localStorage.removeItem("token");
