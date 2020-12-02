@@ -39,8 +39,9 @@ const Sidebar = ({ path }) => {
             data: doc.data(),
           }))
         );
-        // update roomAvatar under filtered chatroom
+        // if there is filtered, upd the rooms for new-add || cur-delete || cur-alter
         searchRef && filterChatroom(searchRef.current.value);
+        
       });
 
     return () => unsubscribe();

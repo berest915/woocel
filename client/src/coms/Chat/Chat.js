@@ -7,7 +7,6 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchOutlined from "@material-ui/icons/SearchOutlined";
 import Avatar from "@material-ui/core/Avatar";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
@@ -26,7 +25,7 @@ const Chat = () => {
   const messageRef = useRef();
   const inputRef = useRef();
 
-  const { user, searchRef, filterChatroom } = useContext(authContext);
+  const { user } = useContext(authContext);
 
   const [roomName, setRoomName] = useState("");
   const [roomAvatar, setRoomAvatar] = useState("");
@@ -96,9 +95,9 @@ const Chat = () => {
   useEffect(() => {
     if (input) {
       //* @latter-imp-feature
-      if (messages.length > 0) {
-        let prevTimestamp = messages[messages.length - 1].timestamp?.toDate();
-      }
+      // if (messages.length > 0) {
+      //   let prevTimestamp = messages[messages.length - 1].timestamp?.toDate();
+      // }
       // add msg
       db.collection("rooms").doc(roomId).collection("messages").add({
         message: input,
@@ -129,6 +128,7 @@ const Chat = () => {
 
     let formattedTimestamp;
     // checkIf NaN, raise a warning though
+    // eslint-disable-next-line
     if (year !== year) {
       formattedTimestamp = "-/-/-";
     } else {

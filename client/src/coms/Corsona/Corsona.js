@@ -1,5 +1,5 @@
 // react hooks + css
-import { useState, useCallback, useRef, useEffect, useContext } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import "./Corsona.css";
 // ReactCrop
 import ReactCrop from "react-image-crop";
@@ -63,23 +63,19 @@ const Corsona = ({ roomId, onCloseModal }) => {
 
     const canvas = getResizedCanvas(previewCanvas, crop.width, crop.height);
 
-    const canvasFile = canvas.toBlob(
-      blob => {
-        console.log(blob);
-        setReadyFile(blobToFile(blob, "uploaded-avatar-img.png"));
-        // const previewUrl = window.URL.createObjectURL(blob);
-        // console.log("previewURL >> ", blob)
-        // const anchor = document.createElement("a");
-        // anchor.download = "cropPreview.png";
-        // anchor.href = URL.createObjectURL(blob);
-        // console.log('anchor href >> ', anchor.href)
-        // anchor.click();
+    canvas.toBlob(blob => {
+      console.log(blob);
+      setReadyFile(blobToFile(blob, "uploaded-avatar-img.png"));
+      // const previewUrl = window.URL.createObjectURL(blob);
+      // console.log("previewURL >> ", blob)
+      // const anchor = document.createElement("a");
+      // anchor.download = "cropPreview.png";
+      // anchor.href = URL.createObjectURL(blob);
+      // console.log('anchor href >> ', anchor.href)
+      // anchor.click();
 
-        // window.URL.revokeObjectURL(previewUrl);
-      },
-      "image/png",
-      1
-    );
+      // window.URL.revokeObjectURL(previewUrl);
+    }, "image/png");
   };
 
   useEffect(() => {
@@ -92,7 +88,7 @@ const Corsona = ({ roomId, onCloseModal }) => {
       // create dir reference for the uploaded file
       let fileStoragePath = `${roomId}/${readyFile.name}`;
       const fileRef = storageRef.child(fileStoragePath);
-     
+
       //! upload file
       await fileRef
         .put(readyFile)
@@ -123,8 +119,9 @@ const Corsona = ({ roomId, onCloseModal }) => {
         );
       onCloseModal();
     }
+
     fetchFile();
-  }, [readyFile]);
+  }, [readyFile, roomId, triggered, onCloseModal]);
 
   //* initial crop properties
   const [crop, setCrop] = useState({
