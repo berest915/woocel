@@ -5,7 +5,6 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-
   background-color: var(--empty-space-color--);
   color: lavender;
   padding: 20px 40px;
