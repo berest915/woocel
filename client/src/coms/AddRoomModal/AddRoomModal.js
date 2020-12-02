@@ -28,7 +28,6 @@ const AddRoomModal = ({ isOpen, onCloseModal }) => {
           fileStoragePath: null,
         })
     }
-
     reset();
     onCloseModal();
   };

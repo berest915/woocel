@@ -9,31 +9,34 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import ContinuePage from "./pages/ContinuePage/ContinuePage";
 // react contexts
 import AuthState from "./context/auth/AuthState";
+import RoomState from "./context/room/RoomState";
 
 const App = () => {
   return (
     <>
       <AuthState>
-        <div className="app">
-          <Router>
-            <div className="app__header">
-              <div className="layout">
-                <Navbar />
+        <RoomState>
+          <div className="app">
+            <Router>
+              <div className="app__header">
+                <div className="layout">
+                  <Navbar />
+                </div>
               </div>
-            </div>
 
-            <div className="app__body">
-              <div className="page">
-                <Switch>
-                  <Route exact path="/" component={LoginPage} />
-                  <Route path="/continue" component={ContinuePage} />
-                  <Route path="/app" component={SuccessPage} />
-                  <Route component={NotFoundPage} />
-                </Switch>
+              <div className="app__body">
+                <div className="page">
+                  <Switch>
+                    <Route exact path="/" component={LoginPage} />
+                    <Route path="/continue" component={ContinuePage} />
+                    <Route path="/app" component={SuccessPage} />
+                    <Route component={NotFoundPage} />
+                  </Switch>
+                </div>
               </div>
-            </div>
-          </Router>
-        </div>
+            </Router>
+          </div>
+        </RoomState>
       </AuthState>
     </>
   );

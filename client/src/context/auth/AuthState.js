@@ -6,10 +6,6 @@ import {
   SET_LOGIN_STATUS,
   SET_ACCESS_TOKEN,
   RESET_AUTH,
-  SET_ROOMS,
-  FILTER_CHATROOM,
-  CLEAR_CHATROOM_FILTER,
-  WRITE_CONTEXT_SEARCH_REF,
 } from "../types";
 
 const AuthState = props => {
@@ -20,11 +16,8 @@ const AuthState = props => {
       email: null,
       photoURL: null,
     },
-    rooms: null, // identify appended-format from db
     isLogin: false,
     accessToken: null,
-    filteredChatroom: null,
-    searchRef: null,
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -49,34 +42,6 @@ const AuthState = props => {
     dispatch({ type: RESET_AUTH });
   };
 
-  const setRooms = (rooms) => {
-    dispatch({
-      type: SET_ROOMS,
-      payload: rooms,
-    })
-  }
-
-  const filterChatroom = (onSearchText) => {
-    dispatch({
-      type: FILTER_CHATROOM,
-      payload: onSearchText,
-    })
-  }
-
-  const clearChatroomFilter = () => {
-    dispatch({
-      type: CLEAR_CHATROOM_FILTER,
-    })
-  }
-
-  const writeContext_searchRef = (searchRef) => {
-    dispatch({
-      type: WRITE_CONTEXT_SEARCH_REF,
-      payload: searchRef
-    })
-  }  
-
- 
 
   return (
     <AuthContext.Provider
@@ -84,16 +49,9 @@ const AuthState = props => {
         isLogin: state.isLogin,
         accessToken: state.accessToken,
         user: state.user,
-        rooms: state.rooms,
-        filteredChatroom: state.filteredChatroom,
-        searchRef: state.searchRef,
-        writeContext_searchRef,
         writeUserInfo,
         setAccessToken,
         resetAuth,
-        setRooms,
-        filterChatroom,
-        clearChatroomFilter,
       }}
     >
       {props.children}

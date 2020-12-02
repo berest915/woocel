@@ -1,16 +1,20 @@
+// react hooks + react-router-dom + css
 import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./Navbar.css";
-
+// @material-ui
 import Button from "@material-ui/core/Button";
-
-import authContext from "../context/auth/authContext";
+// firebase
 import db from "../config/firebase";
+// react contexts
+import authContext from "../context/auth/authContext";
+import roomContext from "../context/room/roomContext";
 
 const Navbar = () => {
   const history = useHistory();
   const LST = localStorage.getItem("token");
-  const { isLogin, writeUserInfo, resetAuth, clearChatroomFilter } = useContext(authContext);
+  const { isLogin, writeUserInfo, resetAuth } = useContext(authContext);
+  const { clearChatroomFilter } = useContext(roomContext);
 
   useEffect(() => {
     // read auth-userInfo from db => consistent login access
@@ -27,7 +31,7 @@ const Navbar = () => {
               email: docData.email,
               photoURL: docData.photoURL,
             });
-          }
+          } 
           return doc;
         });
       });
@@ -38,7 +42,7 @@ const Navbar = () => {
   }, [LST]);
 
   const signOut = () => {
-    clearChatroomFilter()
+    clearChatroomFilter();
     localStorage.removeItem("token");
     resetAuth();
     history.push("/");
@@ -57,7 +61,6 @@ const Navbar = () => {
         </div>
         <p className="text">{!isLogin ? "no-token" : "has-token"}</p>
         <Button
-          // className={`google-btn ${!isLogin && "disabled"}`}
           className="google-btn"
           onClick={signOut}
           disabled={!isLogin && true}

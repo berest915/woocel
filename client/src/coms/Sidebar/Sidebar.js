@@ -13,17 +13,18 @@ import EachRoom from "../EachRoom/EachRoom";
 import db from "../../config/firebase";
 // react context
 import authContext from "../../context/auth/authContext";
+import roomContext from "../../context/room/roomContext";
 
 const Sidebar = ({ path }) => {
+  const { user } = useContext(authContext);
   const {
-    user,
     rooms,
     setRooms,
     filteredChatroom,
     filterChatroom,
     clearChatroomFilter,
     writeContext_searchRef,
-  } = useContext(authContext);
+  } = useContext(roomContext);
 
   const searchRef = useRef("");
 
@@ -41,7 +42,6 @@ const Sidebar = ({ path }) => {
         );
         // if there is filtered, upd the rooms for new-add || cur-delete || cur-alter
         searchRef && filterChatroom(searchRef.current.value);
-        
       });
 
     return () => unsubscribe();

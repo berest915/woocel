@@ -2,7 +2,7 @@
 import "./ChatInfo.css";
 import chatIntroAvatar from "../../img/chat-intro.jpg";
 // @material-ui
-import { Avatar } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
 
 const ChatInfo = () => {
   return (
@@ -21,8 +21,8 @@ const ChatInfo = () => {
             Woocel is available for Windows.
             <a
               href="https://www.whatsapp.com/download"
-              target='_blank'
-              rel='noreferrer'
+              target="_blank"
+              rel="noreferrer"
               className="downloads-link"
             >
               Get it here.
