@@ -16,8 +16,7 @@ const ToggleModalPortal = ({ isOpen, onCloseModal }) => {
               this chat application is only witting for web-platform.
             </p>
             <p className="bottom-message">
-              mobile-view would be implemented in the near future using
-              react-native
+              mobile-view would be implemented in the near future using react-native, else you could either use orientation-mode or enable desktop site.
             </p>
             <ReButton onClick={onCloseModal}>Proceed Anyway</ReButton>
           </div>
