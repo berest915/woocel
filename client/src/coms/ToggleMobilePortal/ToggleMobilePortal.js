@@ -17,7 +17,8 @@ const ToggleModalPortal = ({ isOpen, onCloseModal }) => {
             </p>
             <p className="bottom-message">
               mobile-view would be implemented in the near future using
-              react-native
+              react-native, else you could either view on orientation-mode OR
+              enable desktop site.
             </p>
             <ReButton onClick={onCloseModal}>Proceed Anyway</ReButton>
           </div>
