@@ -24,9 +24,11 @@
 
 .toggleMobileModal > .message__container > .top-message {
   border-bottom: var(--success-border--);
-  padding-bottom: 15px;
+ padding: 15px 8px;
+
 }
 
 .toggleMobileModal > .message__container > .bottom-message {
-  padding-top: 15px;
+ padding: 15px 8px;
+ margin-bottom: 8px;
 }
