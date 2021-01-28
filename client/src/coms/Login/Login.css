@@ -6,7 +6,7 @@
   align-items: center;
   border-radius: 10px;
 }
-.login__container *{
+.login__container * {
   transition: all 0.4s ease;
 }
 
@@ -15,17 +15,14 @@
   color: lightblue;
   padding-bottom: 30px;
   object-fit: contain; /*keep aspect ratio */
-  
 }
 
 .login__container > p {
   font-size: var(--login-text-size--);
   padding-bottom: 30px;
-  
 }
 
 @media screen and (max-width: 600px) {
-  
   .login__container > i {
     font-size: calc(0.8 * var(--login-logo-size--));
   }

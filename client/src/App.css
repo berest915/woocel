@@ -98,6 +98,14 @@
   background-color: rgb(84, 82, 219);
 }
 
+.login__container > .video-link {
+  color: #19bcd1;
+  padding-top: 20px;
+}
+.login__container > .video-link:hover {
+  color: rgb(127, 217, 247);
+}
+
 .app .google-btn.disabled {
   background-color: rgb(62, 55, 70);
   color: rgb(141, 130, 148);

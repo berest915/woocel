@@ -4,15 +4,28 @@ import { useHistory } from "react-router-dom";
 import "./Login.css";
 // @material ui
 import Button from "@material-ui/core/Button";
+import Tooltip from "@material-ui/core/Tooltip";
 // firebase
 import { auth, provider } from "../../config/firebase";
 import db from "../../config/firebase";
+// mql hooks
+import { useBreakpoint } from "../../IndexContextProvider/breakpoint";
 // react context
 import authContext from "../../context/auth/authContext";
 
 const Login = () => {
   const history = useHistory();
   const LST = localStorage.getItem("token");
+
+  const breakpoints = useBreakpoint();
+  // media-controlled rendered-coms
+  let isMd;
+  Object.keys(breakpoints).map(media => {
+    if (media === "md" && breakpoints[media] === true) {
+      isMd = true;
+    }
+    return null;
+  });
 
   const { writeUserInfo, setAccessToken } = useContext(authContext);
 
@@ -38,10 +51,10 @@ const Login = () => {
             email: result.user.email,
             photoURL: result.user.photoURL,
           })
-          .then( () => {
+          .then(() => {
             console.log("Auth User info successfully written!");
           })
-          .catch( error =>  {
+          .catch(error => {
             console.error("Error writing auth-user-info: ", error);
           });
         // ################################################### //
@@ -58,6 +71,34 @@ const Login = () => {
         <Button className="google-btn" onClick={signIn}>
           Sign in with Google
         </Button>
+
+        <Tooltip
+          className="video-link"
+          // title="watch this demo if hesitate to login"
+          title={
+            <>
+              <p
+                style={{
+                  margin: "5px",
+                  fontSize: ".7rem",
+                  fontWeight: "bold",
+                }}
+              >
+                watch this demo if hesitate to login
+              </p>
+            </>
+          }
+          placement={!isMd ? "right-end" : "bottom"}
+        >
+          <a
+            href="https://youtu.be/lkqqRDXrpTk"
+            alt="demo video link"
+            target="_blank"
+            rel="noreferrer"
+          >
+            check this out instead?
+          </a>
+        </Tooltip>
       </div>
     </>
   );
