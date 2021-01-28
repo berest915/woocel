@@ -91,7 +91,7 @@ const Login = () => {
           placement={!isMd ? "right-end" : "bottom"}
         >
           <a
-            href={process.env.REACT_APP_DEMO_LINK}
+            href="https://youtu.be/lkqqRDXrpTk"
             alt="demo video link"
             target="_blank"
             rel="noreferrer"
