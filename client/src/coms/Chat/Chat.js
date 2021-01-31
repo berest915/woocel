@@ -66,6 +66,7 @@ const Chat = () => {
         .onSnapshot(snapshot => {
           setMessages(snapshot.docs.map(doc => doc.data()));
         });
+
       return () => {
         unsubscribeOne();
         unsubsribeTwo();
@@ -94,14 +95,18 @@ const Chat = () => {
 
   useEffect(() => {
     if (input) {
-      //* @latter-imp-feature
+      //? @latter-imp-feature
       // if (messages.length > 0) {
       //   let prevTimestamp = messages[messages.length - 1].timestamp?.toDate();
       // }
-      // add msg
+      //! add msg
       db.collection("rooms").doc(roomId).collection("messages").add({
+        //! msg and username
         message: input,
         name: user.displayName,
+        //! for the purpose of => checkif displayName of the g-account is updated
+        email: user.email,
+        //! timestamp
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         formattedTimestamp: null,
         isNewerDate: false,
@@ -110,7 +115,7 @@ const Chat = () => {
       inputRef.current.value = "";
       setInput(""); // reset input value
     }
-  }, [input, roomId, user.displayName]);
+  }, [input, roomId, user.displayName, user.email]);
 
   const fnFormatTimestamp = timestamp => {
     const year = timestamp.getFullYear();
@@ -217,7 +222,7 @@ const Chat = () => {
               {/* shud use sort of user id instead of name, in case exactly same username */}
               <div
                 className={`chat__message ${
-                  message.name === user.displayName && `chat__receiver`
+                  message.email === user.email && `chat__receiver`
                 }`}
               >
                 <p className="chat__name">{message.name}</p>
