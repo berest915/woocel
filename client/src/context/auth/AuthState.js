@@ -21,11 +21,21 @@ const AuthState = props => {
   };
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
-  const writeUserInfo = user => {
+  const writeUserInfo = (user, updatedNameIfIs) => {
+    
+    let updatedUser = user
+    if (updatedNameIfIs) {
+      const { additionalUserInfo } = updatedNameIfIs;
+      const updatedDisplayName = additionalUserInfo.profile.name;
+      
+      updatedUser = { ...user, updatedDisplayName };
+    }
+
     dispatch({
       type: WRITE_USER_INFO,
-      payload: user,
+      payload: updatedUser,
     });
+
     dispatch({
       type: SET_LOGIN_STATUS,
     });
@@ -37,11 +47,10 @@ const AuthState = props => {
       payload: accessToken,
     });
   };
-  
+
   const resetAuth = () => {
     dispatch({ type: RESET_AUTH });
   };
-
 
   return (
     <AuthContext.Provider

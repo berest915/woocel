@@ -22,7 +22,11 @@ const authReducer = (state, action) => {
         ...state,
         user: {
           accessToken: action.payload.accessToken,
-          displayName: action.payload.displayName,
+          // displayName: action.payload.displayName,
+          displayName: !action.payload.updatedDisplayName
+            ? action.payload.displayName
+            : action.payload.updatedDisplayName,
+
           email: action.payload.email,
           photoURL: action.payload.photoURL,
         },

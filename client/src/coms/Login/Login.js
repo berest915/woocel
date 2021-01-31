@@ -38,7 +38,8 @@ const Login = () => {
     await auth
       .signInWithPopup(provider)
       .then(result => {
-        writeUserInfo(result.user);
+        
+        writeUserInfo(result.user, result);
         setAccessToken(result.credential.accessToken);
         localStorage.setItem("token", result.credential.accessToken);
         // write auth-user info into db
@@ -47,7 +48,7 @@ const Login = () => {
           .doc(result.user.email)
           .set({
             accessToken: result.credential.accessToken,
-            displayName: result.user.displayName,
+            displayName: result.additionalUserInfo.profile.name,
             email: result.user.email,
             photoURL: result.user.photoURL,
           })
