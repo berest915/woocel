@@ -30,11 +30,13 @@ const Chat = () => {
   const [roomName, setRoomName] = useState("");
   const [roomAvatar, setRoomAvatar] = useState("");
   const [messages, setMessages] = useState([]);
+
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-
   const onOpenModal = () => setIsOpen(true);
   const onCloseModal = () => setIsOpen(false);
+
+  // const [matchEmailQuery, setMatchEmailQuery] = useState([]);
 
   useEffect(() => {
     if (roomId) {
@@ -57,6 +59,7 @@ const Chat = () => {
             history.push("/app");
           }
         });
+
       // display messages from specified chatroom
       const unsubscribeThree = db
         .collection("rooms")
@@ -64,7 +67,18 @@ const Chat = () => {
         .collection("messages")
         .orderBy("timestamp", "asc")
         .onSnapshot(snapshot => {
-          setMessages(snapshot.docs.map(doc => doc.data()));
+          //! sync updated displayname with previous one
+          const updatedMessageSender = snapshot.docs.map(doc => {
+            let docData = doc.data();
+            if (docData.email === user.email) {
+              return { ...docData, name: user.displayName };
+            }
+            return docData;
+          });
+
+          //! set messages
+          // setMessages(snapshot.docs.map(doc => doc.data()));
+          setMessages(updatedMessageSender);
         });
 
       return () => {
