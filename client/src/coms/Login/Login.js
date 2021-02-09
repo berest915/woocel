@@ -92,7 +92,7 @@ const Login = () => {
           placement={!isMd ? "right-end" : "bottom"}
         >
           <a
-            href="https://youtu.be/lkqqRDXrpTk"
+            href="https://youtu.be/IZtTjOMzNyw"
             alt="demo video link"
             target="_blank"
             rel="noreferrer"
