@@ -11,7 +11,11 @@
 git clone https://github.com/berest915/woocel.git
 cd woocel
 npm i
-npm start
+cd client
+npm i
+cd ..
+npm run client
+
 ```
 </br>
 
