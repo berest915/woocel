@@ -84,7 +84,7 @@ const Sidebar = ({ path }) => {
 
   const onChange = e => {
     if (searchRef.current.value !== "") {
-      writeContext_searchRef(searchRef);
+      writeContext_searchRef(searchRef); // this do nothing...
       filterChatroom(e.target.value);
     } else {
       clearChatroomFilter();

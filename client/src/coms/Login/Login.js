@@ -22,7 +22,7 @@ const Login = () => {
   let isMd;
   Object.keys(breakpoints).map(media => {
     if (media === "md" && breakpoints[media] === true) {
-      isMd = true;
+      isMd = true; 
     }
     return null;
   });

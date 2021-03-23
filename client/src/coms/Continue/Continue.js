@@ -14,14 +14,21 @@ const Continue = () => {
   const history = useHistory();
 
   const { user, writeUserInfo, resetAuth } = useContext(authContext);
-
   useEffect(() => {
     db.collection("users").onSnapshot(snapshot => {
       snapshot.docs.map(doc => {
         // test if LST match with any of logined-user
         const LST = localStorage.getItem("token");
         // rewrite logined-user info into contexts
-        LST === doc.data().accessToken && writeUserInfo(doc.data());
+   
+        if(LST === doc.data().accessToken) {
+          writeUserInfo(doc.data());
+          // debugger
+          // console.log(LST)
+          // console.log('split')
+          // console.log(doc.data().accessToken)
+        }else{
+        }
         return doc;
       });
     });

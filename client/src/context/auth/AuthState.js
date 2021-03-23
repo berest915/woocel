@@ -22,7 +22,7 @@ const AuthState = props => {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const writeUserInfo = (user, updatedNameIfIs) => {
-    
+ 
     let updatedUser = user
     if (updatedNameIfIs) {
       const { additionalUserInfo } = updatedNameIfIs;
